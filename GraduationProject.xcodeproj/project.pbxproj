@@ -3,10 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		267C469E91DE67A2E178ED7E /* Pods_GraduationProject_GraduationProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D96A73A73047BFC1FFD984 /* Pods_GraduationProject_GraduationProjectUITests.framework */; };
+		313B5162244AE690002B1061 /* GPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B5161244AE690002B1061 /* GPTabBarViewController.m */; };
+		313B5165244AEEEB002B1061 /* GPTimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B5164244AEEEB002B1061 /* GPTimetableViewController.m */; };
+		313B5168244AEF20002B1061 /* GPNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B5167244AEF20002B1061 /* GPNoteViewController.m */; };
+		313B516B244AEF3A002B1061 /* GPMemorandumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B516A244AEF3A002B1061 /* GPMemorandumViewController.m */; };
+		313B516E244AEFA7002B1061 /* GPDrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B516D244AEFA7002B1061 /* GPDrawingViewController.m */; };
+		313B5171244AEFB6002B1061 /* GPAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B5170244AEFB6002B1061 /* GPAccountViewController.m */; };
+		314D3588244AFBD7007D155F /* GPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314D3587244AFBD7007D155F /* GPBaseViewController.m */; };
 		316809D5244AC9170013CF15 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809D4244AC9170013CF15 /* AppDelegate.m */; };
 		316809D8244AC9170013CF15 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809D7244AC9170013CF15 /* ViewController.m */; };
 		316809DB244AC9170013CF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 316809D9244AC9170013CF15 /* Main.storyboard */; };
@@ -15,6 +23,8 @@
 		316809E3244AC9180013CF15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809E2244AC9180013CF15 /* main.m */; };
 		316809ED244AC9180013CF15 /* GraduationProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809EC244AC9180013CF15 /* GraduationProjectTests.m */; };
 		316809F8244AC9180013CF15 /* GraduationProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809F7244AC9180013CF15 /* GraduationProjectUITests.m */; };
+		643AD45B93BEEC711FDE3563 /* Pods_GraduationProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3AA6153A2D33DCC186B70C9 /* Pods_GraduationProjectTests.framework */; };
+		FC8A994B43F7FA8DA163D7C6 /* Pods_GraduationProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DD2760C5E79EE97584068D /* Pods_GraduationProject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0EAF666EB0793B9BDD02221F /* Pods-GraduationProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProject/Pods-GraduationProject.debug.xcconfig"; sourceTree = "<group>"; };
+		313B515F244AE2A3002B1061 /* DefineFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineFile.h; sourceTree = "<group>"; };
+		313B5160244AE690002B1061 /* GPTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPTabBarViewController.h; sourceTree = "<group>"; };
+		313B5161244AE690002B1061 /* GPTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPTabBarViewController.m; sourceTree = "<group>"; };
+		313B5163244AEEEB002B1061 /* GPTimetableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPTimetableViewController.h; sourceTree = "<group>"; };
+		313B5164244AEEEB002B1061 /* GPTimetableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPTimetableViewController.m; sourceTree = "<group>"; };
+		313B5166244AEF20002B1061 /* GPNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPNoteViewController.h; sourceTree = "<group>"; };
+		313B5167244AEF20002B1061 /* GPNoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPNoteViewController.m; sourceTree = "<group>"; };
+		313B5169244AEF3A002B1061 /* GPMemorandumViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPMemorandumViewController.h; sourceTree = "<group>"; };
+		313B516A244AEF3A002B1061 /* GPMemorandumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPMemorandumViewController.m; sourceTree = "<group>"; };
+		313B516C244AEFA7002B1061 /* GPDrawingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawingViewController.h; sourceTree = "<group>"; };
+		313B516D244AEFA7002B1061 /* GPDrawingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawingViewController.m; sourceTree = "<group>"; };
+		313B516F244AEFB6002B1061 /* GPAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountViewController.h; sourceTree = "<group>"; };
+		313B5170244AEFB6002B1061 /* GPAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAccountViewController.m; sourceTree = "<group>"; };
+		314D3586244AFBD7007D155F /* GPBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPBaseViewController.h; sourceTree = "<group>"; };
+		314D3587244AFBD7007D155F /* GPBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPBaseViewController.m; sourceTree = "<group>"; };
 		316809D0244AC9170013CF15 /* GraduationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraduationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		316809D3244AC9170013CF15 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		316809D4244AC9170013CF15 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +77,15 @@
 		316809F3244AC9180013CF15 /* GraduationProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraduationProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		316809F7244AC9180013CF15 /* GraduationProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraduationProjectUITests.m; sourceTree = "<group>"; };
 		316809F9244AC9180013CF15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31680A05244ACF250013CF15 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		3168775AA5FD68A92E6F902F /* Pods-GraduationProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProjectTests.release.xcconfig"; path = "Target Support Files/Pods-GraduationProjectTests/Pods-GraduationProjectTests.release.xcconfig"; sourceTree = "<group>"; };
+		3AD44F7286899A24D294341B /* Pods-GraduationProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProjectTests/Pods-GraduationProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		70E4D80E20D816BD4C1ACC49 /* Pods-GraduationProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject.release.xcconfig"; path = "Target Support Files/Pods-GraduationProject/Pods-GraduationProject.release.xcconfig"; sourceTree = "<group>"; };
+		76D7363E4FF55ADB0330FFDC /* Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProject-GraduationProjectUITests/Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A3AA6153A2D33DCC186B70C9 /* Pods_GraduationProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraduationProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C466696FDEDC40B6CC50B25B /* Pods-GraduationProject-GraduationProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject-GraduationProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-GraduationProject-GraduationProjectUITests/Pods-GraduationProject-GraduationProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D0D96A73A73047BFC1FFD984 /* Pods_GraduationProject_GraduationProjectUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraduationProject_GraduationProjectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4DD2760C5E79EE97584068D /* Pods_GraduationProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraduationProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC8A994B43F7FA8DA163D7C6 /* Pods_GraduationProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				643AD45B93BEEC711FDE3563 /* Pods_GraduationProjectTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +109,79 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				267C469E91DE67A2E178ED7E /* Pods_GraduationProject_GraduationProjectUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F315431EEBC31112AE3B8D2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4DD2760C5E79EE97584068D /* Pods_GraduationProject.framework */,
+				D0D96A73A73047BFC1FFD984 /* Pods_GraduationProject_GraduationProjectUITests.framework */,
+				A3AA6153A2D33DCC186B70C9 /* Pods_GraduationProjectTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		313B5172244AEFC6002B1061 /* TimeTable */ = {
+			isa = PBXGroup;
+			children = (
+				313B5163244AEEEB002B1061 /* GPTimetableViewController.h */,
+				313B5164244AEEEB002B1061 /* GPTimetableViewController.m */,
+			);
+			path = TimeTable;
+			sourceTree = "<group>";
+		};
+		313B5173244AEFD4002B1061 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				313B5166244AEF20002B1061 /* GPNoteViewController.h */,
+				313B5167244AEF20002B1061 /* GPNoteViewController.m */,
+			);
+			path = Note;
+			sourceTree = "<group>";
+		};
+		313B5174244AEFE1002B1061 /* Memorandum */ = {
+			isa = PBXGroup;
+			children = (
+				313B5169244AEF3A002B1061 /* GPMemorandumViewController.h */,
+				313B516A244AEF3A002B1061 /* GPMemorandumViewController.m */,
+			);
+			path = Memorandum;
+			sourceTree = "<group>";
+		};
+		313B5175244AEFF9002B1061 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				313B516C244AEFA7002B1061 /* GPDrawingViewController.h */,
+				313B516D244AEFA7002B1061 /* GPDrawingViewController.m */,
+			);
+			path = Drawing;
+			sourceTree = "<group>";
+		};
+		313B5176244AF009002B1061 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				313B516F244AEFB6002B1061 /* GPAccountViewController.h */,
+				313B5170244AEFB6002B1061 /* GPAccountViewController.m */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		313B5177244AF03A002B1061 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				313B5160244AE690002B1061 /* GPTabBarViewController.h */,
+				313B5161244AE690002B1061 /* GPTabBarViewController.m */,
+				314D3586244AFBD7007D155F /* GPBaseViewController.h */,
+				314D3587244AFBD7007D155F /* GPBaseViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		316809C7244AC9170013CF15 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +189,8 @@
 				316809EB244AC9180013CF15 /* GraduationProjectTests */,
 				316809F6244AC9180013CF15 /* GraduationProjectUITests */,
 				316809D1244AC9170013CF15 /* Products */,
+				9C86184C48634C817F73C005 /* Pods */,
+				1F315431EEBC31112AE3B8D2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,8 +209,16 @@
 			children = (
 				316809D3244AC9170013CF15 /* AppDelegate.h */,
 				316809D4244AC9170013CF15 /* AppDelegate.m */,
+				31680A05244ACF250013CF15 /* PrefixHeader.pch */,
+				313B515F244AE2A3002B1061 /* DefineFile.h */,
 				316809D6244AC9170013CF15 /* ViewController.h */,
 				316809D7244AC9170013CF15 /* ViewController.m */,
+				313B5177244AF03A002B1061 /* Base */,
+				313B5176244AF009002B1061 /* Account */,
+				313B5172244AEFC6002B1061 /* TimeTable */,
+				313B5173244AEFD4002B1061 /* Note */,
+				313B5175244AEFF9002B1061 /* Drawing */,
+				313B5174244AEFE1002B1061 /* Memorandum */,
 				316809D9244AC9170013CF15 /* Main.storyboard */,
 				316809DC244AC9180013CF15 /* Assets.xcassets */,
 				316809DE244AC9180013CF15 /* LaunchScreen.storyboard */,
@@ -132,6 +246,19 @@
 			path = GraduationProjectUITests;
 			sourceTree = "<group>";
 		};
+		9C86184C48634C817F73C005 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0EAF666EB0793B9BDD02221F /* Pods-GraduationProject.debug.xcconfig */,
+				70E4D80E20D816BD4C1ACC49 /* Pods-GraduationProject.release.xcconfig */,
+				76D7363E4FF55ADB0330FFDC /* Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig */,
+				C466696FDEDC40B6CC50B25B /* Pods-GraduationProject-GraduationProjectUITests.release.xcconfig */,
+				3AD44F7286899A24D294341B /* Pods-GraduationProjectTests.debug.xcconfig */,
+				3168775AA5FD68A92E6F902F /* Pods-GraduationProjectTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +266,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 316809FC244AC9180013CF15 /* Build configuration list for PBXNativeTarget "GraduationProject" */;
 			buildPhases = (
+				C9F36A5B2C637F19E318463C /* [CP] Check Pods Manifest.lock */,
 				316809CC244AC9170013CF15 /* Sources */,
 				316809CD244AC9170013CF15 /* Frameworks */,
 				316809CE244AC9170013CF15 /* Resources */,
+				836A35288282FF691F9A499F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -156,6 +285,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 316809FF244AC9180013CF15 /* Build configuration list for PBXNativeTarget "GraduationProjectTests" */;
 			buildPhases = (
+				8527DE5650FAC0E103B2ACC6 /* [CP] Check Pods Manifest.lock */,
 				316809E4244AC9180013CF15 /* Sources */,
 				316809E5244AC9180013CF15 /* Frameworks */,
 				316809E6244AC9180013CF15 /* Resources */,
@@ -174,9 +304,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31680A02244AC9180013CF15 /* Build configuration list for PBXNativeTarget "GraduationProjectUITests" */;
 			buildPhases = (
+				0BA7FD806116A79ABA74C1BF /* [CP] Check Pods Manifest.lock */,
 				316809EF244AC9180013CF15 /* Sources */,
 				316809F0244AC9180013CF15 /* Frameworks */,
 				316809F1244AC9180013CF15 /* Resources */,
+				DC8626979C7082711622316B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,13 +389,123 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0BA7FD806116A79ABA74C1BF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GraduationProject-GraduationProjectUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		836A35288282FF691F9A499F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GraduationProject/Pods-GraduationProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GraduationProject/Pods-GraduationProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GraduationProject/Pods-GraduationProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8527DE5650FAC0E103B2ACC6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GraduationProjectTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9F36A5B2C637F19E318463C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GraduationProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC8626979C7082711622316B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GraduationProject-GraduationProjectUITests/Pods-GraduationProject-GraduationProjectUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GraduationProject-GraduationProjectUITests/Pods-GraduationProject-GraduationProjectUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GraduationProject-GraduationProjectUITests/Pods-GraduationProject-GraduationProjectUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		316809CC244AC9170013CF15 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313B5165244AEEEB002B1061 /* GPTimetableViewController.m in Sources */,
+				313B516B244AEF3A002B1061 /* GPMemorandumViewController.m in Sources */,
+				314D3588244AFBD7007D155F /* GPBaseViewController.m in Sources */,
+				313B5171244AEFB6002B1061 /* GPAccountViewController.m in Sources */,
+				313B5168244AEF20002B1061 /* GPNoteViewController.m in Sources */,
 				316809D8244AC9170013CF15 /* ViewController.m in Sources */,
+				313B5162244AE690002B1061 /* GPTabBarViewController.m in Sources */,
 				316809E3244AC9180013CF15 /* main.m in Sources */,
+				313B516E244AEFA7002B1061 /* GPDrawingViewController.m in Sources */,
 				316809D5244AC9170013CF15 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,10 +675,13 @@
 		};
 		316809FD244AC9180013CF15 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EAF666EB0793B9BDD02221F /* Pods-GraduationProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E597J29J5L;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/GraduationProject/PrefixHeader.pch";
 				INFOPLIST_FILE = GraduationProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,10 +695,13 @@
 		};
 		316809FE244AC9180013CF15 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70E4D80E20D816BD4C1ACC49 /* Pods-GraduationProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E597J29J5L;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/GraduationProject/PrefixHeader.pch";
 				INFOPLIST_FILE = GraduationProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -467,6 +715,7 @@
 		};
 		31680A00244AC9180013CF15 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AD44F7286899A24D294341B /* Pods-GraduationProjectTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -486,6 +735,7 @@
 		};
 		31680A01244AC9180013CF15 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3168775AA5FD68A92E6F902F /* Pods-GraduationProjectTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -505,6 +755,7 @@
 		};
 		31680A03244AC9180013CF15 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76D7363E4FF55ADB0330FFDC /* Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E597J29J5L;
@@ -523,6 +774,7 @@
 		};
 		31680A04244AC9180013CF15 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C466696FDEDC40B6CC50B25B /* Pods-GraduationProject-GraduationProjectUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E597J29J5L;

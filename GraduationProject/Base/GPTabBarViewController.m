@@ -28,8 +28,8 @@
 - (void)tabBarControllerAddChildViewController {
     NSArray *classControllers = @[@"GPTimetableViewController", @"GPMemorandumViewController", @"GPNoteViewController", @"GPDrawingViewController", @"GPAccountViewController"];
     NSArray *titles = @[@"课程表", @"计划表", @"笔记本", @"画板", @"账本"];
-    NSArray *normalImages = @[@"timetable_normal", @"memorandum_normal", @"note_nornal", @"account_normal", @"drawing_normal"];
-    NSArray *selectedImages = @[@"timetable_selected", @"memorandum_selected", @"note_selected", @"account_selected", @"drawing_selected"];
+    NSArray *normalImages = @[@"timetable_normal", @"memorandum_normal", @"note_nornal", @"drawing_normal", @"account_normal"];
+    NSArray *selectedImages = @[@"timetable_selected", @"memorandum_selected", @"note_selected", @"drawing_selected", @"account_selected"];
     NSArray *rightImages = @[@"setting", @"add", @"file", @"", @"add2"];
     [self tabbarControllerAddSubViewControllers:classControllers titleArray:titles normalImagesArray:normalImages selectedImageArray:selectedImages rightImageArray:rightImages];
 }

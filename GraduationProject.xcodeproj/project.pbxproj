@@ -23,6 +23,7 @@
 		316809E3244AC9180013CF15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809E2244AC9180013CF15 /* main.m */; };
 		316809ED244AC9180013CF15 /* GraduationProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809EC244AC9180013CF15 /* GraduationProjectTests.m */; };
 		316809F8244AC9180013CF15 /* GraduationProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809F7244AC9180013CF15 /* GraduationProjectUITests.m */; };
+		31BD4A1A244C1C7C00549C2E /* UIColor+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A19244C1C7C00549C2E /* UIColor+GP.m */; };
 		643AD45B93BEEC711FDE3563 /* Pods_GraduationProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3AA6153A2D33DCC186B70C9 /* Pods_GraduationProjectTests.framework */; };
 		FC8A994B43F7FA8DA163D7C6 /* Pods_GraduationProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DD2760C5E79EE97584068D /* Pods_GraduationProject.framework */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,8 @@
 		316809F9244AC9180013CF15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31680A05244ACF250013CF15 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		3168775AA5FD68A92E6F902F /* Pods-GraduationProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProjectTests.release.xcconfig"; path = "Target Support Files/Pods-GraduationProjectTests/Pods-GraduationProjectTests.release.xcconfig"; sourceTree = "<group>"; };
+		31BD4A18244C1C7C00549C2E /* UIColor+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+GP.h"; sourceTree = "<group>"; };
+		31BD4A19244C1C7C00549C2E /* UIColor+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GP.m"; sourceTree = "<group>"; };
 		3AD44F7286899A24D294341B /* Pods-GraduationProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProjectTests/Pods-GraduationProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		70E4D80E20D816BD4C1ACC49 /* Pods-GraduationProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject.release.xcconfig"; path = "Target Support Files/Pods-GraduationProject/Pods-GraduationProject.release.xcconfig"; sourceTree = "<group>"; };
 		76D7363E4FF55ADB0330FFDC /* Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProject-GraduationProjectUITests/Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -211,6 +214,7 @@
 				316809D4244AC9170013CF15 /* AppDelegate.m */,
 				31680A05244ACF250013CF15 /* PrefixHeader.pch */,
 				313B515F244AE2A3002B1061 /* DefineFile.h */,
+				31BD4A1B244C1D7500549C2E /* Tools */,
 				316809D6244AC9170013CF15 /* ViewController.h */,
 				316809D7244AC9170013CF15 /* ViewController.m */,
 				313B5177244AF03A002B1061 /* Base */,
@@ -244,6 +248,15 @@
 				316809F9244AC9180013CF15 /* Info.plist */,
 			);
 			path = GraduationProjectUITests;
+			sourceTree = "<group>";
+		};
+		31BD4A1B244C1D7500549C2E /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				31BD4A18244C1C7C00549C2E /* UIColor+GP.h */,
+				31BD4A19244C1C7C00549C2E /* UIColor+GP.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		9C86184C48634C817F73C005 /* Pods */ = {
@@ -503,6 +516,7 @@
 				313B5171244AEFB6002B1061 /* GPAccountViewController.m in Sources */,
 				313B5168244AEF20002B1061 /* GPNoteViewController.m in Sources */,
 				316809D8244AC9170013CF15 /* ViewController.m in Sources */,
+				31BD4A1A244C1C7C00549C2E /* UIColor+GP.m in Sources */,
 				313B5162244AE690002B1061 /* GPTabBarViewController.m in Sources */,
 				316809E3244AC9180013CF15 /* main.m in Sources */,
 				313B516E244AEFA7002B1061 /* GPDrawingViewController.m in Sources */,
@@ -679,7 +693,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E597J29J5L;
+				DEVELOPMENT_TEAM = TFVC7S5T2W;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GraduationProject/PrefixHeader.pch";
 				INFOPLIST_FILE = GraduationProject/Info.plist;
@@ -699,7 +713,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E597J29J5L;
+				DEVELOPMENT_TEAM = TFVC7S5T2W;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GraduationProject/PrefixHeader.pch";
 				INFOPLIST_FILE = GraduationProject/Info.plist;

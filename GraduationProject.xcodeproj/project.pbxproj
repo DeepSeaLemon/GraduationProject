@@ -14,6 +14,8 @@
 		313B516B244AEF3A002B1061 /* GPMemorandumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B516A244AEF3A002B1061 /* GPMemorandumViewController.m */; };
 		313B516E244AEFA7002B1061 /* GPDrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B516D244AEFA7002B1061 /* GPDrawingViewController.m */; };
 		313B5171244AEFB6002B1061 /* GPAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B5170244AEFB6002B1061 /* GPAccountViewController.m */; };
+		3149E23E244F1A4800AF50EE /* GPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3149E23C244F1A4800AF50EE /* GPCollectionViewCell.m */; };
+		3149E241244F1CC900AF50EE /* GPDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3149E240244F1CC900AF50EE /* GPDrawViewController.m */; };
 		314D3588244AFBD7007D155F /* GPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314D3587244AFBD7007D155F /* GPBaseViewController.m */; };
 		316809D5244AC9170013CF15 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809D4244AC9170013CF15 /* AppDelegate.m */; };
 		316809D8244AC9170013CF15 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809D7244AC9170013CF15 /* ViewController.m */; };
@@ -62,6 +64,10 @@
 		313B516D244AEFA7002B1061 /* GPDrawingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawingViewController.m; sourceTree = "<group>"; };
 		313B516F244AEFB6002B1061 /* GPAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountViewController.h; sourceTree = "<group>"; };
 		313B5170244AEFB6002B1061 /* GPAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAccountViewController.m; sourceTree = "<group>"; };
+		3149E23C244F1A4800AF50EE /* GPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPCollectionViewCell.m; sourceTree = "<group>"; };
+		3149E23D244F1A4800AF50EE /* GPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPCollectionViewCell.h; sourceTree = "<group>"; };
+		3149E23F244F1CC900AF50EE /* GPDrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawViewController.h; sourceTree = "<group>"; };
+		3149E240244F1CC900AF50EE /* GPDrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawViewController.m; sourceTree = "<group>"; };
 		314D3586244AFBD7007D155F /* GPBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPBaseViewController.h; sourceTree = "<group>"; };
 		314D3587244AFBD7007D155F /* GPBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPBaseViewController.m; sourceTree = "<group>"; };
 		316809D0244AC9170013CF15 /* GraduationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraduationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,8 +171,12 @@
 		313B5175244AEFF9002B1061 /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
+				3149E23D244F1A4800AF50EE /* GPCollectionViewCell.h */,
+				3149E23C244F1A4800AF50EE /* GPCollectionViewCell.m */,
 				313B516C244AEFA7002B1061 /* GPDrawingViewController.h */,
 				313B516D244AEFA7002B1061 /* GPDrawingViewController.m */,
+				3149E23F244F1CC900AF50EE /* GPDrawViewController.h */,
+				3149E240244F1CC900AF50EE /* GPDrawViewController.m */,
 				31BD4A63244C796000549C2E /* GPDrawView.h */,
 				31BD4A64244C796000549C2E /* GPDrawView.m */,
 				31BD4A66244C799B00549C2E /* GPDrawPath.h */,
@@ -521,12 +531,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				313B5165244AEEEB002B1061 /* GPTimetableViewController.m in Sources */,
+				3149E23E244F1A4800AF50EE /* GPCollectionViewCell.m in Sources */,
 				313B516B244AEF3A002B1061 /* GPMemorandumViewController.m in Sources */,
 				314D3588244AFBD7007D155F /* GPBaseViewController.m in Sources */,
 				31BD4A65244C796000549C2E /* GPDrawView.m in Sources */,
 				313B5171244AEFB6002B1061 /* GPAccountViewController.m in Sources */,
 				313B5168244AEF20002B1061 /* GPNoteViewController.m in Sources */,
 				316809D8244AC9170013CF15 /* ViewController.m in Sources */,
+				3149E241244F1CC900AF50EE /* GPDrawViewController.m in Sources */,
 				31BD4A1A244C1C7C00549C2E /* UIColor+GP.m in Sources */,
 				313B5162244AE690002B1061 /* GPTabBarViewController.m in Sources */,
 				316809E3244AC9180013CF15 /* main.m in Sources */,

@@ -10,11 +10,13 @@
 #import "GPDrawViewController.h"
 #import "GPCollectionViewCell.h"
 
-static NSString *ID = @"CELL";
+static NSString *GPDrawingViewControllerCellID = @"GPDrawingViewController";
 
 @interface GPDrawingViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property (nonatomic, strong) UICollectionView *collectionView;
+
+@property (nonatomic, strong) UICollectionView           *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionLayout;
+
 @end
 
 @implementation GPDrawingViewController
@@ -27,8 +29,8 @@ static NSString *ID = @"CELL";
 - (void)setUI {
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.mas_equalTo(0);
-        make.right.bottom.mas_equalTo(0);
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(74);
     }];
 }
 
@@ -39,7 +41,7 @@ static NSString *ID = @"CELL";
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = GPBackgroundColor;
         _collectionView.showsVerticalScrollIndicator = NO;
-        [_collectionView registerClass:[GPCollectionViewCell class] forCellWithReuseIdentifier:ID];
+        [_collectionView registerClass:[GPCollectionViewCell class] forCellWithReuseIdentifier:GPDrawingViewControllerCellID];
     }
     return _collectionView;
 }
@@ -69,7 +71,7 @@ static NSString *ID = @"CELL";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    GPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    GPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:GPDrawingViewControllerCellID forIndexPath:indexPath];
     if (cell == nil) {
         cell = [[GPCollectionViewCell alloc] init];
     }

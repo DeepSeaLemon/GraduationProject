@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setRightImageWithName:(NSString *)imageName;
 - (void)setRightText:(NSString *)text;
 - (void)setLeftLageTitle:(NSString *)title;
+- (void)clickBackButton:(UIButton *)sender;
+- (void)clickRightButton:(UIButton *)sender;
 @end
 
 NS_ASSUME_NONNULL_END

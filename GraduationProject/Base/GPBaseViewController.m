@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = GPBackgroundColor;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
@@ -31,6 +31,7 @@
 - (void)setLeftBackButton {
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 30)];
     [button setTitle:@"返回" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
@@ -51,7 +52,7 @@
     [button setTitle:text forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
@@ -59,7 +60,7 @@
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 30)];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:18];
+    button.titleLabel.font = [UIFont systemFontOfSize:20];
     [button addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
@@ -69,6 +70,6 @@
 }
 
 - (void)clickRightButton:(UIButton *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 @end

@@ -16,14 +16,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setLeftBackButton];
+    self.title = @"新画板";
     [self initUI];
 }
 
 - (void)initUI {
     [self.view addSubview:self.drawView];
     [self.drawView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(65);
     }];
 }
 

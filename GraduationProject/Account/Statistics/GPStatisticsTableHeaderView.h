@@ -1,8 +1,8 @@
 //
-//  GPDrawViewController.h
+//  GPStatisticsTableHeaderView.h
 //  GraduationProject
 //
-//  Created by CYM on 2020/4/21.
+//  Created by CYM on 2020/4/24.
 //  Copyright © 2020年 CYM. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GPDrawViewController : GPBaseViewController
+@interface GPStatisticsTableHeaderView : UIView
 
 @end
 

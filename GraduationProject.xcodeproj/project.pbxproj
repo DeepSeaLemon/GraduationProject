@@ -17,6 +17,11 @@
 		3149E23E244F1A4800AF50EE /* GPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3149E23C244F1A4800AF50EE /* GPCollectionViewCell.m */; };
 		3149E241244F1CC900AF50EE /* GPDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3149E240244F1CC900AF50EE /* GPDrawViewController.m */; };
 		314D3588244AFBD7007D155F /* GPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314D3587244AFBD7007D155F /* GPBaseViewController.m */; };
+		315C9B062452951D00F38964 /* GPTagSelecteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C9B052452951D00F38964 /* GPTagSelecteView.m */; };
+		315C9B092452A03300F38964 /* GPTagLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C9B082452A03300F38964 /* GPTagLabel.m */; };
+		315C9B0D2452BCCB00F38964 /* GPStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C9B0C2452BCCB00F38964 /* GPStatisticsViewController.m */; };
+		315C9B102452BCE800F38964 /* GPStatisticsTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C9B0F2452BCE800F38964 /* GPStatisticsTableHeaderView.m */; };
+		315C9B152452C1B900F38964 /* GPStatisticsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C9B142452C1B900F38964 /* GPStatisticsTableViewCell.m */; };
 		316809D5244AC9170013CF15 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809D4244AC9170013CF15 /* AppDelegate.m */; };
 		316809D8244AC9170013CF15 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809D7244AC9170013CF15 /* ViewController.m */; };
 		316809DB244AC9170013CF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 316809D9244AC9170013CF15 /* Main.storyboard */; };
@@ -25,9 +30,15 @@
 		316809E3244AC9180013CF15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809E2244AC9180013CF15 /* main.m */; };
 		316809ED244AC9180013CF15 /* GraduationProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809EC244AC9180013CF15 /* GraduationProjectTests.m */; };
 		316809F8244AC9180013CF15 /* GraduationProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809F7244AC9180013CF15 /* GraduationProjectUITests.m */; };
+		318832862453092A00B51D7E /* GPAddPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 318832852453092A00B51D7E /* GPAddPlanViewController.m */; };
+		3188328924530AB800B51D7E /* GPTimeSelecteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3188328824530AB800B51D7E /* GPTimeSelecteView.m */; };
+		3188328C2453134E00B51D7E /* GPItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3188328B2453134E00B51D7E /* GPItemView.m */; };
 		31BD4A1A244C1C7C00549C2E /* UIColor+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A19244C1C7C00549C2E /* UIColor+GP.m */; };
 		31BD4A65244C796000549C2E /* GPDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A64244C796000549C2E /* GPDrawView.m */; };
 		31BD4A68244C799B00549C2E /* GPDrawPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A67244C799B00549C2E /* GPDrawPath.m */; };
+		31E2A1F024515E4200EAE46D /* GPAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1EF24515E4200EAE46D /* GPAccountTableViewCell.m */; };
+		31E2A1F324516BF900EAE46D /* GPAccountTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1F224516BF900EAE46D /* GPAccountTableHeaderView.m */; };
+		31E2A1F62451931C00EAE46D /* GPAddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1F52451931C00EAE46D /* GPAddAccountViewController.m */; };
 		643AD45B93BEEC711FDE3563 /* Pods_GraduationProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3AA6153A2D33DCC186B70C9 /* Pods_GraduationProjectTests.framework */; };
 		FC8A994B43F7FA8DA163D7C6 /* Pods_GraduationProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DD2760C5E79EE97584068D /* Pods_GraduationProject.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +81,16 @@
 		3149E240244F1CC900AF50EE /* GPDrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawViewController.m; sourceTree = "<group>"; };
 		314D3586244AFBD7007D155F /* GPBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPBaseViewController.h; sourceTree = "<group>"; };
 		314D3587244AFBD7007D155F /* GPBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPBaseViewController.m; sourceTree = "<group>"; };
+		315C9B042452951D00F38964 /* GPTagSelecteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPTagSelecteView.h; sourceTree = "<group>"; };
+		315C9B052452951D00F38964 /* GPTagSelecteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPTagSelecteView.m; sourceTree = "<group>"; };
+		315C9B072452A03300F38964 /* GPTagLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPTagLabel.h; sourceTree = "<group>"; };
+		315C9B082452A03300F38964 /* GPTagLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPTagLabel.m; sourceTree = "<group>"; };
+		315C9B0B2452BCCB00F38964 /* GPStatisticsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPStatisticsViewController.h; sourceTree = "<group>"; };
+		315C9B0C2452BCCB00F38964 /* GPStatisticsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPStatisticsViewController.m; sourceTree = "<group>"; };
+		315C9B0E2452BCE800F38964 /* GPStatisticsTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPStatisticsTableHeaderView.h; sourceTree = "<group>"; };
+		315C9B0F2452BCE800F38964 /* GPStatisticsTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPStatisticsTableHeaderView.m; sourceTree = "<group>"; };
+		315C9B132452C1B900F38964 /* GPStatisticsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPStatisticsTableViewCell.h; sourceTree = "<group>"; };
+		315C9B142452C1B900F38964 /* GPStatisticsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPStatisticsTableViewCell.m; sourceTree = "<group>"; };
 		316809D0244AC9170013CF15 /* GraduationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraduationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		316809D3244AC9170013CF15 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		316809D4244AC9170013CF15 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -88,12 +109,24 @@
 		316809F9244AC9180013CF15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31680A05244ACF250013CF15 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		3168775AA5FD68A92E6F902F /* Pods-GraduationProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProjectTests.release.xcconfig"; path = "Target Support Files/Pods-GraduationProjectTests/Pods-GraduationProjectTests.release.xcconfig"; sourceTree = "<group>"; };
+		318832842453092A00B51D7E /* GPAddPlanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAddPlanViewController.h; sourceTree = "<group>"; };
+		318832852453092A00B51D7E /* GPAddPlanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAddPlanViewController.m; sourceTree = "<group>"; };
+		3188328724530AB800B51D7E /* GPTimeSelecteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPTimeSelecteView.h; sourceTree = "<group>"; };
+		3188328824530AB800B51D7E /* GPTimeSelecteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPTimeSelecteView.m; sourceTree = "<group>"; };
+		3188328A2453134E00B51D7E /* GPItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPItemView.h; sourceTree = "<group>"; };
+		3188328B2453134E00B51D7E /* GPItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPItemView.m; sourceTree = "<group>"; };
 		31BD4A18244C1C7C00549C2E /* UIColor+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+GP.h"; sourceTree = "<group>"; };
 		31BD4A19244C1C7C00549C2E /* UIColor+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GP.m"; sourceTree = "<group>"; };
 		31BD4A63244C796000549C2E /* GPDrawView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawView.h; sourceTree = "<group>"; };
 		31BD4A64244C796000549C2E /* GPDrawView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawView.m; sourceTree = "<group>"; };
 		31BD4A66244C799B00549C2E /* GPDrawPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawPath.h; sourceTree = "<group>"; };
 		31BD4A67244C799B00549C2E /* GPDrawPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawPath.m; sourceTree = "<group>"; };
+		31E2A1EE24515E4200EAE46D /* GPAccountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountTableViewCell.h; sourceTree = "<group>"; };
+		31E2A1EF24515E4200EAE46D /* GPAccountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAccountTableViewCell.m; sourceTree = "<group>"; };
+		31E2A1F124516BF900EAE46D /* GPAccountTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountTableHeaderView.h; sourceTree = "<group>"; };
+		31E2A1F224516BF900EAE46D /* GPAccountTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAccountTableHeaderView.m; sourceTree = "<group>"; };
+		31E2A1F42451931C00EAE46D /* GPAddAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAddAccountViewController.h; sourceTree = "<group>"; };
+		31E2A1F52451931C00EAE46D /* GPAddAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAddAccountViewController.m; sourceTree = "<group>"; };
 		3AD44F7286899A24D294341B /* Pods-GraduationProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProjectTests/Pods-GraduationProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		70E4D80E20D816BD4C1ACC49 /* Pods-GraduationProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject.release.xcconfig"; path = "Target Support Files/Pods-GraduationProject/Pods-GraduationProject.release.xcconfig"; sourceTree = "<group>"; };
 		76D7363E4FF55ADB0330FFDC /* Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProject-GraduationProjectUITests/Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +197,12 @@
 			children = (
 				313B5169244AEF3A002B1061 /* GPMemorandumViewController.h */,
 				313B516A244AEF3A002B1061 /* GPMemorandumViewController.m */,
+				318832842453092A00B51D7E /* GPAddPlanViewController.h */,
+				318832852453092A00B51D7E /* GPAddPlanViewController.m */,
+				3188328A2453134E00B51D7E /* GPItemView.h */,
+				3188328B2453134E00B51D7E /* GPItemView.m */,
+				3188328724530AB800B51D7E /* GPTimeSelecteView.h */,
+				3188328824530AB800B51D7E /* GPTimeSelecteView.m */,
 			);
 			path = Memorandum;
 			sourceTree = "<group>";
@@ -188,8 +227,16 @@
 		313B5176244AF009002B1061 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				315C9B122452C10200F38964 /* Statistics */,
+				315C9B112452C0F000F38964 /* Tag */,
+				31E2A1F124516BF900EAE46D /* GPAccountTableHeaderView.h */,
+				31E2A1F224516BF900EAE46D /* GPAccountTableHeaderView.m */,
+				31E2A1EE24515E4200EAE46D /* GPAccountTableViewCell.h */,
+				31E2A1EF24515E4200EAE46D /* GPAccountTableViewCell.m */,
 				313B516F244AEFB6002B1061 /* GPAccountViewController.h */,
 				313B5170244AEFB6002B1061 /* GPAccountViewController.m */,
+				31E2A1F42451931C00EAE46D /* GPAddAccountViewController.h */,
+				31E2A1F52451931C00EAE46D /* GPAddAccountViewController.m */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -203,6 +250,30 @@
 				314D3587244AFBD7007D155F /* GPBaseViewController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		315C9B112452C0F000F38964 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				315C9B072452A03300F38964 /* GPTagLabel.h */,
+				315C9B082452A03300F38964 /* GPTagLabel.m */,
+				315C9B042452951D00F38964 /* GPTagSelecteView.h */,
+				315C9B052452951D00F38964 /* GPTagSelecteView.m */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
+		315C9B122452C10200F38964 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				315C9B0E2452BCE800F38964 /* GPStatisticsTableHeaderView.h */,
+				315C9B0F2452BCE800F38964 /* GPStatisticsTableHeaderView.m */,
+				315C9B132452C1B900F38964 /* GPStatisticsTableViewCell.h */,
+				315C9B142452C1B900F38964 /* GPStatisticsTableViewCell.m */,
+				315C9B0B2452BCCB00F38964 /* GPStatisticsViewController.h */,
+				315C9B0C2452BCCB00F38964 /* GPStatisticsViewController.m */,
+			);
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 		316809C7244AC9170013CF15 = {
@@ -531,20 +602,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				313B5165244AEEEB002B1061 /* GPTimetableViewController.m in Sources */,
+				31E2A1F024515E4200EAE46D /* GPAccountTableViewCell.m in Sources */,
+				3188328C2453134E00B51D7E /* GPItemView.m in Sources */,
 				3149E23E244F1A4800AF50EE /* GPCollectionViewCell.m in Sources */,
 				313B516B244AEF3A002B1061 /* GPMemorandumViewController.m in Sources */,
 				314D3588244AFBD7007D155F /* GPBaseViewController.m in Sources */,
 				31BD4A65244C796000549C2E /* GPDrawView.m in Sources */,
 				313B5171244AEFB6002B1061 /* GPAccountViewController.m in Sources */,
+				31E2A1F324516BF900EAE46D /* GPAccountTableHeaderView.m in Sources */,
 				313B5168244AEF20002B1061 /* GPNoteViewController.m in Sources */,
+				315C9B062452951D00F38964 /* GPTagSelecteView.m in Sources */,
+				315C9B092452A03300F38964 /* GPTagLabel.m in Sources */,
 				316809D8244AC9170013CF15 /* ViewController.m in Sources */,
 				3149E241244F1CC900AF50EE /* GPDrawViewController.m in Sources */,
+				315C9B0D2452BCCB00F38964 /* GPStatisticsViewController.m in Sources */,
+				3188328924530AB800B51D7E /* GPTimeSelecteView.m in Sources */,
 				31BD4A1A244C1C7C00549C2E /* UIColor+GP.m in Sources */,
 				313B5162244AE690002B1061 /* GPTabBarViewController.m in Sources */,
 				316809E3244AC9180013CF15 /* main.m in Sources */,
 				31BD4A68244C799B00549C2E /* GPDrawPath.m in Sources */,
 				313B516E244AEFA7002B1061 /* GPDrawingViewController.m in Sources */,
 				316809D5244AC9170013CF15 /* AppDelegate.m in Sources */,
+				315C9B102452BCE800F38964 /* GPStatisticsTableHeaderView.m in Sources */,
+				31E2A1F62451931C00EAE46D /* GPAddAccountViewController.m in Sources */,
+				318832862453092A00B51D7E /* GPAddPlanViewController.m in Sources */,
+				315C9B152452C1B900F38964 /* GPStatisticsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

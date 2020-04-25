@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setLeftBackButton];
+    [self setRightImageWithName:@"arrow_down"];
     self.title = @"新画板";
     [self initUI];
 }

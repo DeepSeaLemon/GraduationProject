@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		267C469E91DE67A2E178ED7E /* Pods_GraduationProject_GraduationProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D96A73A73047BFC1FFD984 /* Pods_GraduationProject_GraduationProjectUITests.framework */; };
+		31235675245425D300EECFFB /* GPMemorandumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31235674245425D300EECFFB /* GPMemorandumTableViewCell.m */; };
 		313B5162244AE690002B1061 /* GPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B5161244AE690002B1061 /* GPTabBarViewController.m */; };
 		313B5165244AEEEB002B1061 /* GPTimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B5164244AEEEB002B1061 /* GPTimetableViewController.m */; };
 		313B5168244AEF20002B1061 /* GPNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B5167244AEF20002B1061 /* GPNoteViewController.m */; };
@@ -62,6 +63,8 @@
 
 /* Begin PBXFileReference section */
 		0EAF666EB0793B9BDD02221F /* Pods-GraduationProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProject/Pods-GraduationProject.debug.xcconfig"; sourceTree = "<group>"; };
+		31235673245425D300EECFFB /* GPMemorandumTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPMemorandumTableViewCell.h; sourceTree = "<group>"; };
+		31235674245425D300EECFFB /* GPMemorandumTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPMemorandumTableViewCell.m; sourceTree = "<group>"; };
 		313B515F244AE2A3002B1061 /* DefineFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineFile.h; sourceTree = "<group>"; };
 		313B5160244AE690002B1061 /* GPTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPTabBarViewController.h; sourceTree = "<group>"; };
 		313B5161244AE690002B1061 /* GPTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPTabBarViewController.m; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 			children = (
 				313B5169244AEF3A002B1061 /* GPMemorandumViewController.h */,
 				313B516A244AEF3A002B1061 /* GPMemorandumViewController.m */,
+				31235673245425D300EECFFB /* GPMemorandumTableViewCell.h */,
+				31235674245425D300EECFFB /* GPMemorandumTableViewCell.m */,
 				318832842453092A00B51D7E /* GPAddPlanViewController.h */,
 				318832852453092A00B51D7E /* GPAddPlanViewController.m */,
 				3188328A2453134E00B51D7E /* GPItemView.h */,
@@ -606,6 +611,7 @@
 				3188328C2453134E00B51D7E /* GPItemView.m in Sources */,
 				3149E23E244F1A4800AF50EE /* GPCollectionViewCell.m in Sources */,
 				313B516B244AEF3A002B1061 /* GPMemorandumViewController.m in Sources */,
+				31235675245425D300EECFFB /* GPMemorandumTableViewCell.m in Sources */,
 				314D3588244AFBD7007D155F /* GPBaseViewController.m in Sources */,
 				31BD4A65244C796000549C2E /* GPDrawView.m in Sources */,
 				313B5171244AEFB6002B1061 /* GPAccountViewController.m in Sources */,

@@ -24,6 +24,8 @@
 #define GPRedColor [UIColor colorWithHexString:@"FF4F4F"]
 #define GPBlueColor [UIColor colorWithHexString:@"1AACFF"]
 #define GPGrayColor [UIColor colorWithHexString:@"FAFAFA"]
+#define GPDeepGrayColor [UIColor colorWithHexString:@"CDCDCD"]
+
 
 // Device
 #define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)

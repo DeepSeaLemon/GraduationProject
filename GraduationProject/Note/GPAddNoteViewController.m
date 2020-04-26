@@ -7,6 +7,7 @@
 //
 
 #import "GPAddNoteViewController.h"
+#import "GPNoteContentViewController.h"
 
 @interface GPAddNoteViewController ()
 
@@ -35,7 +36,8 @@
 }
 
 - (void)sureButtonClicked:(UIButton *)sender {
-    
+    GPNoteContentViewController *vc = [[GPNoteContentViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)initUI {

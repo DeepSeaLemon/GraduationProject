@@ -1,8 +1,8 @@
 //
-//  GPTimetableViewController.h
+//  GPTimeTableInputViewController.h
 //  GraduationProject
 //
-//  Created by CYM on 2020/4/18.
+//  Created by CYM on 2020/4/26.
 //  Copyright © 2020年 CYM. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GPTimetableViewController : GPTimeTableBaseViewController
+@interface GPTimeTableInputViewController :GPTimeTableBaseViewController
 
 @end
 

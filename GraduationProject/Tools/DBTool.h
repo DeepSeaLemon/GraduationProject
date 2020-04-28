@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@class GPCurriculumModel;
 
 @interface DBTool : NSObject
 
 + (instancetype)shareInstance;
 
 - (void)createAppAllDBs;
+
+- (void)saveCurriculumWith:(GPCurriculumModel *)model;
 @end
 
-NS_ASSUME_NONNULL_END
+

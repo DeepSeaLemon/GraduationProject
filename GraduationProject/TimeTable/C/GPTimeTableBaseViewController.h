@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GPTimeTableBaseViewController : GPBaseViewController
 
 @property (nonatomic, strong) GPTimeTableListHeaderView *listHeaderView;
+@property (nonatomic, strong) UICollectionView           *collectionView;
+@property (nonatomic, strong) UICollectionViewFlowLayout *collectionLayout;
 
 @end
 

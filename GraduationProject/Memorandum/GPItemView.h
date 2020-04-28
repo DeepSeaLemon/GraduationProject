@@ -26,4 +26,6 @@
 @property (nonatomic, weak) id<GPItemViewDelegate> delegate;
 
 - (void)setItemSwitchStatus:(BOOL)isOn;
+
+- (void)setItemViewTitle:(NSString *)str;
 @end

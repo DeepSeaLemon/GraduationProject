@@ -22,8 +22,27 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initUI];
         self.contentView.backgroundColor = GPBackgroundColor;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
+}
+
+- (NSString *)getContentText {
+    return self.inputTextField.text;
+}
+
+- (void)setIsClass:(BOOL)isClass {
+    _isClass = isClass;
+    self.inputTextField.enabled = !isClass;
+    if (isClass) {
+        self.inputTextField.enabled = NO;
+        self.inputTextField.textColor = GPDeepGrayColor;
+    }
+}
+
+- (void)setTitle:(NSString *)title placeholder:(NSString *)placeholder {
+    self.titleLabel.text = title;
+    self.inputTextField.placeholder = placeholder;
 }
 
 - (void)initUI {

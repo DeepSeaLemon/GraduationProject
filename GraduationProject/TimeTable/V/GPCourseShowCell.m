@@ -7,6 +7,7 @@
 //
 
 #import "GPCourseShowCell.h"
+#import "GPCurriculumModel.h"
 
 @interface GPCourseShowCell()
 
@@ -26,18 +27,91 @@
 
 @implementation GPCourseShowCell
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initUI];
-    }
-    return self;
+//- (instancetype)initWithFrame:(CGRect)frame {
+//    if (self = [super initWithFrame:frame]) {
+//        
+//    }
+//    return self;
+//}
+
+- (void)initCellTypeShowNil {
+    [[self.contentView subviews]makeObjectsPerformSelector:@selector(removeFromSuperview)];
 }
 
-- (void)initUI {
+- (void)initCellTypeInputNil {
+    [[self.contentView subviews]makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.contentView addSubview:self.backImageView];
     [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
     }];
+}
+
+- (void)initCellTypeOne {
+    [[self.contentView subviews]makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.contentView addSubview:self.backView];
+    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.contentView);
+    }];
+    [self.contentView addSubview:self.className];
+    [self.className mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(self.contentView.frame.size.height/2);
+    }];
+    [self.contentView addSubview:self.classroom];
+    [self.classroom mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(self.contentView.frame.size.height/2);
+    }];
+}
+
+- (void)initCellTypeTwo {
+    [[self.contentView subviews]makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.contentView addSubview:self.textLabel1];
+    [self.textLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(self.contentView.frame.size.height/2);
+    }];
+    [self.contentView addSubview:self.textLabel2];
+    [self.textLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(self.contentView.frame.size.height/2);
+    }];
+}
+
+- (void)setCellType:(GPCourseShowCellType)cellType {
+    _cellType = cellType;
+    switch (cellType) {
+        case GPCourseShowCellTypeShowNil:
+            [self initCellTypeShowNil];
+            break;
+        case GPCourseShowCellTypeInputNil:
+            [self initCellTypeInputNil];
+            break;
+        case GPCourseShowCellTypeOne:
+            [self initCellTypeOne];
+            break;
+        case GPCourseShowCellTypeTwo:
+            [self initCellTypeTwo];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)setDataModel:(GPCurriculumModel *)model {
+    if (model.numberStr != nil && model.numberStr.length > 0) {
+        if (model.curriculum.length > 0) {
+            if (model.curriculum2 == nil || model.curriculum2.length < 1) {
+                self.className.text = model.curriculum;
+                self.classroom.text = model.classroom;
+                self.cellType = GPCourseShowCellTypeOne;
+            } else {
+                self.textLabel1.text = model.curriculum;
+                self.textLabel2.text = model.curriculum2;
+                self.cellType = GPCourseShowCellTypeTwo;
+            }
+        }
+    }
 }
 
 #pragma mark - lazy
@@ -61,6 +135,7 @@
         _textLabel1.layer.masksToBounds = YES;
         _textLabel1.layer.cornerRadius = 5;
         _textLabel1.textAlignment = NSTextAlignmentCenter;
+        _textLabel1.numberOfLines = 2;
     }
     return _textLabel1;
 }
@@ -74,6 +149,7 @@
         _textLabel2.layer.masksToBounds = YES;
         _textLabel2.layer.cornerRadius = 5;
         _textLabel2.textAlignment = NSTextAlignmentCenter;
+        _textLabel2.numberOfLines = 2;
     }
     return _textLabel2;
 }
@@ -81,7 +157,7 @@
 - (UIView *)backView {
     if (!_backView) {
         _backView = [[UIView alloc] init];
-        _backView.backgroundColor = GPGreenColor;
+        _backView.backgroundColor = GPDeepGrayColor;
         _backView.layer.masksToBounds = YES;
         _backView.layer.cornerRadius = 5;
     }
@@ -94,8 +170,9 @@
         _className.text = @"高等数学";
         _className.textColor = [UIColor whiteColor];
         _className.font = [UIFont systemFontOfSize:15];
-        _className.backgroundColor = GPDeepGrayColor;
+        _className.backgroundColor = [UIColor clearColor];
         _className.textAlignment = NSTextAlignmentCenter;
+        _className.numberOfLines = 2;
     }
     return _className;
 }
@@ -106,8 +183,9 @@
         _classroom.text = @"第一阶梯";
         _classroom.textColor = [UIColor whiteColor];
         _classroom.font = [UIFont systemFontOfSize:13];
-        _classroom.backgroundColor = GPDeepGrayColor;
+        _classroom.backgroundColor = [UIColor clearColor];
         _classroom.textAlignment = NSTextAlignmentCenter;
+        _classroom.numberOfLines = 2;
     }
     return _classroom;
 }

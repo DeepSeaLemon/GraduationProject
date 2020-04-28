@@ -49,6 +49,10 @@
     }];
 }
 
+- (void)setItemViewTitle:(NSString *)str {
+    self.titleLabel.text = str;
+}
+
 - (void)setIsSwitch:(BOOL)isSwitch {
     _isSwitch = isSwitch;
     self.imageView.hidden = isSwitch;

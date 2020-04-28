@@ -9,12 +9,16 @@
 
 #import "GPCourseInputViewController.h"
 #import "GPCourseInputCell.h"
+#import "GPCurriculumModel.h"
 
 static NSString *GPCourseInputViewControllerCellID = @"GPCourseInputViewController";
 
 @interface GPCourseInputViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, copy) NSArray *titleArray;
+@property (nonatomic, copy) NSMutableArray *placeholderArray;
 
 @end
 
@@ -29,7 +33,29 @@ static NSString *GPCourseInputViewControllerCellID = @"GPCourseInputViewControll
 }
 
 - (void)clickRightButton:(UIButton *)sender {
-    
+    NSArray <GPCourseInputCell *>* cells = [self.tableView.visibleCells copy];
+    GPCurriculumModel *model = [[GPCurriculumModel alloc] init];
+    model.curriculum = [cells[1] getContentText];
+    model.classroom  = [cells[2] getContentText];
+    model.teacher    = [cells[3] getContentText];
+    model.curriculum2 = [cells[4] getContentText];
+    model.classroom2  = [cells[5] getContentText];
+    model.teacher2    = [cells[6] getContentText];
+    model.week = self.week;
+    model.section = self.section;
+    model.isDouble = self.isDouble;
+    model.isSingle = self.isSingle;
+    model.numberStr = [NSString stringWithFormat:@"%ld%ld%d%d",(long)self.section,(long)self.week,
+                       [[NSNumber numberWithBool:self.isSingle] intValue],
+                       [[NSNumber numberWithBool:self.isDouble] intValue]];
+    if (self.returnBlock != nil) {
+        self.returnBlock(model);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)returnModel:(ReturnGPCurriculumModelBlock)block {
+    self.returnBlock = block;
 }
 
 - (void)initUI {
@@ -47,11 +73,11 @@ static NSString *GPCourseInputViewControllerCellID = @"GPCourseInputViewControll
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 7;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.titleArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -59,6 +85,10 @@ static NSString *GPCourseInputViewControllerCellID = @"GPCourseInputViewControll
     if (!cell) {
         cell = [[GPCourseInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPCourseInputViewControllerCellID];
     }
+    if (indexPath.row == 0) {
+        cell.isClass = YES;
+    }
+    [cell setTitle:self.titleArray[indexPath.row] placeholder:self.placeholderArray[indexPath.row]];
     return cell;
 }
 
@@ -82,4 +112,82 @@ static NSString *GPCourseInputViewControllerCellID = @"GPCourseInputViewControll
     return _tableView;
 }
 
+
+- (NSArray *)titleArray {
+    if (!_titleArray) {
+        _titleArray = @[@"节次",@"课程",@"教室",@"教师",@"课程二",@"教室二",@"教师二"];
+    }
+    return _titleArray;
+}
+
+- (NSMutableArray *)placeholderArray {
+    if (!_placeholderArray) {
+        _placeholderArray = [NSMutableArray array];
+        [_placeholderArray addObject:[self setClassStr]];
+        [_placeholderArray addObject:@"输入课程名称 (必填)"];
+        [_placeholderArray addObject:@"输入教室位置 (选填)"];
+        [_placeholderArray addObject:@"授课老师姓名 (选填)"];
+        [_placeholderArray addObject:@"输入课程名称 (选填)"];
+        [_placeholderArray addObject:@"输入教室位置 (选填)"];
+        [_placeholderArray addObject:@"授课老师姓名 (选填)"];
+    }
+    return _placeholderArray;
+}
+
+- (NSString *)setClassStr {
+    NSMutableString *str = [NSMutableString string];
+    if (self.isSingle) {
+        [str appendString:@"单周 "];
+    }
+    if (self.isDouble) {
+        [str appendString:@"双周 "];
+    }
+    switch (self.week) {
+        case 0:
+            [str appendString:@"周一 "];
+            break;
+        case 1:
+            [str appendString:@"周二 "];
+            break;
+        case 2:
+            [str appendString:@"周三 "];
+            break;
+        case 3:
+            [str appendString:@"周四 "];
+            break;
+        case 4:
+            [str appendString:@"周五 "];
+            break;
+        case 5:
+            [str appendString:@"周六 "];
+            break;
+        case 6:
+            [str appendString:@"周日 "];
+            break;
+        default:
+            break;
+    }
+    
+    switch (self.section) {
+        case 0:
+            [str appendString:@"上午 "];
+            [str appendString:@"第一节"];
+            break;
+        case 1:
+            [str appendString:@"上午 "];
+            [str appendString:@"第二节"];
+            break;
+        case 2:
+            [str appendString:@"下午 "];
+            [str appendString:@"第三节"];
+            break;
+        case 3:
+            [str appendString:@"下午 "];
+            [str appendString:@"第四节"];
+            break;
+        default:
+            break;
+    }
+    return str;
+}
 @end

@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@class GPCurriculumModel;
+
+typedef enum GPCourseShowCellType {
+    GPCourseShowCellTypeShowNil = 0,
+    GPCourseShowCellTypeInputNil,
+    GPCourseShowCellTypeOne,
+    GPCourseShowCellTypeTwo,
+} GPCourseShowCellType;
 
 @interface GPCourseShowCell : UICollectionViewCell
 
-@end
+- (void)setDataModel:(GPCurriculumModel *)model;
 
-NS_ASSUME_NONNULL_END
+@property (nonatomic,assign) GPCourseShowCellType cellType;
+
+@end

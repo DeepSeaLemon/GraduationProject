@@ -13,9 +13,6 @@ static NSString *GPTimeTableBaseViewControllerCellID = @"GPTimeTableBaseViewCont
 
 @interface GPTimeTableBaseViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UICollectionView           *collectionView;
-@property (nonatomic, strong) UICollectionViewFlowLayout *collectionLayout;
-
 @end
 
 @implementation GPTimeTableBaseViewController
@@ -92,6 +89,7 @@ static NSString *GPTimeTableBaseViewControllerCellID = @"GPTimeTableBaseViewCont
     GPCourseShowCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:GPTimeTableBaseViewControllerCellID forIndexPath:indexPath];
     if (cell == nil) {
         cell = [[GPCourseShowCell alloc] init];
+        cell.cellType = GPCourseShowCellTypeShowNil;
     }
     return cell;
 }

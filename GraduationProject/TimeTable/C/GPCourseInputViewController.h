@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@class GPCurriculumModel;
+
+typedef void (^ReturnGPCurriculumModelBlock)(GPCurriculumModel *model);
 
 @interface GPCourseInputViewController : GPBaseViewController
 
+@property (nonatomic, assign) NSInteger week;
+@property (nonatomic, assign) NSInteger section;
+@property (nonatomic, assign) BOOL isSingle;
+@property (nonatomic, assign) BOOL isDouble;
+@property (nonatomic, copy  ) ReturnGPCurriculumModelBlock returnBlock;
+- (void)returnModel:(ReturnGPCurriculumModelBlock)block;
+
 @end
 
-NS_ASSUME_NONNULL_END

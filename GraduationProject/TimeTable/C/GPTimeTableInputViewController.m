@@ -8,12 +8,19 @@
 
 #import "GPTimeTableInputViewController.h"
 #import "GPTimeTableDoubleInputViewController.h"
+#import "GPCourseInputViewController.h"
 #import "GPItemView.h"
+#import "GPCourseShowCell.h"
+#import "GPCurriculumModel.h"
 
-@interface GPTimeTableInputViewController ()<GPItemViewDelegate>
+static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewController";
+
+@interface GPTimeTableInputViewController ()<GPItemViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) GPItemView *modeSwitchItem;
 @property (nonatomic, strong) GPItemView *inputItem;
+@property (nonatomic, assign) BOOL doubleSwitchOn;
+@property (nonatomic, copy  ) NSMutableArray<GPCurriculumModel *>* modelArray;
 
 @end
 
@@ -25,6 +32,44 @@
     [self setRightText:@"完成"];
     [self setTitle:@"课程表录入"];
     [self initUI];
+    
+    [self.collectionView registerClass:[GPCourseShowCell class] forCellWithReuseIdentifier:GPTimeTableInputViewControllerCellID];
+}
+
+#pragma make - delegate & datesource
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 7;
+}
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 4;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    GPCourseInputViewController *vc = [[GPCourseInputViewController alloc] init];
+    vc.week = indexPath.row;
+    vc.section = indexPath.section;
+    vc.isDouble = NO;
+    vc.isSingle = self.doubleSwitchOn;
+    [vc returnModel:^(GPCurriculumModel *model) {
+        [self.modelArray replaceObjectAtIndex:(model.section * 7 + model.week) withObject:model];
+        [collectionView reloadData];
+    }];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GPCourseShowCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:GPTimeTableInputViewControllerCellID forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[GPCourseShowCell alloc] init];
+        cell.cellType = GPCourseShowCellTypeInputNil;
+    }
+    NSInteger index = (indexPath.section * 7 + indexPath.row);
+    
+    [cell setDataModel:self.modelArray[index]];
+
+    return cell;
 }
 
 #pragma mark - GPItemViewDelegate
@@ -36,6 +81,7 @@
 
 - (void)itemSwitchChanged:(BOOL)isOn itemView:(GPItemView *)itemView {
     self.inputItem.hidden = !isOn;
+    self.doubleSwitchOn = isOn;
     if (!isOn) {
         [self setTitle:@"课程表录入"];
     } else {
@@ -46,7 +92,7 @@
 - (void)initUI {
     [self.view addSubview:self.modeSwitchItem];
     [self.modeSwitchItem mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(65+450+2);
+        make.top.mas_equalTo(65+450+5);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(50);
     }];
@@ -61,12 +107,24 @@
 
 #pragma mark - lazy
 
+- (NSMutableArray<GPCurriculumModel *>*) modelArray {
+    if(!_modelArray) {
+        _modelArray = [NSMutableArray arrayWithCapacity:28];
+        for (NSInteger i = 0; i < 28; i++) {
+            GPCurriculumModel *model = [[GPCurriculumModel alloc] init];
+            [_modelArray addObject:model];
+        }
+    }
+    return _modelArray;
+}
+
 - (GPItemView *)modeSwitchItem {
     if (!_modeSwitchItem) {
         _modeSwitchItem = [[GPItemView alloc] init];
         _modeSwitchItem.isSwitch = YES;
         _modeSwitchItem.delegate = self;
         _modeSwitchItem.hidden = NO;
+        [_modeSwitchItem setItemViewTitle:@"单双周模式"];
     }
     return _modeSwitchItem;
 }
@@ -77,6 +135,7 @@
         _inputItem.isSwitch = NO;
         _inputItem.delegate = self;
         _inputItem.hidden = YES;
+        [_inputItem setItemViewTitle:@"录入双周课程"];
     }
     return _inputItem;
 }

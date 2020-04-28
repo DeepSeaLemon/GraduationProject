@@ -35,6 +35,7 @@
 		315C9B102452BCE800F38964 /* GPStatisticsTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C9B0F2452BCE800F38964 /* GPStatisticsTableHeaderView.m */; };
 		315C9B152452C1B900F38964 /* GPStatisticsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C9B142452C1B900F38964 /* GPStatisticsTableViewCell.m */; };
 		31648F142458015C002ED198 /* DBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 31648F132458015C002ED198 /* DBTool.m */; };
+		31648F1A245811F7002ED198 /* GPCurriculumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31648F19245811F7002ED198 /* GPCurriculumModel.m */; };
 		316809D5244AC9170013CF15 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809D4244AC9170013CF15 /* AppDelegate.m */; };
 		316809D8244AC9170013CF15 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809D7244AC9170013CF15 /* ViewController.m */; };
 		316809DB244AC9170013CF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 316809D9244AC9170013CF15 /* Main.storyboard */; };
@@ -130,6 +131,8 @@
 		315C9B142452C1B900F38964 /* GPStatisticsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPStatisticsTableViewCell.m; sourceTree = "<group>"; };
 		31648F122458015C002ED198 /* DBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBTool.h; sourceTree = "<group>"; };
 		31648F132458015C002ED198 /* DBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBTool.m; sourceTree = "<group>"; };
+		31648F18245811F7002ED198 /* GPCurriculumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPCurriculumModel.h; sourceTree = "<group>"; };
+		31648F19245811F7002ED198 /* GPCurriculumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPCurriculumModel.m; sourceTree = "<group>"; };
 		316809D0244AC9170013CF15 /* GraduationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraduationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		316809D3244AC9170013CF15 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		316809D4244AC9170013CF15 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -359,6 +362,8 @@
 		31648F1724581046002ED198 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				31648F18245811F7002ED198 /* GPCurriculumModel.h */,
+				31648F19245811F7002ED198 /* GPCurriculumModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -707,6 +712,7 @@
 				31E2A1F324516BF900EAE46D /* GPAccountTableHeaderView.m in Sources */,
 				313B5168244AEF20002B1061 /* GPNoteViewController.m in Sources */,
 				315C9B062452951D00F38964 /* GPTagSelecteView.m in Sources */,
+				31648F1A245811F7002ED198 /* GPCurriculumModel.m in Sources */,
 				315C9B092452A03300F38964 /* GPTagLabel.m in Sources */,
 				316809D8244AC9170013CF15 /* ViewController.m in Sources */,
 				3149E241244F1CC900AF50EE /* GPDrawViewController.m in Sources */,

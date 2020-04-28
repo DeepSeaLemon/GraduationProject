@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GPCourseInputCell : UITableViewCell
 
+- (void)setTitle:(NSString *)title placeholder:(NSString *)placeholder;
+
+- (NSString *)getContentText;
+
+@property (nonatomic, assign) BOOL isClass;
+
 @end
 
 NS_ASSUME_NONNULL_END

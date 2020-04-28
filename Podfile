@@ -8,6 +8,7 @@ target 'GraduationProject' do
   # Pods for GraduationProject
 
 	pod 'Masonry'
+	pod 'FMDB'
 
   target 'GraduationProjectTests' do
     inherit! :search_paths

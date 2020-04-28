@@ -18,7 +18,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self setTabbarAndWindow];
+    [self createDateBase];
     return YES;
+}
+
+// createDateBase
+- (void)createDateBase {
+    DBTool *db = [DBTool shareInstance];
+    [db createAppAllDBs];
 }
 
 // set Tabbar & Window

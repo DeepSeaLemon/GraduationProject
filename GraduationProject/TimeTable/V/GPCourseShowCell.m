@@ -130,6 +130,7 @@
     if (!_textLabel1) {
         _textLabel1 = [[UILabel alloc] init];
         _textLabel1.text = @"语文";
+        _textLabel1.textColor = [UIColor whiteColor];
         _textLabel1.font = [UIFont systemFontOfSize:15];
         _textLabel1.backgroundColor = GPDeepGrayColor;
         _textLabel1.layer.masksToBounds = YES;
@@ -144,6 +145,7 @@
     if (!_textLabel2) {
         _textLabel2 = [[UILabel alloc] init];
         _textLabel2.text = @"数学";
+        _textLabel2.textColor = [UIColor whiteColor];
         _textLabel2.font = [UIFont systemFontOfSize:15];
         _textLabel2.backgroundColor = GPDeepGrayColor;
         _textLabel2.layer.masksToBounds = YES;

@@ -32,8 +32,36 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
     [self setRightText:@"完成"];
     [self setTitle:@"课程表录入"];
     [self initUI];
-    
+}
+
+- (void)initUI {
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.collectionLayout];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.showsVerticalScrollIndicator = NO;
     [self.collectionView registerClass:[GPCourseShowCell class] forCellWithReuseIdentifier:GPTimeTableInputViewControllerCellID];
+    [self.view addSubview:self.collectionView];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(0);
+        make.top.mas_equalTo(65+50);
+        make.left.mas_equalTo((SCREEN_WIDTH - 7)/8);
+        make.height.mas_equalTo(404);
+    }];
+    
+    [self.view addSubview:self.modeSwitchItem];
+    [self.modeSwitchItem mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(65+450+5);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(50);
+    }];
+    
+    [self.view addSubview:self.inputItem];
+    [self.inputItem mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.modeSwitchItem.mas_bottom).offset(1);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(50);
+    }];
 }
 
 #pragma make - delegate & datesource
@@ -63,12 +91,11 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
     GPCourseShowCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:GPTimeTableInputViewControllerCellID forIndexPath:indexPath];
     if (cell == nil) {
         cell = [[GPCourseShowCell alloc] init];
-        cell.cellType = GPCourseShowCellTypeInputNil;
     }
+    cell.cellType = GPCourseShowCellTypeInputNil;
     NSInteger index = (indexPath.section * 7 + indexPath.row);
-    
     [cell setDataModel:self.modelArray[index]];
-
+    
     return cell;
 }
 
@@ -87,22 +114,6 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
     } else {
         [self setTitle:@"单周课程表录入"];
     }
-}
-
-- (void)initUI {
-    [self.view addSubview:self.modeSwitchItem];
-    [self.modeSwitchItem mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(65+450+5);
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(50);
-    }];
-    
-    [self.view addSubview:self.inputItem];
-    [self.inputItem mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.modeSwitchItem.mas_bottom).offset(1);
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(50);
-    }];
 }
 
 #pragma mark - lazy

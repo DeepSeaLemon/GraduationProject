@@ -22,5 +22,4 @@ typedef enum GPCourseShowCellType {
 - (void)setDataModel:(GPCurriculumModel *)model;
 
 @property (nonatomic,assign) GPCourseShowCellType cellType;
-
 @end

@@ -94,7 +94,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GraduationProject/TimeTable/V/GPCourseShowCell.m"
-            timestampString = "609774673.479508"
+            timestampString = "609909712.133536"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
@@ -110,12 +110,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GraduationProject/TimeTable/V/GPCourseShowCell.m"
-            timestampString = "609774673.479599"
+            timestampString = "609909712.1336679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
             endingLineNumber = "107"
             landmarkName = "-setDataModel:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GraduationProject/TimeTable/V/GPCourseShowCell.m"
+            timestampString = "609909712.133772"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-initCellTypeInputNil"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GraduationProject/TimeTable/C/GPTimeTableInputViewController.m"
+            timestampString = "609909712.133895"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GraduationProject/TimeTable/V/GPCourseShowCell.m"
+            timestampString = "609909712.134069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "-initCellTypeShowNil"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

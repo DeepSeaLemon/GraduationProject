@@ -27,12 +27,42 @@
 
 @implementation GPCourseShowCell
 
-//- (instancetype)initWithFrame:(CGRect)frame {
-//    if (self = [super initWithFrame:frame]) {
-//        
-//    }
-//    return self;
-//}
+- (void)setCurrentDayBackGroundViewColor:(BOOL)setIt {
+    if (setIt) {
+        switch (self.cellType) {
+            case GPCourseShowCellTypeOne:
+                self.backView.backgroundColor = GPGreenColor;
+                self.className.textColor = [UIColor whiteColor];
+                self.classroom.textColor = [UIColor whiteColor];
+                break;
+            case GPCourseShowCellTypeTwo:
+                self.textLabel1.backgroundColor = GPGreenColor;
+                self.textLabel1.textColor = [UIColor whiteColor];
+                self.textLabel2.backgroundColor = GPGreenColor;
+                self.textLabel2.textColor = [UIColor whiteColor];
+                break;
+            default:
+                break;
+        }
+    } else {
+        switch (self.cellType) {
+            case GPCourseShowCellTypeOne:
+                self.backView.backgroundColor = GPDeepGrayColor;
+                self.className.textColor = [UIColor blackColor];
+                self.classroom.textColor = [UIColor blackColor];
+                break;
+            case GPCourseShowCellTypeTwo:
+                self.textLabel1.backgroundColor = GPDeepGrayColor;
+                self.textLabel1.textColor = [UIColor blackColor];
+                self.textLabel2.backgroundColor = GPDeepGrayColor;
+                self.textLabel2.textColor = [UIColor blackColor];
+                break;
+            default:
+                break;
+        }
+    }
+    
+}
 
 - (void)initCellTypeShowNil {
     [[self.contentView subviews]makeObjectsPerformSelector:@selector(removeFromSuperview)];

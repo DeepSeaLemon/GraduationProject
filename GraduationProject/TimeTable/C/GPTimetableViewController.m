@@ -63,6 +63,11 @@ static NSString *GPTimetableViewControllerCellID = @"GPTimetableViewController";
     }
     cell.cellType = GPCourseShowCellTypeShowNil;
     [cell setDataModel:self.viewModel.singleCurriculumModels[(indexPath.section * 7 + indexPath.row)]];
+    if (indexPath.row == ([NSDate getCurrentWeekDayCN] - 1)) {
+        [cell setCurrentDayBackGroundViewColor:YES];
+    } else {
+        [cell setCurrentDayBackGroundViewColor:NO];
+    }
     return cell;
 }
 

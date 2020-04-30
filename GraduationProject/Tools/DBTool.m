@@ -72,19 +72,11 @@ static DBTool *_singleInstance = nil;
         } else {
             // 不存在，走保存
             NSString *insertData = @"insert into time_table_list (week,section,curriculum,classroom,teacher,curriculum2,classroom2,teacher2,isSingle,isDouble,numberStr) values (?,?,?,?,?,?,?,?,?,?,?)";
-            if (!model.isSingle && model.isDouble) {
-                // 0, 1
-                [self.timeTableDB executeUpdate:insertData,model.week,model.section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,@0,@1,model.numberStr];
-            } else if (!model.isSingle && !model.isDouble) {
-                // 0, 0
-                [self.timeTableDB executeUpdate:insertData,model.week,model.section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,@0,@0,model.numberStr];
-            } else if (model.isSingle && !model.isDouble) {
-                // 1, 0
-                [self.timeTableDB executeUpdate:insertData,model.week,model.section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,@1,@0,model.numberStr];
-            } else {
-                // 1, 1
-                [self.timeTableDB executeUpdate:insertData,model.week,model.section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,@1,@1,model.numberStr];
-            }
+            NSNumber *week = [NSNumber numberWithInteger:model.week];
+            NSNumber *section = [NSNumber numberWithInteger:model.section];
+            NSNumber *isSingle = [NSNumber numberWithBool:model.isSingle];
+            NSNumber *isDouble = [NSNumber numberWithBool:model.isDouble];
+            [self.timeTableDB executeUpdate:insertData,week,section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,isSingle,isDouble,model.numberStr];
         }
     }
     [self.timeTableDB close];

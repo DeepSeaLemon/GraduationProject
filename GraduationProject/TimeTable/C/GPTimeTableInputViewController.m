@@ -105,7 +105,7 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
     cell.cellType = GPCourseShowCellTypeInputNil;
     NSInteger index = (indexPath.section * 7 + indexPath.row);
     [cell setDataModel:self.modelArray[index]];
-    
+    [cell setCurrentDayBackGroundViewColor:NO];
     return cell;
 }
 

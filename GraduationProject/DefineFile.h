@@ -12,6 +12,7 @@
 // Tools
 #import "Tools/UIColor+GP.h"
 #import "DBTool.h"
+#import "Tools/NSDate+GP.h"
 
 // Base
 #import "Base/GPBaseViewController.h"

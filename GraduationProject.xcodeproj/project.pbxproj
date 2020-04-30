@@ -54,6 +54,7 @@
 		31E2A1F324516BF900EAE46D /* GPAccountTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1F224516BF900EAE46D /* GPAccountTableHeaderView.m */; };
 		31E2A1F62451931C00EAE46D /* GPAddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1F52451931C00EAE46D /* GPAddAccountViewController.m */; };
 		31F8E4D4245A806400F7540E /* GPCurriculumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F8E4D3245A806400F7540E /* GPCurriculumViewModel.m */; };
+		31FE07E5245AF2290059E6F0 /* NSDate+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FE07E4245AF2290059E6F0 /* NSDate+GP.m */; };
 		643AD45B93BEEC711FDE3563 /* Pods_GraduationProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3AA6153A2D33DCC186B70C9 /* Pods_GraduationProjectTests.framework */; };
 		FC8A994B43F7FA8DA163D7C6 /* Pods_GraduationProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DD2760C5E79EE97584068D /* Pods_GraduationProject.framework */; };
 /* End PBXBuildFile section */
@@ -172,6 +173,8 @@
 		31E2A1F52451931C00EAE46D /* GPAddAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAddAccountViewController.m; sourceTree = "<group>"; };
 		31F8E4D2245A806400F7540E /* GPCurriculumViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPCurriculumViewModel.h; sourceTree = "<group>"; };
 		31F8E4D3245A806400F7540E /* GPCurriculumViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPCurriculumViewModel.m; sourceTree = "<group>"; };
+		31FE07E3245AF2290059E6F0 /* NSDate+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+GP.h"; sourceTree = "<group>"; };
+		31FE07E4245AF2290059E6F0 /* NSDate+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GP.m"; sourceTree = "<group>"; };
 		3AD44F7286899A24D294341B /* Pods-GraduationProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProjectTests/Pods-GraduationProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		70E4D80E20D816BD4C1ACC49 /* Pods-GraduationProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject.release.xcconfig"; path = "Target Support Files/Pods-GraduationProject/Pods-GraduationProject.release.xcconfig"; sourceTree = "<group>"; };
 		76D7363E4FF55ADB0330FFDC /* Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProject-GraduationProjectUITests/Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -445,6 +448,8 @@
 				31BD4A19244C1C7C00549C2E /* UIColor+GP.m */,
 				31648F122458015C002ED198 /* DBTool.h */,
 				31648F132458015C002ED198 /* DBTool.m */,
+				31FE07E3245AF2290059E6F0 /* NSDate+GP.h */,
+				31FE07E4245AF2290059E6F0 /* NSDate+GP.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				313B5162244AE690002B1061 /* GPTabBarViewController.m in Sources */,
 				316809E3244AC9180013CF15 /* main.m in Sources */,
 				3126DC0F245539A500084E5E /* GPTimeTableListHeaderView.m in Sources */,
+				31FE07E5245AF2290059E6F0 /* NSDate+GP.m in Sources */,
 				31BD4A68244C799B00549C2E /* GPDrawPath.m in Sources */,
 				313B516E244AEFA7002B1061 /* GPDrawingViewController.m in Sources */,
 				316809D5244AC9170013CF15 /* AppDelegate.m in Sources */,

@@ -27,9 +27,11 @@
 
 - (void)initUI {
     CGFloat width = (SCREEN_WIDTH - 7)/8;
+    NSArray *weekDays = [NSDate getCurrentWeekDays];
+    NSArray *weeks = @[@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日"];
     for (NSInteger i = 1; i < 8; i++) {
         GPTimeTableDayView *dayView = [[GPTimeTableDayView alloc] init];
-        [dayView setWeekDay:@"周一" date:@"3-28"];
+        [dayView setWeekDay:weeks[i-1] date:weekDays[i-1]];
         [self.dayViews addObject:dayView];
         [self addSubview:dayView];
         [dayView mas_makeConstraints:^(MASConstraintMaker *make) {

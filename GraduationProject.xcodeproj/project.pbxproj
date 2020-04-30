@@ -53,6 +53,7 @@
 		31E2A1F024515E4200EAE46D /* GPAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1EF24515E4200EAE46D /* GPAccountTableViewCell.m */; };
 		31E2A1F324516BF900EAE46D /* GPAccountTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1F224516BF900EAE46D /* GPAccountTableHeaderView.m */; };
 		31E2A1F62451931C00EAE46D /* GPAddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1F52451931C00EAE46D /* GPAddAccountViewController.m */; };
+		31F8E4D4245A806400F7540E /* GPCurriculumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F8E4D3245A806400F7540E /* GPCurriculumViewModel.m */; };
 		643AD45B93BEEC711FDE3563 /* Pods_GraduationProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3AA6153A2D33DCC186B70C9 /* Pods_GraduationProjectTests.framework */; };
 		FC8A994B43F7FA8DA163D7C6 /* Pods_GraduationProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DD2760C5E79EE97584068D /* Pods_GraduationProject.framework */; };
 /* End PBXBuildFile section */
@@ -169,6 +170,8 @@
 		31E2A1F224516BF900EAE46D /* GPAccountTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAccountTableHeaderView.m; sourceTree = "<group>"; };
 		31E2A1F42451931C00EAE46D /* GPAddAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAddAccountViewController.h; sourceTree = "<group>"; };
 		31E2A1F52451931C00EAE46D /* GPAddAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAddAccountViewController.m; sourceTree = "<group>"; };
+		31F8E4D2245A806400F7540E /* GPCurriculumViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPCurriculumViewModel.h; sourceTree = "<group>"; };
+		31F8E4D3245A806400F7540E /* GPCurriculumViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPCurriculumViewModel.m; sourceTree = "<group>"; };
 		3AD44F7286899A24D294341B /* Pods-GraduationProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProjectTests/Pods-GraduationProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		70E4D80E20D816BD4C1ACC49 /* Pods-GraduationProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject.release.xcconfig"; path = "Target Support Files/Pods-GraduationProject/Pods-GraduationProject.release.xcconfig"; sourceTree = "<group>"; };
 		76D7363E4FF55ADB0330FFDC /* Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProject-GraduationProjectUITests/Pods-GraduationProject-GraduationProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -364,6 +367,8 @@
 			children = (
 				31648F18245811F7002ED198 /* GPCurriculumModel.h */,
 				31648F19245811F7002ED198 /* GPCurriculumModel.m */,
+				31F8E4D2245A806400F7540E /* GPCurriculumViewModel.h */,
+				31F8E4D3245A806400F7540E /* GPCurriculumViewModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -705,6 +710,7 @@
 				313B516B244AEF3A002B1061 /* GPMemorandumViewController.m in Sources */,
 				3126DC24245582CB00084E5E /* GPCourseShowCell.m in Sources */,
 				31235675245425D300EECFFB /* GPMemorandumTableViewCell.m in Sources */,
+				31F8E4D4245A806400F7540E /* GPCurriculumViewModel.m in Sources */,
 				314D3588244AFBD7007D155F /* GPBaseViewController.m in Sources */,
 				31BD4A65244C796000549C2E /* GPDrawView.m in Sources */,
 				313B5171244AEFB6002B1061 /* GPAccountViewController.m in Sources */,

@@ -45,6 +45,10 @@
     self.inputTextField.placeholder = placeholder;
 }
 
+- (void)setContentText:(NSString *)text {
+    self.inputTextField.text = text;
+}
+
 - (void)initUI {
     [self.contentView addSubview:self.backView];
     [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {

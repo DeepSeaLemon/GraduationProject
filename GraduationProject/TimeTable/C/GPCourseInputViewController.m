@@ -18,7 +18,8 @@ static NSString *GPCourseInputViewControllerCellID = @"GPCourseInputViewControll
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, copy) NSArray *titleArray;
-@property (nonatomic, copy) NSMutableArray *placeholderArray;
+@property (nonatomic, strong) NSMutableArray *placeholderArray;
+@property (nonatomic, strong) NSMutableArray *contentArray;
 
 @end
 
@@ -52,6 +53,16 @@ static NSString *GPCourseInputViewControllerCellID = @"GPCourseInputViewControll
         self.returnBlock(model);
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)setModel:(GPCurriculumModel *)model {
+    _model = model;
+    [self.contentArray replaceObjectAtIndex:0 withObject:model.curriculum];
+    [self.contentArray replaceObjectAtIndex:1 withObject:model.classroom];
+    [self.contentArray replaceObjectAtIndex:2 withObject:model.teacher];
+    [self.contentArray replaceObjectAtIndex:3 withObject:model.curriculum2];
+    [self.contentArray replaceObjectAtIndex:4 withObject:model.classroom2];
+    [self.contentArray replaceObjectAtIndex:5 withObject:model.teacher2];
 }
 
 - (void)returnModel:(ReturnGPCurriculumModelBlock)block {
@@ -89,6 +100,10 @@ static NSString *GPCourseInputViewControllerCellID = @"GPCourseInputViewControll
         cell.isClass = YES;
     }
     [cell setTitle:self.titleArray[indexPath.row] placeholder:self.placeholderArray[indexPath.row]];
+    if (indexPath.row > 0) {
+        [cell setContentText:self.contentArray[indexPath.row - 1]];
+    }
+    
     return cell;
 }
 
@@ -112,6 +127,15 @@ static NSString *GPCourseInputViewControllerCellID = @"GPCourseInputViewControll
     return _tableView;
 }
 
+- (NSMutableArray *)contentArray {
+    if (!_contentArray) {
+        _contentArray = [NSMutableArray arrayWithCapacity:6];
+        for (NSInteger i = 0; i < 6; i++) {
+            [_contentArray addObject:@""];
+        }
+    }
+    return _contentArray;
+}
 
 - (NSArray *)titleArray {
     if (!_titleArray) {

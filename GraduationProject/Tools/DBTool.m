@@ -21,20 +21,70 @@ static DBTool *_singleInstance = nil;
 @implementation DBTool
 
 #pragma mark - save
+- (void)getCurriculums:(void(^)(NSArray *singleArray))singleDate double:(void(^)(NSArray *doubleArray))doubleDate{
+    NSMutableArray <GPCurriculumModel *>*singleArr = [NSMutableArray array];
+    NSMutableArray <GPCurriculumModel *>*doubleArr = [NSMutableArray array];
+    if ([self.timeTableDB open]) {
+        NSString *sql = @"select * FROM time_table_list";
+        FMResultSet *rs = [self.timeTableDB executeQuery:sql];
+        if (rs.columnCount > 0) {
+            while ([rs next]) {
+                GPCurriculumModel *model = [[GPCurriculumModel alloc] init];
+                model.week        = [rs intForColumn:@"week"];
+                model.section     = [rs intForColumn:@"section"];
+                model.curriculum  = [rs stringForColumn:@"curriculum"];
+                model.classroom   = [rs stringForColumn:@"classroom"];
+                model.teacher     = [rs stringForColumn:@"teacher"];
+                model.curriculum2 = [rs stringForColumn:@"curriculum2"];
+                model.classroom2  = [rs stringForColumn:@"classroom2"];
+                model.teacher2    = [rs stringForColumn:@"teacher2"];
+                model.isSingle    = [rs boolForColumn:@"isSingle"];
+                model.isDouble    = [rs boolForColumn:@"isDouble"];
+                model.numberStr   = [rs stringForColumn:@"numberStr"];
+                if (model.isDouble) {
+                    [doubleArr addObject:model];
+                } else {
+                    [singleArr addObject:model];
+                }
+            }
+            !singleDate?:singleDate(singleArr);
+            !doubleDate?:doubleDate(doubleArr);
+        } else {
+            !singleDate?:singleDate(singleArr);
+            !doubleDate?:doubleDate(doubleArr);
+        }
+    } else {
+        !singleDate?:singleDate(singleArr);
+        !doubleDate?:doubleDate(doubleArr);
+    }
+    [self.timeTableDB close];
+}
 
 - (void)saveCurriculumWith:(GPCurriculumModel *)model {
     if ([self.timeTableDB open]) {
         // 查询是否存在这一条数据
         NSString *sql = @"select * FROM time_table_list where numberStr = ?";
         FMResultSet *rs = [self.timeTableDB executeQuery:sql,model.numberStr];
-        if (rs.columnCount) {
+        if (rs.next) {
             // 存在，走修改
-            NSString *update = @"update time_table_list set curriculum = ?,classroom = ?,teacher = ?,curriculum2 = ?,classroom2 = ?,teacher2 = ?, where numberStr = ?";
+            NSString *update = @"update time_table_list set curriculum = ?,classroom = ?,teacher = ?,curriculum2 = ?,classroom2 = ?,teacher2 = ? where numberStr = ?";
             [self.timeTableDB executeUpdate:update,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,model.numberStr];
         } else {
             // 不存在，走保存
             NSString *insertData = @"insert into time_table_list (week,section,curriculum,classroom,teacher,curriculum2,classroom2,teacher2,isSingle,isDouble,numberStr) values (?,?,?,?,?,?,?,?,?,?,?)";
-            [self.timeTableDB executeUpdate:insertData,model.week,model.section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,model.isSingle,model.isDouble,model.numberStr];
+            if (!model.isSingle && model.isDouble) {
+                // 0, 1
+                [self.timeTableDB executeUpdate:insertData,model.week,model.section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,@0,@1,model.numberStr];
+            } else if (!model.isSingle && !model.isDouble) {
+                // 0, 0
+                [self.timeTableDB executeUpdate:insertData,model.week,model.section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,@0,@0,model.numberStr];
+            } else if (model.isSingle && !model.isDouble) {
+                // 1, 0
+                [self.timeTableDB executeUpdate:insertData,model.week,model.section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,@1,@0,model.numberStr];
+            } else {
+                // 1, 1
+                [self.timeTableDB executeUpdate:insertData,model.week,model.section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,@1,@1,model.numberStr];
+            }
         }
     }
     [self.timeTableDB close];

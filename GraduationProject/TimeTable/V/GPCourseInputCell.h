@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setTitle:(NSString *)title placeholder:(NSString *)placeholder;
 
 - (NSString *)getContentText;
+- (void)setContentText:(NSString *)text;
 
 @property (nonatomic, assign) BOOL isClass;
 

@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.viewModel = [[GPCurriculumViewModel alloc] initWithData];
     [self initPublicUI];
 }
 

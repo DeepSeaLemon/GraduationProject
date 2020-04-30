@@ -62,6 +62,7 @@ static NSString *GPTimetableViewControllerCellID = @"GPTimetableViewController";
         cell = [[GPCourseShowCell alloc] init];
     }
     cell.cellType = GPCourseShowCellTypeShowNil;
+    [cell setDataModel:self.viewModel.singleCurriculumModels[(indexPath.section * 7 + indexPath.row)]];
     return cell;
 }
 

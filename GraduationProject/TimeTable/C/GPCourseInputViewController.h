@@ -18,6 +18,7 @@ typedef void (^ReturnGPCurriculumModelBlock)(GPCurriculumModel *model);
 @property (nonatomic, assign) NSInteger section;
 @property (nonatomic, assign) BOOL isSingle;
 @property (nonatomic, assign) BOOL isDouble;
+@property (nonatomic, strong) GPCurriculumModel *model;
 @property (nonatomic, copy  ) ReturnGPCurriculumModelBlock returnBlock;
 - (void)returnModel:(ReturnGPCurriculumModelBlock)block;
 

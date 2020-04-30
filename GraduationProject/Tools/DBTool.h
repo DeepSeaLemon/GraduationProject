@@ -17,6 +17,8 @@
 - (void)createAppAllDBs;
 
 - (void)saveCurriculumWith:(GPCurriculumModel *)model;
+
+- (void)getCurriculums:(void(^)(NSArray *singleArray))singleDate double:(void(^)(NSArray *doubleArray))doubleDate;
 @end
 
 

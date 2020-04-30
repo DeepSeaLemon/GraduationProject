@@ -14,7 +14,9 @@
 static NSString *GPTimeTableDoubleInputViewControllerCellID = @"GPTimeTableDoubleInputViewController";
 
 @interface GPTimeTableDoubleInputViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
-@property (nonatomic, copy  ) NSMutableArray<GPCurriculumModel *>* modelArray;
+
+@property (nonatomic, strong) NSMutableArray<GPCurriculumModel *>* modelArray;
+
 @end
 
 @implementation GPTimeTableDoubleInputViewController
@@ -24,6 +26,7 @@ static NSString *GPTimeTableDoubleInputViewControllerCellID = @"GPTimeTableDoubl
     [self setLeftBackButton];
     [self setRightText:@"完成"];
     [self setTitle:@"双周课程表录入"];
+    self.modelArray = [self.viewModel.doubleCurriculumModels mutableCopy];
     [self initUI];
 }
 
@@ -44,7 +47,8 @@ static NSString *GPTimeTableDoubleInputViewControllerCellID = @"GPTimeTableDoubl
 }
 
 - (void)clickRightButton:(UIButton *)sender {
-    
+    self.viewModel.doubleCurriculumModels = self.modelArray;
+    [self.viewModel saveDoubleCurriculums];
 }
 
 #pragma make - delegate & datesource
@@ -62,6 +66,10 @@ static NSString *GPTimeTableDoubleInputViewControllerCellID = @"GPTimeTableDoubl
     vc.section = indexPath.section;
     vc.isDouble = YES;
     vc.isSingle = NO;
+    GPCurriculumModel *currentModel = self.modelArray[(indexPath.section * 7 + indexPath.row)];
+    if (currentModel.numberStr.length > 0) {
+        vc.model = currentModel;
+    }
     [vc returnModel:^(GPCurriculumModel *model) {
         [self.modelArray replaceObjectAtIndex:(model.section * 7 + model.week) withObject:model];
         [collectionView reloadData];
@@ -81,15 +89,4 @@ static NSString *GPTimeTableDoubleInputViewControllerCellID = @"GPTimeTableDoubl
     return cell;
 }
 
-#pragma mark - lazy
-- (NSMutableArray<GPCurriculumModel *>*) modelArray {
-    if(!_modelArray) {
-        _modelArray = [NSMutableArray arrayWithCapacity:28];
-        for (NSInteger i = 0; i < 28; i++) {
-            GPCurriculumModel *model = [[GPCurriculumModel alloc] init];
-            [_modelArray addObject:model];
-        }
-    }
-    return _modelArray;
-}
 @end

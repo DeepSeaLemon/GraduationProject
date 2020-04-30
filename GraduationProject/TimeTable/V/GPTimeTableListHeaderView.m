@@ -11,7 +11,7 @@
 
 @interface GPTimeTableListHeaderView ()
 
-@property (nonatomic, copy) NSMutableArray *dayViews;
+@property (nonatomic, strong) NSMutableArray *dayViews;
 @property (nonatomic, strong) UILabel *AMLabel;
 @property (nonatomic, strong) UILabel *PMLabel;
 

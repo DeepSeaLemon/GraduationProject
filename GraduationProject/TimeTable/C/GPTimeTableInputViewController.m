@@ -20,7 +20,7 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
 @property (nonatomic, strong) GPItemView *modeSwitchItem;
 @property (nonatomic, strong) GPItemView *inputItem;
 @property (nonatomic, assign) BOOL doubleSwitchOn;
-@property (nonatomic, copy  ) NSMutableArray<GPCurriculumModel *>* modelArray;
+@property (nonatomic, strong) NSMutableArray<GPCurriculumModel *>* modelArray;
 
 @end
 
@@ -31,6 +31,7 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
     [self setLeftBackButton];
     [self setRightText:@"完成"];
     [self setTitle:@"课程表录入"];
+    self.modelArray = [self.viewModel.singleCurriculumModels mutableCopy];
     [self initUI];
 }
 
@@ -64,6 +65,11 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
     }];
 }
 
+- (void)clickRightButton:(UIButton *)sender {
+    self.viewModel.singleCurriculumModels = self.modelArray;
+    [self.viewModel saveSingleCurriculums];
+}
+
 #pragma make - delegate & datesource
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -79,8 +85,12 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
     vc.section = indexPath.section;
     vc.isDouble = NO;
     vc.isSingle = self.doubleSwitchOn;
+    GPCurriculumModel *currentModel = self.modelArray[(indexPath.section * 7 + indexPath.row)];
+    if (currentModel.numberStr.length > 0) {
+        vc.model = currentModel;
+    }
     [vc returnModel:^(GPCurriculumModel *model) {
-        [self.modelArray replaceObjectAtIndex:(model.section * 7 + model.week) withObject:model];
+        [self->_modelArray replaceObjectAtIndex:(model.section * 7 + model.week) withObject:model];
         [collectionView reloadData];
     }];
     [self.navigationController pushViewController:vc animated:YES];
@@ -117,17 +127,6 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
 }
 
 #pragma mark - lazy
-
-- (NSMutableArray<GPCurriculumModel *>*) modelArray {
-    if(!_modelArray) {
-        _modelArray = [NSMutableArray arrayWithCapacity:28];
-        for (NSInteger i = 0; i < 28; i++) {
-            GPCurriculumModel *model = [[GPCurriculumModel alloc] init];
-            [_modelArray addObject:model];
-        }
-    }
-    return _modelArray;
-}
 
 - (GPItemView *)modeSwitchItem {
     if (!_modeSwitchItem) {

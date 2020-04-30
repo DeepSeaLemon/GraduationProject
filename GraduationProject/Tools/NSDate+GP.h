@@ -18,6 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 // 获取当前是周几（中国标准 周日是7）
 + (NSInteger)getCurrentWeekDayCN;
 
+// 获取本周的第一天
++ (NSDate *)getFirstDayOfWeek;
+
+// 计算时间相差几天
++ (NSInteger)calculationTimeDifferenceWith:(NSDate *)startDate endDate:(NSDate *)endDate;
+
 @end
 
 NS_ASSUME_NONNULL_END

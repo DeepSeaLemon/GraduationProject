@@ -10,12 +10,15 @@
 #import "GPCourseInputViewController.h"
 #import "GPCourseShowCell.h"
 #import "GPCurriculumModel.h"
+#import "GPItemView.h"
 
 static NSString *GPTimeTableDoubleInputViewControllerCellID = @"GPTimeTableDoubleInputViewController";
 
-@interface GPTimeTableDoubleInputViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface GPTimeTableDoubleInputViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,GPItemViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<GPCurriculumModel *>* modelArray;
+@property (nonatomic, strong) GPItemView *isDoubleSwitchItem;
+@property (nonatomic, assign) BOOL weekIsDouble;
 
 @end
 
@@ -44,11 +47,23 @@ static NSString *GPTimeTableDoubleInputViewControllerCellID = @"GPTimeTableDoubl
         make.left.mas_equalTo((SCREEN_WIDTH - 7)/8);
         make.height.mas_equalTo(404);
     }];
+    
+    [self.view addSubview:self.isDoubleSwitchItem];
+    [self.isDoubleSwitchItem mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(65+450+5);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(50);
+    }];
 }
 
 - (void)clickRightButton:(UIButton *)sender {
     self.viewModel.doubleCurriculumModels = self.modelArray;
     [self.viewModel saveDoubleCurriculums];
+    // 保存到userdefine
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setObject:[NSNumber numberWithBool:self.weekIsDouble] forKey:key_timeTable_theWeekIsDouble];
+    [user setObject:[NSDate getFirstDayOfWeek] forKey:key_timeTable_theFirstDay];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma make - delegate & datesource
@@ -88,6 +103,24 @@ static NSString *GPTimeTableDoubleInputViewControllerCellID = @"GPTimeTableDoubl
     [cell setDataModel:self.modelArray[index]];
     [cell setCurrentDayBackGroundViewColor:NO];
     return cell;
+}
+
+- (void)itemSwitchChanged:(BOOL)isOn itemView:(GPItemView *)itemView {
+    self.weekIsDouble = isOn;
+}
+
+#pragma mark - lazy
+
+- (GPItemView *)isDoubleSwitchItem {
+    if (!_isDoubleSwitchItem) {
+        _isDoubleSwitchItem = [[GPItemView alloc] init];
+        _isDoubleSwitchItem.isSwitch = YES;
+        _weekIsDouble = YES;
+        _isDoubleSwitchItem.delegate = self;
+        [_isDoubleSwitchItem setItemSwitchStatus:YES];
+        [_isDoubleSwitchItem setItemViewTitle:@"本周为双周"];
+    }
+    return _isDoubleSwitchItem;
 }
 
 @end

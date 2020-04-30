@@ -20,14 +20,39 @@
             [_singleCurriculumModels addObject:model];
             [_doubleCurriculumModels addObject:model];
         }
-        [self getCurriculums];
+        [self getCurriculums:^{
+            [self setTheDataToBeDisplayedThisWeek];
+        }];
     }
     return self;
 }
 
+#pragma mark - date
+- (void)setTheDataToBeDisplayedThisWeek {
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSDate *firstDay = [user objectForKey:key_timeTable_theFirstDay];
+    if (firstDay == nil) {
+        self.thisWeekCurriculumModels = self.singleCurriculumModels;
+    } else {
+        self.isDoubleMode = YES;
+        BOOL theWeekIsDouble = [[user objectForKey:key_timeTable_theWeekIsDouble] boolValue];
+        NSDate *theWeekFirstDay = [NSDate getFirstDayOfWeek];
+        NSInteger  difference = [NSDate calculationTimeDifferenceWith:firstDay endDate:theWeekFirstDay];
+        if (difference == 0) {
+            self.thisWeekCurriculumModels = theWeekIsDouble?self.doubleCurriculumModels:self.singleCurriculumModels;
+        } else {
+            if (((int)floor(difference/7) % 2 == 0)) {
+                self.thisWeekCurriculumModels = theWeekIsDouble?self.doubleCurriculumModels:self.singleCurriculumModels;
+            } else {
+                self.thisWeekCurriculumModels = theWeekIsDouble?self.singleCurriculumModels:self.doubleCurriculumModels;
+            }
+        }
+    }
+}
+
 #pragma mark - db
 
-- (void)getCurriculums {
+- (void)getCurriculums:(void(^)(void))finish {
     __weak typeof(self) weakself = self;
     [[DBTool shareInstance] getCurriculums:^(NSArray *singleArray) {
         if (singleArray.count > 0) {
@@ -41,8 +66,10 @@
                 [weakself.doubleCurriculumModels replaceObjectAtIndex:(obj.section * 7 + obj.week) withObject:obj];
             }];
             weakself.isDoubleMode = YES;
+            !finish?:finish();
         } else {
             weakself.isDoubleMode = NO;
+            !finish?:finish();
         }
     }];
 }

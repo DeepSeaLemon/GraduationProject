@@ -43,6 +43,12 @@ static NSString *GPTimetableViewControllerCellID = @"GPTimetableViewController";
 - (void)clickRightButton:(UIButton *)sender {
     GPTimeTableInputViewController *vc = [[GPTimeTableInputViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
+    [vc triggerRefreshBlock:^{
+        [self.viewModel getCurriculums:^{
+            [self.viewModel setTheDataToBeDisplayedThisWeek];
+            [self.collectionView reloadData];
+        }];
+    }];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -62,7 +68,7 @@ static NSString *GPTimetableViewControllerCellID = @"GPTimetableViewController";
         cell = [[GPCourseShowCell alloc] init];
     }
     cell.cellType = GPCourseShowCellTypeShowNil;
-    [cell setDataModel:self.viewModel.singleCurriculumModels[(indexPath.section * 7 + indexPath.row)]];
+    [cell setDataModel:self.viewModel.thisWeekCurriculumModels[(indexPath.section * 7 + indexPath.row)]];
     if (indexPath.row == ([NSDate getCurrentWeekDayCN] - 1)) {
         [cell setCurrentDayBackGroundViewColor:YES];
     } else {

@@ -33,4 +33,8 @@
 #define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
 #define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
 
+// NSUserDefaults'keys
+
+#define key_timeTable_theWeekIsDouble @"weekIsDouble"
+#define key_timeTable_theFirstDay @"firstDay"
 #endif /* DefineFile_h */

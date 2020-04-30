@@ -33,6 +33,15 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
     [self setTitle:@"课程表录入"];
     self.modelArray = [self.viewModel.singleCurriculumModels mutableCopy];
     [self initUI];
+    if (self.viewModel.isDoubleMode) {
+        [self.modeSwitchItem setItemSwitchStatus:YES];
+        self.inputItem.hidden = NO;
+        [self setTitle:@"单周课程表录入"];
+    }
+}
+
+- (void)triggerRefreshBlock:(RefreshReturnBlock)block {
+    self.refreshBlock = block;
 }
 
 - (void)initUI {
@@ -68,6 +77,12 @@ static NSString *GPTimeTableInputViewControllerCellID = @"GPTimeTableInputViewCo
 - (void)clickRightButton:(UIButton *)sender {
     self.viewModel.singleCurriculumModels = self.modelArray;
     [self.viewModel saveSingleCurriculums];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+        if (self.refreshBlock != nil) {
+            self.refreshBlock();
+        }
+    });
 }
 
 #pragma make - delegate & datesource

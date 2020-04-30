@@ -10,6 +10,34 @@
 
 @implementation NSDate (GP)
 
++ (NSInteger)calculationTimeDifferenceWith:(NSDate *)startDate endDate:(NSDate *)endDate {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendarUnit type = NSCalendarUnitDay;
+    NSDateComponents *cmps = [calendar components:type fromDate:startDate toDate:endDate options:0];
+    return cmps.day;
+}
+
++ (NSDate *)getFirstDayOfWeek {
+    NSDate *nowDate = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday  fromDate:nowDate];
+    // 获取今天是周几(外国标准 1是周日)
+    NSInteger weekDay = [comp weekday];
+    // 计算当前日期和本周的星期一和星期天相差天数
+    long firstDiff,lastDiff;
+    if (weekDay == 1){
+        firstDiff = -6;
+        lastDiff = 0;
+    } else {
+        firstDiff = [calendar firstWeekday] - weekDay + 1;
+        lastDiff = 8 - weekDay;
+    }
+    // 从现在开始的24小时
+    NSTimeInterval secondsPerDay = firstDiff * 24 * 60 * 60;
+    NSDate *curDate = [NSDate dateWithTimeIntervalSinceNow:secondsPerDay];
+    return curDate;
+}
+
 + (NSInteger)getCurrentWeekDayCN {
     NSDate *nowDate = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];

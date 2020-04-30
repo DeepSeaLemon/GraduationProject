@@ -14,10 +14,11 @@
 
 @property (nonatomic, strong) NSMutableArray<GPCurriculumModel *>* singleCurriculumModels;
 @property (nonatomic, strong) NSMutableArray<GPCurriculumModel *>* doubleCurriculumModels;
-
+@property (nonatomic, strong) NSMutableArray<GPCurriculumModel *>* thisWeekCurriculumModels;
 @property (nonatomic, assign) BOOL isDoubleMode;
 
-- (void)getCurriculums;
+- (void)getCurriculums:(void(^)(void))finish;
+- (void)setTheDataToBeDisplayedThisWeek;
 - (void)saveSingleCurriculums;
 - (void)saveDoubleCurriculums;
 - (instancetype)initWithData;

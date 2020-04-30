@@ -11,8 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GPTimeTableInputViewController :GPTimeTableBaseViewController
+typedef void (^RefreshReturnBlock)(void);
 
+@interface GPTimeTableInputViewController :GPTimeTableBaseViewController
+@property (nonatomic, copy) RefreshReturnBlock refreshBlock;
+- (void)triggerRefreshBlock:(RefreshReturnBlock)block;
 @end
 
 NS_ASSUME_NONNULL_END

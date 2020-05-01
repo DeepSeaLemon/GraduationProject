@@ -4,11 +4,12 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'GraduationProject' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+	
   # Pods for GraduationProject
 
 	pod 'Masonry'
 	pod 'FMDB'
+	pod 'LSLColorPickerView'
 
   target 'GraduationProjectTests' do
     inherit! :search_paths

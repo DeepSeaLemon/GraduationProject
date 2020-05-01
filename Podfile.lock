@@ -2,21 +2,25 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - LSLColorPickerView (1.0.0)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
   - FMDB
+  - LSLColorPickerView
   - Masonry
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - FMDB
+    - LSLColorPickerView
     - Masonry
 
 SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  LSLColorPickerView: 4605ca8b1a5922f038321f4df4f1e4863a1056a3
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 76b242228cc34c65524442a83d8b2f8447a68550
+PODFILE CHECKSUM: d32e2dc30c48edecdc71699b1b9fe676c47c6e47
 
 COCOAPODS: 1.9.1

@@ -47,6 +47,9 @@
 		318832862453092A00B51D7E /* GPAddPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 318832852453092A00B51D7E /* GPAddPlanViewController.m */; };
 		3188328924530AB800B51D7E /* GPTimeSelecteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3188328824530AB800B51D7E /* GPTimeSelecteView.m */; };
 		3188328C2453134E00B51D7E /* GPItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3188328B2453134E00B51D7E /* GPItemView.m */; };
+		31A301D8245C0A84006B28ED /* GPDrawControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A301D7245C0A84006B28ED /* GPDrawControlView.m */; };
+		31A301DB245C49DD006B28ED /* GPColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A301DA245C49DD006B28ED /* GPColorPickerViewController.m */; };
+		31A301DE245C5646006B28ED /* UIImage+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A301DD245C5646006B28ED /* UIImage+GP.m */; };
 		31BD4A1A244C1C7C00549C2E /* UIColor+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A19244C1C7C00549C2E /* UIColor+GP.m */; };
 		31BD4A65244C796000549C2E /* GPDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A64244C796000549C2E /* GPDrawView.m */; };
 		31BD4A68244C799B00549C2E /* GPDrawPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A67244C799B00549C2E /* GPDrawPath.m */; };
@@ -159,6 +162,12 @@
 		3188328824530AB800B51D7E /* GPTimeSelecteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPTimeSelecteView.m; sourceTree = "<group>"; };
 		3188328A2453134E00B51D7E /* GPItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPItemView.h; sourceTree = "<group>"; };
 		3188328B2453134E00B51D7E /* GPItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPItemView.m; sourceTree = "<group>"; };
+		31A301D6245C0A84006B28ED /* GPDrawControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawControlView.h; sourceTree = "<group>"; };
+		31A301D7245C0A84006B28ED /* GPDrawControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawControlView.m; sourceTree = "<group>"; };
+		31A301D9245C49DD006B28ED /* GPColorPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPColorPickerViewController.h; sourceTree = "<group>"; };
+		31A301DA245C49DD006B28ED /* GPColorPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPColorPickerViewController.m; sourceTree = "<group>"; };
+		31A301DC245C5646006B28ED /* UIImage+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+GP.h"; sourceTree = "<group>"; };
+		31A301DD245C5646006B28ED /* UIImage+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GP.m"; sourceTree = "<group>"; };
 		31BD4A18244C1C7C00549C2E /* UIColor+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+GP.h"; sourceTree = "<group>"; };
 		31BD4A19244C1C7C00549C2E /* UIColor+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GP.m"; sourceTree = "<group>"; };
 		31BD4A63244C796000549C2E /* GPDrawView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawView.h; sourceTree = "<group>"; };
@@ -273,6 +282,10 @@
 				313B516D244AEFA7002B1061 /* GPDrawingViewController.m */,
 				3149E23F244F1CC900AF50EE /* GPDrawViewController.h */,
 				3149E240244F1CC900AF50EE /* GPDrawViewController.m */,
+				31A301D9245C49DD006B28ED /* GPColorPickerViewController.h */,
+				31A301DA245C49DD006B28ED /* GPColorPickerViewController.m */,
+				31A301D6245C0A84006B28ED /* GPDrawControlView.h */,
+				31A301D7245C0A84006B28ED /* GPDrawControlView.m */,
 				31BD4A63244C796000549C2E /* GPDrawView.h */,
 				31BD4A64244C796000549C2E /* GPDrawView.m */,
 				31BD4A66244C799B00549C2E /* GPDrawPath.h */,
@@ -450,6 +463,8 @@
 				31648F132458015C002ED198 /* DBTool.m */,
 				31FE07E3245AF2290059E6F0 /* NSDate+GP.h */,
 				31FE07E4245AF2290059E6F0 /* NSDate+GP.m */,
+				31A301DC245C5646006B28ED /* UIImage+GP.h */,
+				31A301DD245C5646006B28ED /* UIImage+GP.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -734,6 +749,7 @@
 				3126DC1B24556CF700084E5E /* GPTimeTableDoubleInputViewController.m in Sources */,
 				3119F1372455AD8A00616F27 /* GPNoteContentCell.m in Sources */,
 				313B5162244AE690002B1061 /* GPTabBarViewController.m in Sources */,
+				31A301D8245C0A84006B28ED /* GPDrawControlView.m in Sources */,
 				316809E3244AC9180013CF15 /* main.m in Sources */,
 				3126DC0F245539A500084E5E /* GPTimeTableListHeaderView.m in Sources */,
 				31FE07E5245AF2290059E6F0 /* NSDate+GP.m in Sources */,
@@ -741,8 +757,10 @@
 				313B516E244AEFA7002B1061 /* GPDrawingViewController.m in Sources */,
 				316809D5244AC9170013CF15 /* AppDelegate.m in Sources */,
 				315C9B102452BCE800F38964 /* GPStatisticsTableHeaderView.m in Sources */,
+				31A301DE245C5646006B28ED /* UIImage+GP.m in Sources */,
 				3126DC12245539D600084E5E /* GPTimeTableDayView.m in Sources */,
 				3126DC15245568D800084E5E /* GPTimeTableInputViewController.m in Sources */,
+				31A301DB245C49DD006B28ED /* GPColorPickerViewController.m in Sources */,
 				31E2A1F62451931C00EAE46D /* GPAddAccountViewController.m in Sources */,
 				318832862453092A00B51D7E /* GPAddPlanViewController.m in Sources */,
 				315C9B152452C1B900F38964 /* GPStatisticsTableViewCell.m in Sources */,

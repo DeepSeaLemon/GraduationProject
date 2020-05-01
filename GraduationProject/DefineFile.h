@@ -10,9 +10,10 @@
 #define DefineFile_h
 
 // Tools
+#import "Tools/DBTool.h"
 #import "Tools/UIColor+GP.h"
-#import "DBTool.h"
 #import "Tools/NSDate+GP.h"
+#import "Tools/UIImage+GP.h"
 
 // Base
 #import "Base/GPBaseViewController.h"

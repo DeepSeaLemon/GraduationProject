@@ -66,7 +66,6 @@
     if (!_backView) {
         _backView = [[UIView alloc] init];
         _backView.backgroundColor = [UIColor whiteColor];
-        
         //设置阴影颜色
         _backView.layer.shadowColor = [UIColor blackColor].CGColor;
         //设置阴影的透明度

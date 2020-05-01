@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 保存
 - (void)save;
 
+// 画笔
+- (void)resetPen;
+
 @end
 
 NS_ASSUME_NONNULL_END

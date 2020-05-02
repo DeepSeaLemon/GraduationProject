@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class GPCurriculumModel;
-
+@class GPDrawModel;
 @interface DBTool : NSObject
 
 + (instancetype)shareInstance;
@@ -19,6 +19,10 @@
 - (void)saveCurriculumWith:(GPCurriculumModel *)model;
 
 - (void)getCurriculums:(void(^)(NSArray *singleArray))singleDate double:(void(^)(NSArray *doubleArray))doubleDate;
+
+- (void)saveDrawingWith:(GPDrawModel *)model;
+
+- (void)getDrawing:(void(^)(NSArray *drawings))draw;
 @end
 
 

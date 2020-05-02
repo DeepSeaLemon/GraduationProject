@@ -11,12 +11,14 @@
 #import "GPDrawControlView.h"
 #import "GPColorPickerViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "GPDrawModel.h"
 
 @interface GPDrawViewController ()<GPDrawControlViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) GPDrawView *drawView;
 @property (nonatomic, strong) GPDrawControlView *controlView;
-@property (strong,nonatomic) UIImagePickerController* pickController;
+@property (nonatomic, strong) UIImagePickerController* pickController;
+@property (nonatomic, assign) BOOL isSaved;
 
 @end
 
@@ -26,8 +28,24 @@
     [super viewDidLoad];
     [self setLeftBackButton];
     [self setRightImageWithName:@"arrow_up"];
-    self.title = @"新画板";
+    if (!self.drawModel) {
+        self.title = @"新画板";
+    }
+    self.isSaved = NO;
     [self initUI];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.isSaved) {
+        !self.refreshBlock?:self.refreshBlock();
+    }
+}
+
+- (void)setDrawModel:(GPDrawModel *)drawModel {
+    _drawModel = drawModel;
+    [self.drawView setPathsForView:drawModel.paths];
+    self.title = drawModel.name;
 }
 
 - (void)initUI {
@@ -70,25 +88,46 @@
             // 保存
         {
             __weak typeof(self) weakself = self;
-            [UIAlertController setTextFieldTitle:self.title msg:@"" placeholder:@"为图片输入一个名字" ctr:self textReturn:^(NSString * _Nonnull text) {
-                if (text.length < 1) {
-                    [UIAlertController setTipsTitle:@"提示" msg:@"图片名字不能为空，请重新保存！" ctr:self handler:^(UIAlertAction * _Nullable action) {
-                        //
-                    }];
-                } else {
-                    [self.drawView save];
-                    self.drawView.imageSaveBlock = ^(UIImage * _Nonnull image, NSError * _Nullable error, NSMutableArray * _Nonnull paths) {
-                        if (error) {
-                            [UIAlertController setTipsTitle:@"错误提示" msg:error.description ctr:weakself handler:^(UIAlertAction * _Nullable action) {
-                                //
-                            }];
-                        } else {
-                            // 图片保存到本地
-                            // paths保存到？？
-                        }
-                    };
-                }
-            }];
+            if (!self.drawModel) {
+                [UIAlertController setTextFieldTitle:self.title msg:@"图片将会保存一份到相册" placeholder:@"为图片输入一个名字" ctr:self textReturn:^(NSString * _Nonnull text) {
+                    if (text.length < 1) {
+                        [UIAlertController setTipsTitle:@"提示" msg:@"图片名字不能为空，请重新保存！" ctr:self handler:^(UIAlertAction * _Nullable action) {
+                            //
+                        }];
+                    } else {
+                        [self.drawView save];
+                        self.drawView.imageSaveBlock = ^(UIImage * _Nonnull image, NSError * _Nullable error, NSMutableArray * _Nonnull paths) {
+                            if (error) {
+                                [UIAlertController setTipsTitle:@"错误提示" msg:error.description ctr:weakself handler:^(UIAlertAction * _Nullable action) {
+                                    //
+                                }];
+                            } else {
+                                GPDrawModel *model = [[GPDrawModel alloc] initWithName:text image:image paths:paths];
+                                [[DBTool shareInstance] saveDrawingWith:model];
+                                weakself.isSaved = YES;
+                                // HUD和提示
+                            }
+                        };
+                    }
+                }];
+            } else {
+                [self.drawView save];
+                self.drawView.imageSaveBlock = ^(UIImage * _Nonnull image, NSError * _Nullable error, NSMutableArray * _Nonnull paths) {
+                    if (error) {
+                        [UIAlertController setTipsTitle:@"错误提示" msg:error.description ctr:weakself handler:^(UIAlertAction * _Nullable action) {
+                            //
+                        }];
+                    } else {
+                        GPDrawModel *model = [[GPDrawModel alloc] initWithName:weakself.drawModel.name image:image paths:weakself.drawModel.paths];
+                        model.numberStr = weakself.drawModel.numberStr;
+                        [[DBTool shareInstance] saveDrawingWith:model];
+                        weakself.isSaved = YES;
+                        // HUD和提示
+                    }
+                };
+                
+            }
+            
         }
             
             break;

@@ -40,6 +40,8 @@ typedef void(^ImageSaveBlock)(UIImage *image, NSError * _Nullable error, NSMutab
 // 画笔
 - (void)resetPen;
 
+- (void)setPathsForView:(NSMutableArray *)paths;
+
 @end
 
 NS_ASSUME_NONNULL_END

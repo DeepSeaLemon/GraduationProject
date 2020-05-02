@@ -7,6 +7,7 @@
 //
 
 #import "GPCollectionViewCell.h"
+#import "GPDrawModel.h"
 
 @interface GPCollectionViewCell()
 
@@ -26,9 +27,17 @@
     return self;
 }
 
+- (void)setGPDrawModel:(GPDrawModel *)model {
+    if (model.numberStr && model.numberStr.length > 0) {
+        self.nameLabel.text = model.name;
+        self.photoView.image = model.image;
+    } else {
+        self.nameLabel.text = @"新画板";
+        self.photoView.image = [UIImage imageNamed:@"cell_background"];
+    }
+}
+
 - (void)setUI {
-    
-    
     [self.contentView addSubview:self.backView];
     [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);

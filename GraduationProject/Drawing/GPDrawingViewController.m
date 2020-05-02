@@ -9,6 +9,7 @@
 #import "GPDrawingViewController.h"
 #import "GPDrawViewController.h"
 #import "GPCollectionViewCell.h"
+#import "GPDrawModel.h"
 
 static NSString *GPDrawingViewControllerCellID = @"GPDrawingViewController";
 
@@ -16,6 +17,7 @@ static NSString *GPDrawingViewControllerCellID = @"GPDrawingViewController";
 
 @property (nonatomic, strong) UICollectionView           *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionLayout;
+@property (nonatomic, strong) NSMutableArray <GPDrawModel *>*modelArray;
 
 @end
 
@@ -32,6 +34,16 @@ static NSString *GPDrawingViewControllerCellID = @"GPDrawingViewController";
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(74);
     }];
+}
+
+- (NSMutableArray <GPDrawModel *>*)modelArray {
+    if (!_modelArray) {
+        _modelArray = [NSMutableArray array];
+        [[DBTool shareInstance] getDrawing:^(NSArray *drawings) {
+            self->_modelArray = [drawings mutableCopy];
+        }];
+    }
+    return _modelArray;
 }
 
 - (UICollectionView *)collectionView {
@@ -63,7 +75,7 @@ static NSString *GPDrawingViewControllerCellID = @"GPDrawingViewController";
 #pragma make - delegate & datesource
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
+    return self.modelArray.count + 1;
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -75,13 +87,29 @@ static NSString *GPDrawingViewControllerCellID = @"GPDrawingViewController";
     if (cell == nil) {
         cell = [[GPCollectionViewCell alloc] init];
     }
+    if (indexPath.row == 0) {
+        [cell setGPDrawModel:[[GPDrawModel alloc] init]];
+    } else {
+        if (self.modelArray.count > 0) {
+            [cell setGPDrawModel:self.modelArray[indexPath.row - 1]];
+        }
+    }
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"click %ld-%ld",(long)indexPath.section,(long)indexPath.row);
     GPDrawViewController *vc = [[GPDrawViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
+    if (indexPath.row > 0) {
+        vc.drawModel = self.modelArray[indexPath.row - 1];
+    }
+    vc.refreshBlock = ^{
+        [[DBTool shareInstance] getDrawing:^(NSArray *drawings) {
+            [self.modelArray removeAllObjects];
+            self.modelArray = [drawings mutableCopy];
+            [self.collectionView reloadData];
+        }];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end

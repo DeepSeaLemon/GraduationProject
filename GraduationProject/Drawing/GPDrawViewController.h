@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GPDrawModel;
+
+typedef void(^RefreshBlock)(void);
+
 @interface GPDrawViewController : GPBaseViewController
+
+@property (nonatomic, copy) RefreshBlock refreshBlock;
+
+@property (nonatomic, strong) GPDrawModel *drawModel;
 
 @end
 

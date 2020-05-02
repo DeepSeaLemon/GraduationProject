@@ -21,6 +21,11 @@
 
 @implementation GPDrawView
 
+- (void)setPathsForView:(NSMutableArray *)paths {
+    self.paths = paths;
+    [self setNeedsDisplay];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -37,11 +42,13 @@
             // 画图片
             UIImage* image = (UIImage*)path;
             [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-        }else{
+        } else if ([path isKindOfClass:[GPDrawPath class]]){
             // 画线
             // 设置画笔颜色
             [path.pathColor set];
             // 绘制
+            [path stroke];
+        } else {
             [path stroke];
         }
     }

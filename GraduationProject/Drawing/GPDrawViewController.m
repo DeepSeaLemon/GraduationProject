@@ -103,9 +103,10 @@
                                 }];
                             } else {
                                 GPDrawModel *model = [[GPDrawModel alloc] initWithName:text image:image paths:paths];
-                                [[DBTool shareInstance] saveDrawingWith:model];
-                                weakself.isSaved = YES;
-                                // HUD和提示
+                                [[DBTool shareInstance] saveDrawingWith:model complate:^(BOOL success) {
+                                    // HUD和提示
+                                    weakself.isSaved = success;
+                                }];
                             }
                         };
                     }
@@ -120,9 +121,10 @@
                     } else {
                         GPDrawModel *model = [[GPDrawModel alloc] initWithName:weakself.drawModel.name image:image paths:weakself.drawModel.paths];
                         model.numberStr = weakself.drawModel.numberStr;
-                        [[DBTool shareInstance] saveDrawingWith:model];
-                        weakself.isSaved = YES;
-                        // HUD和提示
+                        [[DBTool shareInstance] saveDrawingWith:model complate:^(BOOL success) {
+                            // HUD和提示
+                            weakself.isSaved = success;
+                        }];
                     }
                 };
                 

@@ -16,11 +16,11 @@
 
 - (void)createAppAllDBs;
 
-- (void)saveCurriculumWith:(GPCurriculumModel *)model;
+- (void)saveCurriculumWith:(GPCurriculumModel *)model complate:(void(^)(BOOL success))complate;
 
 - (void)getCurriculums:(void(^)(NSArray *singleArray))singleDate double:(void(^)(NSArray *doubleArray))doubleDate;
 
-- (void)saveDrawingWith:(GPDrawModel *)model;
+- (void)saveDrawingWith:(GPDrawModel *)model complate:(void(^)(BOOL success))complate;
 
 - (void)getDrawing:(void(^)(NSArray *drawings))draw;
 @end

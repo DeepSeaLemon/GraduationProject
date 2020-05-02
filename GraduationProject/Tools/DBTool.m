@@ -98,7 +98,7 @@ static DBTool *_singleInstance = nil;
 
 #pragma mark - save
 
-- (void)saveDrawingWith:(GPDrawModel *)model {
+- (void)saveDrawingWith:(GPDrawModel *)model complate:(void(^)(BOOL success))complate {
     FMDatabase *drawingDB = [self getDatabaseWith:self.drawing];
     if ([drawingDB open]) {
         // 查询是否存在这一条数据
@@ -107,16 +107,18 @@ static DBTool *_singleInstance = nil;
         if (rs.next) {
             // 存在，走修改
             NSString *update = [NSString stringWithFormat:@"update %@ set name = ?,imageData = ?,pathsData = ?,imageIndex = ?,pathImage = ? where numberStr = ?",self.drawingList];
-            [drawingDB executeUpdate:update,model.name,model.imageData,model.pathsData,model.imageIndex,model.pathsImageData,model.numberStr];
+            BOOL success = [drawingDB executeUpdate:update,model.name,model.imageData,model.pathsData,model.imageIndex,model.pathsImageData,model.numberStr];
+            !complate?:complate(success);
         } else {
             // 不存在，走保存
             NSString *insertData = [NSString stringWithFormat:@"insert into %@ (name,imageData,pathsData,imageIndex,pathImage,numberStr) values (?,?,?,?,?,?)",self.drawingList];
-            [drawingDB executeUpdate:insertData,model.name,model.imageData,model.pathsData,model.imageIndex,model.pathsImageData,model.numberStr];
+            BOOL success = [drawingDB executeUpdate:insertData,model.name,model.imageData,model.pathsData,model.imageIndex,model.pathsImageData,model.numberStr];
+            !complate?:complate(success);
         }
     }
 }
 
-- (void)saveCurriculumWith:(GPCurriculumModel *)model {
+- (void)saveCurriculumWith:(GPCurriculumModel *)model complate:(void(^)(BOOL success))complate {
     FMDatabase *timeTableDB = [self getDatabaseWith:self.timeTable];
     if ([timeTableDB open]) {
         // 查询是否存在这一条数据
@@ -125,7 +127,8 @@ static DBTool *_singleInstance = nil;
         if (rs.next) {
             // 存在，走修改
             NSString *update = [NSString stringWithFormat:@"update %@ set curriculum = ?,classroom = ?,teacher = ?,curriculum2 = ?,classroom2 = ?,teacher2 = ? where numberStr = ?",self.timeTableList];
-            [timeTableDB executeUpdate:update,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,model.numberStr];
+            BOOL success = [timeTableDB executeUpdate:update,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,model.numberStr];
+            !complate?:complate(success);
         } else {
             // 不存在，走保存
             NSString *insertData = [NSString stringWithFormat:@"insert into %@ (week,section,curriculum,classroom,teacher,curriculum2,classroom2,teacher2,isSingle,isDouble,numberStr) values (?,?,?,?,?,?,?,?,?,?,?)",self.timeTableList];
@@ -133,7 +136,8 @@ static DBTool *_singleInstance = nil;
             NSNumber *section = [NSNumber numberWithInteger:model.section];
             NSNumber *isSingle = [NSNumber numberWithBool:model.isSingle];
             NSNumber *isDouble = [NSNumber numberWithBool:model.isDouble];
-            [timeTableDB executeUpdate:insertData,week,section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,isSingle,isDouble,model.numberStr];
+            BOOL success = [timeTableDB executeUpdate:insertData,week,section,model.curriculum,model.classroom,model.teacher,model.curriculum2,model.classroom2,model.teacher2,isSingle,isDouble,model.numberStr];
+            !complate?:complate(success);
         }
     }
     [timeTableDB close];

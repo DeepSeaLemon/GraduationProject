@@ -77,14 +77,18 @@
 - (void)saveSingleCurriculums {
     [self.singleCurriculumModels enumerateObjectsUsingBlock:^(GPCurriculumModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (!(obj.numberStr == nil || obj.numberStr.length < 1)) {
-            [[DBTool shareInstance] saveCurriculumWith:obj];
+            [[DBTool shareInstance] saveCurriculumWith:obj complate:^(BOOL success) {
+                // 提示
+            }];
         }
     }];
 }
 - (void)saveDoubleCurriculums {
     [self.doubleCurriculumModels enumerateObjectsUsingBlock:^(GPCurriculumModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (!(obj.numberStr == nil || obj.numberStr.length < 1)) {
-            [[DBTool shareInstance] saveCurriculumWith:obj];
+            [[DBTool shareInstance] saveCurriculumWith:obj complate:^(BOOL success) {
+                // 提示
+            }];
         }
     }];
 }

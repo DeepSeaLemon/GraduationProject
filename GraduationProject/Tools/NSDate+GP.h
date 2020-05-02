@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 计算时间相差几天
 + (NSInteger)calculationTimeDifferenceWith:(NSDate *)startDate endDate:(NSDate *)endDate;
 
+// 获取当前时间戳
++ (NSString *)getNowTimeTimestamp;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,11 +10,13 @@
 #import "GPDrawView.h"
 #import "GPDrawControlView.h"
 #import "GPColorPickerViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface GPDrawViewController ()<GPDrawControlViewDelegate>
+@interface GPDrawViewController ()<GPDrawControlViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) GPDrawView *drawView;
 @property (nonatomic, strong) GPDrawControlView *controlView;
+@property (strong,nonatomic) UIImagePickerController* pickController;
 
 @end
 
@@ -66,10 +68,45 @@
             break;
         case 1:
             // 保存
-            [self.drawView save];
+        {
+            __weak typeof(self) weakself = self;
+            [UIAlertController setTextFieldTitle:self.title msg:@"" placeholder:@"为图片输入一个名字" ctr:self textReturn:^(NSString * _Nonnull text) {
+                if (text.length < 1) {
+                    [UIAlertController setTipsTitle:@"提示" msg:@"图片名字不能为空，请重新保存！" ctr:self handler:^(UIAlertAction * _Nullable action) {
+                        //
+                    }];
+                } else {
+                    [self.drawView save];
+                    self.drawView.imageSaveBlock = ^(UIImage * _Nonnull image, NSError * _Nullable error, NSMutableArray * _Nonnull paths) {
+                        if (error) {
+                            [UIAlertController setTipsTitle:@"错误提示" msg:error.description ctr:weakself handler:^(UIAlertAction * _Nullable action) {
+                                //
+                            }];
+                        } else {
+                            // 图片保存到本地
+                            // paths保存到？？
+                        }
+                    };
+                }
+            }];
+        }
+            
             break;
         case 2:
-            // 相册
+            // 图片选择
+        {
+            __block NSArray <NSString *>*items = @[@"相册",@"相机"];
+            [UIAlertController setSheetTitle:@"提示" msg:@"选择图片来源" ctr:self items:items handler:^(UIAlertAction * _Nullable action) {
+                if ([items containsObject:action.title]) {
+                    NSInteger index = [items indexOfObject:action.title];
+                    if (index == 1) { // 进入相机
+                        [self intoCamera];
+                    } else { // 进入相册
+                        [self intoPhotoLibrary];
+                    }
+                }
+            }];
+        }
             break;
         case 3:
             // 橡皮擦
@@ -81,6 +118,26 @@
             break;
         default:
             break;
+    }
+}
+
+- (void)intoPhotoLibrary {
+    self.pickController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:self.pickController animated:YES completion:nil];
+}
+
+- (void)intoCamera {
+    if ([UIImagePickerController isSourceTypeAvailable : UIImagePickerControllerSourceTypeCamera]) {
+        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        if (authStatus == AVAuthorizationStatusRestricted || authStatus ==AVAuthorizationStatusDenied) {
+            NSLog(@"无权限");
+        }else{
+            self.pickController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            self.pickController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+            [self presentViewController:self.pickController animated:YES completion:nil];
+        }
+    }else{
+        NSLog(@"不存在相机");
     }
 }
 
@@ -101,7 +158,31 @@
     }];
 }
 
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey, id> *)info{
+    NSString * mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    if ([mediaType isEqualToString:@"public.image"]) {//照片
+        UIImage* originalImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];//取出原生照片
+        self.drawView.image = originalImage;
+        [self.pickController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self.pickController dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - lazy
+
+- (UIImagePickerController *)pickController {
+    if (!_pickController) {
+        _pickController = [[UIImagePickerController alloc] init];
+        _pickController.delegate = self;
+        _pickController.allowsEditing = NO;
+    }
+    return _pickController;
+}
 
 - (GPDrawView *)drawView{
     if (!_drawView) {

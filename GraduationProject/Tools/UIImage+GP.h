@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIImage *)imageWithColor:(UIColor *)color;
 
++ (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize;
+
 @end
 
 NS_ASSUME_NONNULL_END

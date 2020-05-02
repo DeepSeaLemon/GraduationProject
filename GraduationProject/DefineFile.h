@@ -14,6 +14,7 @@
 #import "Tools/UIColor+GP.h"
 #import "Tools/NSDate+GP.h"
 #import "Tools/UIImage+GP.h"
+#import "Tools/UIAlertController+GP.h"
 
 // Base
 #import "Base/GPBaseViewController.h"

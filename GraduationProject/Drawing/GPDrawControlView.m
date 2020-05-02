@@ -23,9 +23,11 @@
 @implementation GPDrawControlView
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 64, 45, 395)]) {
-        self.reachtRect = CGRectMake(SCREEN_WIDTH - 50, 64, 45, 395);
-        self.retractRect = CGRectMake(SCREEN_WIDTH - 50, 64, 45, 0);
+    if (self = [super initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 64 - 22.5 , 45, 395 + 22.5)]) {
+        self.layer.masksToBounds = YES;
+        self.layer.cornerRadius = 22.5;
+        self.reachtRect = CGRectMake(SCREEN_WIDTH - 50, 64 - 22.5, 45, 395 + 22.5);
+        self.retractRect = CGRectMake(SCREEN_WIDTH - 50, 64 - 22.5, 45, 0);
         self.backgroundColor = [UIColor whiteColor];
         self.isRetract = NO;
         [self initUI];
@@ -58,7 +60,7 @@
         [item mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(10);
             make.right.mas_equalTo(-10);
-            make.top.mas_equalTo(i * 45 + 10);
+            make.top.mas_equalTo(i * 45 + 10 + 22.5);
             make.height.mas_equalTo(25);
             make.width.mas_equalTo(25);
         }];

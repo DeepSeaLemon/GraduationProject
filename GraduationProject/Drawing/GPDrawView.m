@@ -36,7 +36,7 @@
         if ([path isKindOfClass:[UIImage class]]) {
             // 画图片
             UIImage* image = (UIImage*)path;
-            [image drawInRect:rect];
+            [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
         }else{
             // 画线
             // 设置画笔颜色
@@ -57,9 +57,13 @@
 
 // 重写image属性
 - (void)setImage:(UIImage *)image {
-    _image = image;
-    // 将图片加入到线条数组中
-    [self.paths addObject:image];
+    CGFloat iw = image.size.width;
+    CGFloat ih = image.size.height;
+    CGFloat vw = self.frame.size.width;
+    CGFloat vh = self.frame.size.height;
+    CGFloat scaleSize = (iw > ih) ? (vw / iw) : (vh / ih);
+    _image = [UIImage scaleImage:image toScale:scaleSize];
+    [self.paths addObject:_image];
     [self setNeedsDisplay];
 }
 
@@ -147,8 +151,7 @@
 
 // 图片保存方法，必需写这个方法体，不能会保存不了图片
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    // 保存图片
-    NSLog(@"保存图片");
+    !self.imageSaveBlock?:self.imageSaveBlock(image,error,self.paths);
 }
 
 @end

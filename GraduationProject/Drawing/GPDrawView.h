@@ -10,16 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^ImageSaveBlock)(UIImage *image, NSError * _Nullable error, NSMutableArray *paths);
+
 @interface GPDrawView : UIView
 
+@property (nonatomic, copy) ImageSaveBlock imageSaveBlock;
+
 // 画线的宽度
-@property(nonatomic,assign)CGFloat lineWidth;
+@property (nonatomic,assign)CGFloat lineWidth;
 
 // 线条颜色
-@property(nonatomic,retain)UIColor* pathColor;
+@property (nonatomic,retain)UIColor* pathColor;
 
 // 加载背景图片
-@property(nonatomic,strong)UIImage* image;
+@property (nonatomic,strong)UIImage* image;
 
 // 清屏
 - (void)clear;

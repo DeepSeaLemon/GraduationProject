@@ -49,6 +49,10 @@
     [self setupAllSubViews];
 }
 
+- (void)refreshWithTitles:(NSArray *)titles {
+    [self setupSubViewsWithTitles:titles];
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self setupAllSubViews];

@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, weak) id<GPAccountTableHeaderViewDelegate> delegate;
 
+- (void)setPayMoney:(NSNumber *)pay incomeMoney:(NSNumber *)income;
+
 @end
 
 NS_ASSUME_NONNULL_END

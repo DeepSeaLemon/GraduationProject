@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 // 获取当前时间戳
 + (NSString *)getNowTimeTimestamp;
 
++ (NSInteger)getThisYear;
+
++ (void)getNowTime:(void(^)(NSNumber *year))year month:(void(^)(NSNumber *month))month day:(void(^)(NSNumber *day))day date:(void(^)(NSString *dateStr))dateStr time:(void(^)(NSString *timeStr))time;
+
 @end
 
 NS_ASSUME_NONNULL_END

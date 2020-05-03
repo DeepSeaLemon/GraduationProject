@@ -10,6 +10,7 @@
 #import <FMDB/FMDB.h>
 #import "GPCurriculumModel.h"
 #import "GPDrawModel.h"
+#import "GPAccountModel.h"
 
 static DBTool *_singleInstance = nil;
 
@@ -18,14 +19,49 @@ static DBTool *_singleInstance = nil;
 @property (nonatomic, copy) NSString *timeTableList;
 @property (nonatomic, copy) NSString *timeTable;
 @property (nonatomic, copy) NSString *timeTableDB;
+
 @property (nonatomic, copy) NSString *drawingList;
 @property (nonatomic, copy) NSString *drawing;
 @property (nonatomic, copy) NSString *drawingDB;
+
+@property (nonatomic, copy) NSString *accountList;
+@property (nonatomic, copy) NSString *account;
+@property (nonatomic, copy) NSString *accountDB;
 @end
 
 @implementation DBTool
 
 #pragma mark - get
+
+- (void)getAccount:(void (^)(NSArray *))account {
+    NSMutableArray <GPAccountModel *>*accountArr = [NSMutableArray array];
+    FMDatabase *accountDB = [self getDatabaseWith:self.account];
+    if ([accountDB open]) {
+        NSString *sql = [NSString stringWithFormat:@"select * FROM %@",self.accountList];
+        FMResultSet *rs = [accountDB executeQuery:sql];
+        if (rs.columnCount > 0) {
+            while ([rs next]) {
+                GPAccountModel *model = [[GPAccountModel alloc] init];
+                model.year      = [NSNumber numberWithInt:[rs intForColumn:@"year"]];
+                model.month     = [NSNumber numberWithInt:[rs intForColumn:@"month"]];
+                model.day       = [NSNumber numberWithInt:[rs intForColumn:@"day"]];
+                model.amount    = [NSNumber numberWithDouble:[rs doubleForColumn:@"amount"]];
+                model.isInput   = [NSNumber numberWithInt:[rs intForColumn:@"isInput"]];
+                model.content   = [rs stringForColumn:@"content"];
+                model.timeStr   = [rs stringForColumn:@"timeStr"];
+                model.dateStr   = [rs stringForColumn:@"dateStr"];
+                model.numberStr = [rs stringForColumn:@"numberStr"];
+                [accountArr addObject:model];
+            }
+            !account?:account(accountArr);
+        } else {
+            !account?:account(accountArr);
+        }
+    } else {
+        !account?:account(accountArr);
+    }
+    [accountDB close];
+}
 
 - (void)getCurriculums:(void(^)(NSArray *singleArray))singleDate double:(void(^)(NSArray *doubleArray))doubleDate{
     NSMutableArray <GPCurriculumModel *>*singleArr = [NSMutableArray array];
@@ -76,10 +112,10 @@ static DBTool *_singleInstance = nil;
         if (rs.columnCount > 0) {
             while ([rs next]) {
                 GPDrawModel *model = [[GPDrawModel alloc] init];
-                model.name = [rs stringForColumn:@"name"];
+                model.name      = [rs stringForColumn:@"name"];
                 model.imageData = [rs stringForColumn:@"imageData"];
                 model.pathsData = [rs stringForColumn:@"pathsData"];
-                model.numberStr   = [rs stringForColumn:@"numberStr"];
+                model.numberStr = [rs stringForColumn:@"numberStr"];
                 NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:[rs stringForColumn:@"imageData"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
                 model.image =  [UIImage imageWithData:decodedImageData];
                 [model restorePathsArrayWith:[rs stringForColumn:@"pathsData"] pathsImage:[rs stringForColumn:@"pathImage"] imageIndex:[NSNumber numberWithInt:[rs intForColumn:@"imageIndex"]]];                
@@ -97,6 +133,26 @@ static DBTool *_singleInstance = nil;
 
 
 #pragma mark - save
+
+- (void)saveAccountWith:(GPAccountModel *)model complate:(void (^)(BOOL))complate {
+    FMDatabase *accountDB = [self getDatabaseWith:self.account];
+    if ([accountDB open]) {
+        // 查询是否存在这一条数据
+        NSString *sql = [NSString stringWithFormat:@"select * FROM %@ where numberStr = ?",self.accountList];
+        FMResultSet *rs = [accountDB executeQuery:sql,model.numberStr];
+        if (rs.next) {
+            // 存在，走修改
+            NSString *update = [NSString stringWithFormat:@"update %@ set year = ?,month = ?,day = ?,amount = ?,isInput = ?,content = ?,timeStr = ?,dateStr = ? where numberStr = ?",self.accountList];
+            BOOL success = [accountDB executeUpdate:update,model.year,model.month,model.day,model.amount,model.isInput,model.content,model.timeStr,model.dateStr,model.numberStr];
+            !complate?:complate(success);
+        } else {
+            // 不存在，走保存
+            NSString *insertData = [NSString stringWithFormat:@"insert into %@ (year,month,day,amount,isInput,content,timeStr,dateStr,numberStr) values (?,?,?,?,?,?,?,?,?)",self.accountList];
+            BOOL success = [accountDB executeUpdate:insertData,model.year,model.month,model.day,model.amount,model.isInput,model.content,model.timeStr,model.dateStr,model.numberStr];
+            !complate?:complate(success);
+        }
+    }
+}
 
 - (void)saveDrawingWith:(GPDrawModel *)model complate:(void(^)(BOOL success))complate {
     FMDatabase *drawingDB = [self getDatabaseWith:self.drawing];
@@ -158,7 +214,7 @@ static DBTool *_singleInstance = nil;
 //    [self createMemorandumDB];
 //    [self createNoteDB];
     [self createDrawingDB];
-//    [self createAccountDB];
+    [self createAccountDB];
 }
 
 - (void)createTimeTableDB {
@@ -204,10 +260,24 @@ static DBTool *_singleInstance = nil;
     }
     [db close];
 }
-//
-//- (void)createAccountDB {
-//    NSString *folderPath = [self createFolderDBWithName:@"Account"];
-//}
+
+- (void)createAccountDB {
+    NSString *folderPath = [self createFolderDBWithName:self.account];
+    NSString *dbPath = [folderPath stringByAppendingPathComponent:self.accountDB];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    if ([db open]) {
+        NSLog(@"打开Account数据库成功");
+        NSString *createTable = [NSString stringWithFormat:@"create table if not exists %@ (year integer, month integer, day integer, amount real, isInput integer, content text, timeStr text, dateStr text, numberStr text primary key)",self.accountList];
+        if ([db executeUpdate:createTable]) {
+            NSLog(@"创造Account表成功");
+        } else {
+            NSLog(@"创造Account表失败");
+        }
+    }else{
+        NSLog(@"打开Account数据库失败");
+    }
+    [db close];
+}
 
 - (NSString *)createFolderDBWithName:(NSString *)folderName {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -236,6 +306,9 @@ static DBTool *_singleInstance = nil;
             _singleInstance.drawing = @"Drawing";
             _singleInstance.drawingList = @"drawing_list";
             _singleInstance.drawingDB = @"Drawing.sqlite";
+            _singleInstance.account = @"Account";
+            _singleInstance.accountList = @"account_list";
+            _singleInstance.accountDB = @"Account.sqlite";
         }
     });
     return _singleInstance;

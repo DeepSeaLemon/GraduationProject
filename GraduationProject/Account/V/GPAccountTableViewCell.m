@@ -7,6 +7,7 @@
 //
 
 #import "GPAccountTableViewCell.h"
+#import "GPAccountModel.h"
 
 @interface GPAccountTableViewCell ()
 
@@ -17,6 +18,12 @@
 @end
 
 @implementation GPAccountTableViewCell
+
+- (void)setGPAccountModel:(GPAccountModel *)model {
+    self.itemLabel.text = model.content;
+    self.timeLabel.text = [NSString stringWithFormat:@"%@ %@",model.dateStr,model.timeStr];
+    self.moneyLabel.text = [NSString stringWithFormat:@"%0.2f",[model.amount doubleValue]];
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

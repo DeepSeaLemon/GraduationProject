@@ -9,6 +9,7 @@
 #import "GPStatisticsViewController.h"
 #import "GPStatisticsTableHeaderView.h"
 #import "GPStatisticsTableViewCell.h"
+#import "GPAccountViewModel.h"
 
 static NSString *GPStatisticsViewControllerCellID = @"GPStatisticsViewController";
 
@@ -35,19 +36,28 @@ static NSString *GPStatisticsViewControllerCellID = @"GPStatisticsViewController
     }];
 }
 
+- (void)setViewModel:(GPAccountViewModel *)viewModel {
+    _viewModel = viewModel;
+    [_viewModel calculateDataOfThisYear];
+    [self.headerView setPayMoney:viewModel.statisticsPayMoney incomeMoney:viewModel.statisticsIncomeMoney year:[NSDate getThisYear]];
+}
+
 #pragma mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.viewModel.statisticsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GPStatisticsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:GPStatisticsViewControllerCellID];
     if (!cell) {
         cell = [[GPStatisticsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPStatisticsViewControllerCellID];
+    }
+    if (self.viewModel.statisticsArray.count > 0) {
+        [cell setGPAccountMonthModel:self.viewModel.statisticsArray[indexPath.row]];
     }
     return cell;
 }

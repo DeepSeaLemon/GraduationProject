@@ -14,6 +14,7 @@
 #import "Tools/UIColor+GP.h"
 #import "Tools/NSDate+GP.h"
 #import "Tools/UIImage+GP.h"
+#import "Tools/UITextField+GP.h"
 #import "Tools/UIAlertController+GP.h"
 
 // Base
@@ -39,4 +40,5 @@
 
 #define key_timeTable_theWeekIsDouble @"weekIsDouble"
 #define key_timeTable_theFirstDay @"firstDay"
+#define key_account_titles @"accountTitles"
 #endif /* DefineFile_h */

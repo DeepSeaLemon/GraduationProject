@@ -29,6 +29,8 @@
 		3149E23E244F1A4800AF50EE /* GPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3149E23C244F1A4800AF50EE /* GPCollectionViewCell.m */; };
 		3149E241244F1CC900AF50EE /* GPDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3149E240244F1CC900AF50EE /* GPDrawViewController.m */; };
 		314D3588244AFBD7007D155F /* GPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314D3587244AFBD7007D155F /* GPBaseViewController.m */; };
+		315AD83C245EEB1900A09BEB /* GPAccountMonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 315AD83B245EEB1900A09BEB /* GPAccountMonthModel.m */; };
+		315AD83F245EF51800A09BEB /* UITextField+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 315AD83E245EF51800A09BEB /* UITextField+GP.m */; };
 		315C9B062452951D00F38964 /* GPTagSelecteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C9B052452951D00F38964 /* GPTagSelecteView.m */; };
 		315C9B092452A03300F38964 /* GPTagLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C9B082452A03300F38964 /* GPTagLabel.m */; };
 		315C9B0D2452BCCB00F38964 /* GPStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315C9B0C2452BCCB00F38964 /* GPStatisticsViewController.m */; };
@@ -55,6 +57,8 @@
 		31BD4A68244C799B00549C2E /* GPDrawPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A67244C799B00549C2E /* GPDrawPath.m */; };
 		31C299AC245D622D00D0A68C /* GPDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C299AB245D622D00D0A68C /* GPDrawModel.m */; };
 		31D9806F245C5BA4008C258F /* UIAlertController+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D9806E245C5BA4008C258F /* UIAlertController+GP.m */; };
+		31D9E1E4245E949000F0F1F3 /* GPAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D9E1E3245E949000F0F1F3 /* GPAccountModel.m */; };
+		31D9E1E7245E9BC600F0F1F3 /* GPAccountViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D9E1E6245E9BC600F0F1F3 /* GPAccountViewModel.m */; };
 		31E2A1F024515E4200EAE46D /* GPAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1EF24515E4200EAE46D /* GPAccountTableViewCell.m */; };
 		31E2A1F324516BF900EAE46D /* GPAccountTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1F224516BF900EAE46D /* GPAccountTableHeaderView.m */; };
 		31E2A1F62451931C00EAE46D /* GPAddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2A1F52451931C00EAE46D /* GPAddAccountViewController.m */; };
@@ -126,6 +130,10 @@
 		3149E240244F1CC900AF50EE /* GPDrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawViewController.m; sourceTree = "<group>"; };
 		314D3586244AFBD7007D155F /* GPBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPBaseViewController.h; sourceTree = "<group>"; };
 		314D3587244AFBD7007D155F /* GPBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPBaseViewController.m; sourceTree = "<group>"; };
+		315AD83A245EEB1900A09BEB /* GPAccountMonthModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountMonthModel.h; sourceTree = "<group>"; };
+		315AD83B245EEB1900A09BEB /* GPAccountMonthModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAccountMonthModel.m; sourceTree = "<group>"; };
+		315AD83D245EF51800A09BEB /* UITextField+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+GP.h"; sourceTree = "<group>"; };
+		315AD83E245EF51800A09BEB /* UITextField+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+GP.m"; sourceTree = "<group>"; };
 		315C9B042452951D00F38964 /* GPTagSelecteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPTagSelecteView.h; sourceTree = "<group>"; };
 		315C9B052452951D00F38964 /* GPTagSelecteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPTagSelecteView.m; sourceTree = "<group>"; };
 		315C9B072452A03300F38964 /* GPTagLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPTagLabel.h; sourceTree = "<group>"; };
@@ -180,6 +188,10 @@
 		31C299AB245D622D00D0A68C /* GPDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawModel.m; sourceTree = "<group>"; };
 		31D9806D245C5BA4008C258F /* UIAlertController+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+GP.h"; sourceTree = "<group>"; };
 		31D9806E245C5BA4008C258F /* UIAlertController+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+GP.m"; sourceTree = "<group>"; };
+		31D9E1E2245E949000F0F1F3 /* GPAccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountModel.h; sourceTree = "<group>"; };
+		31D9E1E3245E949000F0F1F3 /* GPAccountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAccountModel.m; sourceTree = "<group>"; };
+		31D9E1E5245E9BC600F0F1F3 /* GPAccountViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountViewModel.h; sourceTree = "<group>"; };
+		31D9E1E6245E9BC600F0F1F3 /* GPAccountViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAccountViewModel.m; sourceTree = "<group>"; };
 		31E2A1EE24515E4200EAE46D /* GPAccountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountTableViewCell.h; sourceTree = "<group>"; };
 		31E2A1EF24515E4200EAE46D /* GPAccountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAccountTableViewCell.m; sourceTree = "<group>"; };
 		31E2A1F124516BF900EAE46D /* GPAccountTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountTableHeaderView.h; sourceTree = "<group>"; };
@@ -283,20 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				31E9CD4B245D6283006CD287 /* M */,
-				3149E23D244F1A4800AF50EE /* GPCollectionViewCell.h */,
-				3149E23C244F1A4800AF50EE /* GPCollectionViewCell.m */,
-				313B516C244AEFA7002B1061 /* GPDrawingViewController.h */,
-				313B516D244AEFA7002B1061 /* GPDrawingViewController.m */,
-				3149E23F244F1CC900AF50EE /* GPDrawViewController.h */,
-				3149E240244F1CC900AF50EE /* GPDrawViewController.m */,
-				31A301D9245C49DD006B28ED /* GPColorPickerViewController.h */,
-				31A301DA245C49DD006B28ED /* GPColorPickerViewController.m */,
-				31A301D6245C0A84006B28ED /* GPDrawControlView.h */,
-				31A301D7245C0A84006B28ED /* GPDrawControlView.m */,
-				31BD4A63244C796000549C2E /* GPDrawView.h */,
-				31BD4A64244C796000549C2E /* GPDrawView.m */,
-				31BD4A66244C799B00549C2E /* GPDrawPath.h */,
-				31BD4A67244C799B00549C2E /* GPDrawPath.m */,
+				31D9E1DF245E905900F0F1F3 /* V */,
+				31D9E1E0245E906900F0F1F3 /* C */,
 			);
 			path = Drawing;
 			sourceTree = "<group>";
@@ -305,15 +305,9 @@
 			isa = PBXGroup;
 			children = (
 				315C9B122452C10200F38964 /* Statistics */,
-				315C9B112452C0F000F38964 /* Tag */,
-				31E2A1F124516BF900EAE46D /* GPAccountTableHeaderView.h */,
-				31E2A1F224516BF900EAE46D /* GPAccountTableHeaderView.m */,
-				31E2A1EE24515E4200EAE46D /* GPAccountTableViewCell.h */,
-				31E2A1EF24515E4200EAE46D /* GPAccountTableViewCell.m */,
-				313B516F244AEFB6002B1061 /* GPAccountViewController.h */,
-				313B5170244AEFB6002B1061 /* GPAccountViewController.m */,
-				31E2A1F42451931C00EAE46D /* GPAddAccountViewController.h */,
-				31E2A1F52451931C00EAE46D /* GPAddAccountViewController.m */,
+				31D9E1E1245E922000F0F1F3 /* M */,
+				31D9E1E8245E9C5800F0F1F3 /* V */,
+				31D9E1E9245E9C6900F0F1F3 /* C */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -472,10 +466,76 @@
 				31FE07E4245AF2290059E6F0 /* NSDate+GP.m */,
 				31A301DC245C5646006B28ED /* UIImage+GP.h */,
 				31A301DD245C5646006B28ED /* UIImage+GP.m */,
+				315AD83D245EF51800A09BEB /* UITextField+GP.h */,
+				315AD83E245EF51800A09BEB /* UITextField+GP.m */,
 				31D9806D245C5BA4008C258F /* UIAlertController+GP.h */,
 				31D9806E245C5BA4008C258F /* UIAlertController+GP.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		31D9E1DF245E905900F0F1F3 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				3149E23D244F1A4800AF50EE /* GPCollectionViewCell.h */,
+				3149E23C244F1A4800AF50EE /* GPCollectionViewCell.m */,
+				31A301D6245C0A84006B28ED /* GPDrawControlView.h */,
+				31A301D7245C0A84006B28ED /* GPDrawControlView.m */,
+				31BD4A63244C796000549C2E /* GPDrawView.h */,
+				31BD4A64244C796000549C2E /* GPDrawView.m */,
+				31BD4A66244C799B00549C2E /* GPDrawPath.h */,
+				31BD4A67244C799B00549C2E /* GPDrawPath.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		31D9E1E0245E906900F0F1F3 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				313B516C244AEFA7002B1061 /* GPDrawingViewController.h */,
+				313B516D244AEFA7002B1061 /* GPDrawingViewController.m */,
+				3149E23F244F1CC900AF50EE /* GPDrawViewController.h */,
+				3149E240244F1CC900AF50EE /* GPDrawViewController.m */,
+				31A301D9245C49DD006B28ED /* GPColorPickerViewController.h */,
+				31A301DA245C49DD006B28ED /* GPColorPickerViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		31D9E1E1245E922000F0F1F3 /* M */ = {
+			isa = PBXGroup;
+			children = (
+				31D9E1E5245E9BC600F0F1F3 /* GPAccountViewModel.h */,
+				31D9E1E6245E9BC600F0F1F3 /* GPAccountViewModel.m */,
+				31D9E1E2245E949000F0F1F3 /* GPAccountModel.h */,
+				31D9E1E3245E949000F0F1F3 /* GPAccountModel.m */,
+				315AD83A245EEB1900A09BEB /* GPAccountMonthModel.h */,
+				315AD83B245EEB1900A09BEB /* GPAccountMonthModel.m */,
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		31D9E1E8245E9C5800F0F1F3 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				315C9B112452C0F000F38964 /* Tag */,
+				31E2A1F124516BF900EAE46D /* GPAccountTableHeaderView.h */,
+				31E2A1F224516BF900EAE46D /* GPAccountTableHeaderView.m */,
+				31E2A1EE24515E4200EAE46D /* GPAccountTableViewCell.h */,
+				31E2A1EF24515E4200EAE46D /* GPAccountTableViewCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		31D9E1E9245E9C6900F0F1F3 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				313B516F244AEFB6002B1061 /* GPAccountViewController.h */,
+				313B5170244AEFB6002B1061 /* GPAccountViewController.m */,
+				31E2A1F42451931C00EAE46D /* GPAddAccountViewController.h */,
+				31E2A1F52451931C00EAE46D /* GPAddAccountViewController.m */,
+			);
+			path = C;
 			sourceTree = "<group>";
 		};
 		31E9CD4B245D6283006CD287 /* M */ = {
@@ -743,6 +803,7 @@
 				3126DC182455691500084E5E /* GPTimeTableBaseViewController.m in Sources */,
 				3188328C2453134E00B51D7E /* GPItemView.m in Sources */,
 				31C299AC245D622D00D0A68C /* GPDrawModel.m in Sources */,
+				315AD83C245EEB1900A09BEB /* GPAccountMonthModel.m in Sources */,
 				3119F1342455AD6E00616F27 /* GPNoteContentViewController.m in Sources */,
 				31648F142458015C002ED198 /* DBTool.m in Sources */,
 				3149E23E244F1A4800AF50EE /* GPCollectionViewCell.m in Sources */,
@@ -751,9 +812,11 @@
 				31235675245425D300EECFFB /* GPMemorandumTableViewCell.m in Sources */,
 				31F8E4D4245A806400F7540E /* GPCurriculumViewModel.m in Sources */,
 				314D3588244AFBD7007D155F /* GPBaseViewController.m in Sources */,
+				31D9E1E7245E9BC600F0F1F3 /* GPAccountViewModel.m in Sources */,
 				31BD4A65244C796000549C2E /* GPDrawView.m in Sources */,
 				313B5171244AEFB6002B1061 /* GPAccountViewController.m in Sources */,
 				3126DC21245570D500084E5E /* GPCourseInputCell.m in Sources */,
+				31D9E1E4245E949000F0F1F3 /* GPAccountModel.m in Sources */,
 				31E2A1F324516BF900EAE46D /* GPAccountTableHeaderView.m in Sources */,
 				313B5168244AEF20002B1061 /* GPNoteViewController.m in Sources */,
 				315C9B062452951D00F38964 /* GPTagSelecteView.m in Sources */,
@@ -767,6 +830,7 @@
 				31BD4A1A244C1C7C00549C2E /* UIColor+GP.m in Sources */,
 				3126DC1B24556CF700084E5E /* GPTimeTableDoubleInputViewController.m in Sources */,
 				3119F1372455AD8A00616F27 /* GPNoteContentCell.m in Sources */,
+				315AD83F245EF51800A09BEB /* UITextField+GP.m in Sources */,
 				313B5162244AE690002B1061 /* GPTabBarViewController.m in Sources */,
 				31A301D8245C0A84006B28ED /* GPDrawControlView.m in Sources */,
 				316809E3244AC9180013CF15 /* main.m in Sources */,

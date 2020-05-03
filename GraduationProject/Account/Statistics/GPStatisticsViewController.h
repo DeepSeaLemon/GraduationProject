@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GPAccountViewModel;
+
 @interface GPStatisticsViewController : GPBaseViewController
+
+@property (nonatomic, strong)GPAccountViewModel *viewModel;
 
 @end
 

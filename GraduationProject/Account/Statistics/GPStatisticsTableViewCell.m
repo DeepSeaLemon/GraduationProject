@@ -7,6 +7,7 @@
 //
 
 #import "GPStatisticsTableViewCell.h"
+#import "GPAccountMonthModel.h"
 
 @interface GPStatisticsTableViewCell ()
 
@@ -22,6 +23,12 @@
 @end
 
 @implementation GPStatisticsTableViewCell
+
+- (void)setGPAccountMonthModel:(GPAccountMonthModel *)model {
+    self.payLabel.text = [NSString stringWithFormat:@"¥%0.2f",(0 - model.payMoney)];
+    self.incomeLabel.text = [NSString stringWithFormat:@"¥%0.2f",model.incomeMoney];
+    self.moonLabel.text = [NSString stringWithFormat:@"%ld月",(long)model.month];
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

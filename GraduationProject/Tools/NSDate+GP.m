@@ -88,4 +88,34 @@
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
     return timeSp;
 }
+
++ (void)getNowTime:(void(^)(NSNumber *year))year month:(void(^)(NSNumber *month))month day:(void(^)(NSNumber *day))day date:(void(^)(NSString *dateStr))dateStr time:(void(^)(NSString *timeStr))time {
+    NSDate *datenow = [NSDate date];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm:ss"];
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    !time?:time(currentTimeString);
+    
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *currentDateString = [formatter stringFromDate:datenow];
+    !dateStr?:dateStr(currentDateString);
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSCalendarUnitYear |NSCalendarUnitMonth |NSCalendarUnitDay;
+    comps = [calendar components:unitFlags fromDate:datenow];
+    !year?:year([NSNumber numberWithInteger:[comps year]]);
+    !month?:month([NSNumber numberWithInteger:[comps month]]);
+    !day?:day([NSNumber numberWithInteger:[comps day]]);
+}
+
++ (NSInteger)getThisYear {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSCalendarUnitYear;
+    NSDate *datenow = [NSDate date];
+    comps = [calendar components:unitFlags fromDate:datenow];
+    return [comps year];
+}
 @end

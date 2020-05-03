@@ -10,8 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GPAccountModel;
+
 @interface GPAccountTableViewCell : UITableViewCell
 
+- (void)setGPAccountModel:(GPAccountModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

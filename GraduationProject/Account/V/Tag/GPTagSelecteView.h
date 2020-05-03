@@ -23,5 +23,7 @@
 
 - (void)setupSubViewsWithTitles:(NSArray *)titles;
 
+- (void)refreshWithTitles:(NSArray *)titles;
+
 @end
 

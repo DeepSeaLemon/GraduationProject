@@ -26,6 +26,12 @@
 
 @implementation GPStatisticsTableHeaderView
 
+- (void)setPayMoney:(double)pay incomeMoney:(double)income year:(NSInteger)year {
+    self.payLabel.text = [NSString stringWithFormat:@"¥%0.2f",(0 - pay)];
+    self.incomeLabel.text = [NSString stringWithFormat:@"¥%0.2f",income];
+    self.yearLabel.text = [NSString stringWithFormat:@"%ld年",(long)year];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = GPBackgroundColor;

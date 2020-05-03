@@ -24,6 +24,11 @@
 
 @implementation GPAccountTableHeaderView
 
+- (void)setPayMoney:(NSNumber *)pay incomeMoney:(NSNumber *)income {
+    self.payLabel.text = [NSString stringWithFormat:@"¥%0.2f",(0 - [pay doubleValue])];
+    self.incomeLabel.text = [NSString stringWithFormat:@"¥%0.2f",[income doubleValue]];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = GPBackgroundColor;

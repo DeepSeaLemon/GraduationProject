@@ -10,7 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GPAccountModel;
+
+typedef void(^ReturnModelBlock)(GPAccountModel *model);
+
 @interface GPAddAccountViewController : GPBaseViewController
+
+@property (nonatomic, copy) ReturnModelBlock returnModelBlock;
 
 @end
 

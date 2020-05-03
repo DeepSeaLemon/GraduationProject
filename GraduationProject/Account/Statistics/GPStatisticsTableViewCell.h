@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GPAccountMonthModel;
+
 @interface GPStatisticsTableViewCell : UITableViewCell
+
+- (void)setGPAccountMonthModel:(GPAccountMonthModel *)model;
 
 @end
 

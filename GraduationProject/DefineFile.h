@@ -15,7 +15,10 @@
 #import "Tools/NSDate+GP.h"
 #import "Tools/UIImage+GP.h"
 #import "Tools/UITextField+GP.h"
-#import "Tools/UIAlertController+GP.h"
+#import "Tools/UIAlertController+GP.h"\
+
+// Bridging-Header
+#import "GraduationProject-Bridging-Header.h"
 
 // Base
 #import "Base/GPBaseViewController.h"

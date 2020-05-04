@@ -27,6 +27,8 @@ static NSString *GPStatisticsViewControllerCellID = @"GPStatisticsViewController
     [self setLeftBackButton];
     self.title = @"账目统计";
     [self initUI];
+    [self.headerView refreshBarChartViewWithArray:self.viewModel.statisticsArray];
+    
 }
 
 - (void)initUI {
@@ -88,7 +90,7 @@ static NSString *GPStatisticsViewControllerCellID = @"GPStatisticsViewController
 
 - (GPStatisticsTableHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[GPStatisticsTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 300)];
+        _headerView = [[GPStatisticsTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 320)];
     }
     return _headerView;
 }

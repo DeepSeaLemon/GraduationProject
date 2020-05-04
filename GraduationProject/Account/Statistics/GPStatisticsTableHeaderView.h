@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GPStatisticsTableHeaderView : UIView
 
 - (void)setPayMoney:(double)pay incomeMoney:(double)income year:(NSInteger)year;
-
+- (void)refreshBarChartViewWithArray:(NSMutableArray *)arr;
 @end
 
 NS_ASSUME_NONNULL_END

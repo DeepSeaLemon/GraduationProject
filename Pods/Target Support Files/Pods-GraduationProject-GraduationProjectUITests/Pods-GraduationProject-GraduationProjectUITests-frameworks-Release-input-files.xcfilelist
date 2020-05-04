@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-GraduationProject-GraduationProjectUITests/Pods-GraduationProject-GraduationProjectUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
 ${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework
 ${BUILT_PRODUCTS_DIR}/LSLColorPickerView/LSLColorPickerView.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework

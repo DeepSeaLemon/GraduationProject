@@ -124,6 +124,7 @@
 		313B516D244AEFA7002B1061 /* GPDrawingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawingViewController.m; sourceTree = "<group>"; };
 		313B516F244AEFB6002B1061 /* GPAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountViewController.h; sourceTree = "<group>"; };
 		313B5170244AEFB6002B1061 /* GPAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAccountViewController.m; sourceTree = "<group>"; };
+		313F3F1F245FEE5600A820BA /* GraduationProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GraduationProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		3149E23C244F1A4800AF50EE /* GPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPCollectionViewCell.m; sourceTree = "<group>"; };
 		3149E23D244F1A4800AF50EE /* GPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPCollectionViewCell.h; sourceTree = "<group>"; };
 		3149E23F244F1CC900AF50EE /* GPDrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawViewController.h; sourceTree = "<group>"; };
@@ -415,24 +416,25 @@
 		316809D2244AC9170013CF15 /* GraduationProject */ = {
 			isa = PBXGroup;
 			children = (
-				313B5177244AF03A002B1061 /* Base */,
-				31BD4A1B244C1D7500549C2E /* Tools */,
 				316809D3244AC9170013CF15 /* AppDelegate.h */,
 				316809D4244AC9170013CF15 /* AppDelegate.m */,
 				31680A05244ACF250013CF15 /* PrefixHeader.pch */,
 				313B515F244AE2A3002B1061 /* DefineFile.h */,
 				316809D6244AC9170013CF15 /* ViewController.h */,
 				316809D7244AC9170013CF15 /* ViewController.m */,
-				313B5172244AEFC6002B1061 /* TimeTable */,
-				313B5176244AF009002B1061 /* Account */,
-				313B5173244AEFD4002B1061 /* Note */,
-				313B5175244AEFF9002B1061 /* Drawing */,
-				313B5174244AEFE1002B1061 /* Memorandum */,
 				316809D9244AC9170013CF15 /* Main.storyboard */,
 				316809DC244AC9180013CF15 /* Assets.xcassets */,
 				316809DE244AC9180013CF15 /* LaunchScreen.storyboard */,
 				316809E1244AC9180013CF15 /* Info.plist */,
 				316809E2244AC9180013CF15 /* main.m */,
+				313F3F1F245FEE5600A820BA /* GraduationProject-Bridging-Header.h */,
+				313B5177244AF03A002B1061 /* Base */,
+				31BD4A1B244C1D7500549C2E /* Tools */,
+				313B5172244AEFC6002B1061 /* TimeTable */,
+				313B5176244AF009002B1061 /* Account */,
+				313B5173244AEFD4002B1061 /* Note */,
+				313B5175244AEFF9002B1061 /* Drawing */,
+				313B5174244AEFE1002B1061 /* Memorandum */,
 			);
 			path = GraduationProject;
 			sourceTree = "<group>";
@@ -632,6 +634,7 @@
 				TargetAttributes = {
 					316809CF244AC9170013CF15 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					316809E7244AC9180013CF15 = {
 						CreatedOnToolsVersion = 10.0;
@@ -1020,6 +1023,7 @@
 			baseConfigurationReference = 0EAF666EB0793B9BDD02221F /* Pods-GraduationProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TFVC7S5T2W;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1031,6 +1035,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cym.GraduationProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GraduationProject/GraduationProject-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1040,6 +1047,7 @@
 			baseConfigurationReference = 70E4D80E20D816BD4C1ACC49 /* Pods-GraduationProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TFVC7S5T2W;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1051,6 +1059,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cym.GraduationProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GraduationProject/GraduationProject-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

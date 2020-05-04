@@ -10,6 +10,7 @@ target 'GraduationProject' do
 	pod 'Masonry'
 	pod 'FMDB'
 	pod 'LSLColorPickerView'
+  pod 'Charts', '~> 3.3.0'
 
   target 'GraduationProjectTests' do
     inherit! :search_paths

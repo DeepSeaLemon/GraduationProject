@@ -263,14 +263,9 @@
 		313B5173244AEFD4002B1061 /* Note */ = {
 			isa = PBXGroup;
 			children = (
-				313B5166244AEF20002B1061 /* GPNoteViewController.h */,
-				313B5167244AEF20002B1061 /* GPNoteViewController.m */,
-				31235676245452F400EECFFB /* GPAddNoteViewController.h */,
-				31235677245452F400EECFFB /* GPAddNoteViewController.m */,
-				3119F1322455AD6E00616F27 /* GPNoteContentViewController.h */,
-				3119F1332455AD6E00616F27 /* GPNoteContentViewController.m */,
-				3119F1352455AD8A00616F27 /* GPNoteContentCell.h */,
-				3119F1362455AD8A00616F27 /* GPNoteContentCell.m */,
+				315B8BB524600E35008DCC97 /* C */,
+				315B8BB424600E30008DCC97 /* V */,
+				315B8BB324600E2B008DCC97 /* M */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -278,16 +273,9 @@
 		313B5174244AEFE1002B1061 /* Memorandum */ = {
 			isa = PBXGroup;
 			children = (
-				313B5169244AEF3A002B1061 /* GPMemorandumViewController.h */,
-				313B516A244AEF3A002B1061 /* GPMemorandumViewController.m */,
-				31235673245425D300EECFFB /* GPMemorandumTableViewCell.h */,
-				31235674245425D300EECFFB /* GPMemorandumTableViewCell.m */,
-				318832842453092A00B51D7E /* GPAddPlanViewController.h */,
-				318832852453092A00B51D7E /* GPAddPlanViewController.m */,
-				3188328A2453134E00B51D7E /* GPItemView.h */,
-				3188328B2453134E00B51D7E /* GPItemView.m */,
-				3188328724530AB800B51D7E /* GPTimeSelecteView.h */,
-				3188328824530AB800B51D7E /* GPTimeSelecteView.m */,
+				315B8BB824600E55008DCC97 /* C */,
+				315B8BB724600E51008DCC97 /* V */,
+				315B8BB624600E4D008DCC97 /* M */,
 			);
 			path = Memorandum;
 			sourceTree = "<group>";
@@ -305,7 +293,6 @@
 		313B5176244AF009002B1061 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				315C9B122452C10200F38964 /* Statistics */,
 				31D9E1E1245E922000F0F1F3 /* M */,
 				31D9E1E8245E9C5800F0F1F3 /* V */,
 				31D9E1E9245E9C6900F0F1F3 /* C */,
@@ -322,6 +309,66 @@
 				314D3587244AFBD7007D155F /* GPBaseViewController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		315B8BB324600E2B008DCC97 /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		315B8BB424600E30008DCC97 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				3119F1352455AD8A00616F27 /* GPNoteContentCell.h */,
+				3119F1362455AD8A00616F27 /* GPNoteContentCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		315B8BB524600E35008DCC97 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				313B5166244AEF20002B1061 /* GPNoteViewController.h */,
+				313B5167244AEF20002B1061 /* GPNoteViewController.m */,
+				31235676245452F400EECFFB /* GPAddNoteViewController.h */,
+				31235677245452F400EECFFB /* GPAddNoteViewController.m */,
+				3119F1322455AD6E00616F27 /* GPNoteContentViewController.h */,
+				3119F1332455AD6E00616F27 /* GPNoteContentViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		315B8BB624600E4D008DCC97 /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		315B8BB724600E51008DCC97 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				31235673245425D300EECFFB /* GPMemorandumTableViewCell.h */,
+				31235674245425D300EECFFB /* GPMemorandumTableViewCell.m */,
+				3188328724530AB800B51D7E /* GPTimeSelecteView.h */,
+				3188328824530AB800B51D7E /* GPTimeSelecteView.m */,
+				3188328A2453134E00B51D7E /* GPItemView.h */,
+				3188328B2453134E00B51D7E /* GPItemView.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		315B8BB824600E55008DCC97 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				318832842453092A00B51D7E /* GPAddPlanViewController.h */,
+				318832852453092A00B51D7E /* GPAddPlanViewController.m */,
+				313B5169244AEF3A002B1061 /* GPMemorandumViewController.h */,
+				313B516A244AEF3A002B1061 /* GPMemorandumViewController.m */,
+			);
+			path = C;
 			sourceTree = "<group>";
 		};
 		315C9B112452C0F000F38964 /* Tag */ = {
@@ -342,8 +389,6 @@
 				315C9B0F2452BCE800F38964 /* GPStatisticsTableHeaderView.m */,
 				315C9B132452C1B900F38964 /* GPStatisticsTableViewCell.h */,
 				315C9B142452C1B900F38964 /* GPStatisticsTableViewCell.m */,
-				315C9B0B2452BCCB00F38964 /* GPStatisticsViewController.h */,
-				315C9B0C2452BCCB00F38964 /* GPStatisticsViewController.m */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -520,6 +565,7 @@
 		31D9E1E8245E9C5800F0F1F3 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				315C9B122452C10200F38964 /* Statistics */,
 				315C9B112452C0F000F38964 /* Tag */,
 				31E2A1F124516BF900EAE46D /* GPAccountTableHeaderView.h */,
 				31E2A1F224516BF900EAE46D /* GPAccountTableHeaderView.m */,
@@ -532,6 +578,8 @@
 		31D9E1E9245E9C6900F0F1F3 /* C */ = {
 			isa = PBXGroup;
 			children = (
+				315C9B0B2452BCCB00F38964 /* GPStatisticsViewController.h */,
+				315C9B0C2452BCCB00F38964 /* GPStatisticsViewController.m */,
 				313B516F244AEFB6002B1061 /* GPAccountViewController.h */,
 				313B5170244AEFB6002B1061 /* GPAccountViewController.m */,
 				31E2A1F42451931C00EAE46D /* GPAddAccountViewController.h */,

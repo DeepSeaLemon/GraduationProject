@@ -18,5 +18,7 @@
 
 @property (nonatomic, strong) id<GPTimeSelecteViewDelegate> delegate;
 
+- (void)setStartTime:(NSString *)timeStr;
+- (void)setEndTime:(NSString *)timeStr;
 @end
 

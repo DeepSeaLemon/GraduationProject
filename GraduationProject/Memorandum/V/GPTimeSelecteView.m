@@ -12,11 +12,11 @@
 
 @property (nonatomic, strong) UILabel *startTitleLabel;
 @property (nonatomic, strong) UILabel *startTimeLabel;
-@property (nonatomic, strong) UIView  *startPanView;
+@property (nonatomic, strong) UIButton  *startButton;
 
 @property (nonatomic, strong) UILabel *endTitleLabel;
 @property (nonatomic, strong) UILabel *endTimeLabel;
-@property (nonatomic, strong) UIView  *endPanView;
+@property (nonatomic, strong) UIButton  *endButton;
 
 @property (nonatomic, strong) UILabel *lineLabel;
 
@@ -24,28 +24,23 @@
 
 @implementation GPTimeSelecteView
 
+- (void)setStartTime:(NSString *)timeStr {
+    self.startTimeLabel.text = timeStr;
+}
+
+- (void)setEndTime:(NSString *)timeStr {
+    self.endTimeLabel.text = timeStr;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, SCREEN_WIDTH, 65)]) {
         self.backgroundColor = [UIColor whiteColor];
         [self initUI];
-        [self addTapGestureRecognizer];
     }
     return self;
 }
 
 - (void)initUI {
-    
-    [self addSubview:self.endPanView];
-    [self.endPanView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.top.bottom.mas_equalTo(0);
-        make.width.mas_equalTo(SCREEN_WIDTH);
-    }];
-    
-    [self addSubview:self.startPanView];
-    [self.startPanView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.bottom.mas_equalTo(0);
-        make.width.mas_equalTo(SCREEN_WIDTH);
-    }];
     
     [self addSubview:self.startTitleLabel];
     [self.startTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,7 +70,17 @@
         make.top.equalTo(self.startTitleLabel.mas_bottom).offset(5);
     }];
     
+    [self addSubview:self.startButton];
+    [self.startButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(SCREEN_WIDTH/2 - 1);
+    }];
     
+    [self addSubview:self.endButton];
+    [self.endButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(SCREEN_WIDTH/2 - 1);
+    }];
     
     [self addSubview:self.lineLabel];
     [self.lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -85,27 +90,16 @@
     }];
 }
 
-- (void)startTapPan:(UITapGestureRecognizer *)pan {
+- (void)startButtonClicked:(UIButton *)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(clickTimeSelectedIsStart:)]) {
         [self.delegate clickTimeSelectedIsStart:YES];
     }
 }
 
-- (void)endTapPan:(UITapGestureRecognizer *)pan {
+- (void)endButtonClicked:(UIButton *)sender  {
     if (self.delegate && [self.delegate respondsToSelector:@selector(clickTimeSelectedIsStart:)]) {
         [self.delegate clickTimeSelectedIsStart:NO];
     }
-}
-
-- (void)addTapGestureRecognizer {
-    UITapGestureRecognizer *startTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startTapPan:)];
-    UITapGestureRecognizer *endTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endTapPan:)];
-    [self.startPanView addGestureRecognizer:startTap];
-    [self.startTimeLabel addGestureRecognizer:startTap];
-    [self.startTitleLabel addGestureRecognizer:startTap];
-    [self.endPanView addGestureRecognizer:endTap];
-    [self.endTimeLabel addGestureRecognizer:endTap];
-    [self.endTitleLabel addGestureRecognizer:endTap];
 }
 
 #pragma mark - lazy
@@ -161,19 +155,21 @@
     return _lineLabel;
 }
 
-- (UIView *)startPanView {
-    if (!_startPanView) {
-        _startPanView = [[UIView alloc] init];
-        _startPanView.backgroundColor = [UIColor whiteColor];
+- (UIButton *)startButton {
+    if (!_startButton) {
+        _startButton = [[UIButton alloc] init];
+        _startButton.backgroundColor = [UIColor clearColor];
+        [_startButton addTarget:self action:@selector(startButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _startPanView;
+    return _startButton;
 }
 
-- (UIView *)endPanView {
-    if (!_endPanView) {
-        _endPanView = [[UIView alloc] init];
-        _endPanView.backgroundColor = [UIColor whiteColor];
+- (UIButton *)endButton {
+    if (!_endButton) {
+        _endButton = [[UIButton alloc] init];
+        _endButton.backgroundColor = [UIColor clearColor];
+        [_endButton addTarget:self action:@selector(endButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _endPanView;
+    return _endButton;
 }
 @end

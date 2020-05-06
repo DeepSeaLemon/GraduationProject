@@ -11,6 +11,7 @@
 @class GPCurriculumModel;
 @class GPDrawModel;
 @class GPAccountModel;
+@class GPMemorandumModel;
 
 @interface DBTool : NSObject
 
@@ -29,6 +30,10 @@
 // 账本
 - (void)saveAccountWith:(GPAccountModel *)model complate:(void(^)(BOOL success))complate;
 - (void)getAccount:(void(^)(NSArray *accounts))account;
+
+// 备忘录
+- (void)saveMemorandumWith:(GPMemorandumModel *)model complate:(void(^)(BOOL success))complate;
+- (void)getMemorandum:(void(^)(NSArray *memorandums))memorandum;
 @end
 
 

@@ -9,6 +9,36 @@
 #import "NSDate+GP.h"
 
 @implementation NSDate (GP)
++ (BOOL)compareDateWithNow:(NSString *)time {
+    
+    NSDate *datenow = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSCalendarUnitYear;
+    comps = [calendar components:unitFlags fromDate:datenow];
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate *endTimeDate = [dateFormater dateFromString:[NSString stringWithFormat:@"%ld-%@",(long)[comps year],time]];
+    NSComparisonResult result = [datenow compare:endTimeDate];
+    if (result == NSOrderedSame){
+        return NO;
+    } else if (result == NSOrderedAscending) {
+        // 现在时间大于开始时间
+        return YES;
+    } else if (result == NSOrderedDescending) {
+        // 现在时间小于开始时间
+        return NO;
+    }
+    return NO;
+}
+
++ (NSString *)setAadditionSubtractionWithTimeInterval:(NSTimeInterval)secsToBeAdded sinceTime:(NSString *)sinceTime {
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"MM-dd HH:mm"];
+    NSDate *sinceTimeDate = [dateFormater dateFromString:sinceTime];
+    NSDate *afterDate = [[NSDate alloc] initWithTimeInterval:secsToBeAdded sinceDate:sinceTimeDate];
+    return [dateFormater stringFromDate:afterDate];
+}
 
 + (NSInteger)calculationTimeDifferenceWith:(NSDate *)startDate endDate:(NSDate *)endDate {
     NSCalendar *calendar = [NSCalendar currentCalendar];

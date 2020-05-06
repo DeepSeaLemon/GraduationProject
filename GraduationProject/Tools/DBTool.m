@@ -11,6 +11,7 @@
 #import "GPCurriculumModel.h"
 #import "GPDrawModel.h"
 #import "GPAccountModel.h"
+#import "GPMemorandumModel.h"
 
 static DBTool *_singleInstance = nil;
 
@@ -27,11 +28,51 @@ static DBTool *_singleInstance = nil;
 @property (nonatomic, copy) NSString *accountList;
 @property (nonatomic, copy) NSString *account;
 @property (nonatomic, copy) NSString *accountDB;
+
+@property (nonatomic, copy) NSString *memorandumList;
+@property (nonatomic, copy) NSString *memorandum;
+@property (nonatomic, copy) NSString *memorandumDB;
+
+@property (nonatomic, copy) NSString *noteList;
+@property (nonatomic, copy) NSString *note;
+@property (nonatomic, copy) NSString *noteDB;
+
 @end
 
 @implementation DBTool
 
 #pragma mark - get
+
+- (void)getMemorandum:(void (^)(NSArray *))memorandum {
+    NSMutableArray <GPMemorandumModel *>*memorandumArr = [NSMutableArray array];
+    FMDatabase *memorandumDB = [self getDatabaseWith:self.memorandum];
+    if ([memorandumDB open]) {
+        NSString *sql = [NSString stringWithFormat:@"select * FROM %@",self.memorandumList];
+        FMResultSet *rs = [memorandumDB executeQuery:sql];
+        if (rs.columnCount > 0) {
+            while ([rs next]) {
+                GPMemorandumModel *model = [[GPMemorandumModel alloc] init];
+                model.endTime = [rs stringForColumn:@"endTime"];
+                if ([NSDate compareDateWithNow:model.endTime]) {
+                    model.content   = [rs stringForColumn:@"content"];
+                    model.startTime = [rs stringForColumn:@"startTime"];
+                    model.isCountDown = [NSNumber numberWithInt:[rs intForColumn:@"isCountDown"]];
+                    model.isEveryday  = [NSNumber numberWithInt:[rs intForColumn:@"isEveryday"]];
+                    model.isRemind    = [NSNumber numberWithInt:[rs intForColumn:@"isRemind"]];
+                    model.remindTime = [rs stringForColumn:@"remindTime"];
+                    model.numberStr = [rs stringForColumn:@"numberStr"];
+                    [memorandumArr addObject:model];
+                }
+            }
+            !memorandum?:memorandum(memorandumArr);
+        } else {
+            !memorandum?:memorandum(memorandumArr);
+        }
+    } else {
+        !memorandum?:memorandum(memorandumArr);
+    }
+    [memorandumDB close];
+}
 
 - (void)getAccount:(void (^)(NSArray *))account {
     NSMutableArray <GPAccountModel *>*accountArr = [NSMutableArray array];
@@ -134,6 +175,26 @@ static DBTool *_singleInstance = nil;
 
 #pragma mark - save
 
+- (void)saveMemorandumWith:(GPMemorandumModel *)model complate:(void (^)(BOOL))complate {
+    FMDatabase *memorandumDB = [self getDatabaseWith:self.memorandum];
+    if ([memorandumDB open]) {
+        // 查询是否存在这一条数据
+        NSString *sql = [NSString stringWithFormat:@"select * FROM %@ where numberStr = ?",self.memorandumList];
+        FMResultSet *rs = [memorandumDB executeQuery:sql,model.numberStr];
+        if (rs.next) {
+            // 存在，走修改
+            NSString *update = [NSString stringWithFormat:@"update %@ set content = ?, startTime = ?, endTime = ?,remindTime = ?,isCountDown = ?,isRemind = ?,isEveryday = ? where numberStr = ?",self.memorandumList];
+            BOOL success = [memorandumDB executeUpdate:update,model.content,model.startTime,model.endTime,model.remindTime,model.isCountDown,model.isRemind,model.isEveryday,model.numberStr];
+            !complate?:complate(success);
+        } else {
+            // 不存在，走保存
+            NSString *insertData = [NSString stringWithFormat:@"insert into %@ (content,startTime,endTime,remindTime,isCountDown,isRemind,isEveryday,numberStr) values (?,?,?,?,?,?,?,?)",self.memorandumList];
+            BOOL success = [memorandumDB executeUpdate:insertData,model.content,model.startTime,model.endTime,model.remindTime,model.isCountDown,model.isRemind,model.isEveryday,model.numberStr];
+            !complate?:complate(success);
+        }
+    }
+}
+
 - (void)saveAccountWith:(GPAccountModel *)model complate:(void (^)(BOOL))complate {
     FMDatabase *accountDB = [self getDatabaseWith:self.account];
     if ([accountDB open]) {
@@ -211,8 +272,8 @@ static DBTool *_singleInstance = nil;
 
 - (void)createAppAllDBs {
     [self createTimeTableDB];
-//    [self createMemorandumDB];
-//    [self createNoteDB];
+    [self createMemorandumDB];
+    [self createNoteDB];
     [self createDrawingDB];
     [self createAccountDB];
 }
@@ -235,14 +296,28 @@ static DBTool *_singleInstance = nil;
     [db close];
 }
 
-//- (void)createMemorandumDB {
-//    NSString *folderPath = [self createFolderDBWithName:@"Memorandum"];
-//}
-//
-//- (void)createNoteDB {
-//    NSString *folderPath = [self createFolderDBWithName:@"Note"];
-//}
-//
+- (void)createMemorandumDB {
+    NSString *folderPath = [self createFolderDBWithName:self.memorandum];
+    NSString *dbPath = [folderPath stringByAppendingPathComponent:self.memorandumDB];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    if ([db open]) {
+        NSLog(@"打开Memorandum数据库成功");
+        NSString *createTable = [NSString stringWithFormat:@"create table if not exists %@ (content text, startTime text, endTime text,remindTime text,isCountDown integer,isRemind integer,isEveryday integer ,numberStr text primary key)",self.memorandumList];
+        if ([db executeUpdate:createTable]) {
+            NSLog(@"创造Memorandum表成功");
+        } else {
+            NSLog(@"创造Memorandum表失败");
+        }
+    }else{
+        NSLog(@"打开Memorandum数据库失败");
+    }
+    [db close];
+}
+
+- (void)createNoteDB {
+    
+}
+
 - (void)createDrawingDB {
     NSString *folderPath = [self createFolderDBWithName:self.drawing];
     NSString *dbPath = [folderPath stringByAppendingPathComponent:self.drawingDB];
@@ -300,15 +375,26 @@ static DBTool *_singleInstance = nil;
     dispatch_once(&onceToken, ^{
         if (_singleInstance == nil) {
             _singleInstance = [[self alloc]init];
+            
             _singleInstance.timeTable = @"TimeTable";
             _singleInstance.timeTableList = @"time_table_list";
             _singleInstance.timeTableDB = @"TimeTable.sqlite";
+            
             _singleInstance.drawing = @"Drawing";
             _singleInstance.drawingList = @"drawing_list";
             _singleInstance.drawingDB = @"Drawing.sqlite";
+            
             _singleInstance.account = @"Account";
             _singleInstance.accountList = @"account_list";
             _singleInstance.accountDB = @"Account.sqlite";
+            
+            _singleInstance.memorandum = @"Memorandum";
+            _singleInstance.memorandumList = @"memorandum_list";
+            _singleInstance.memorandumDB = @"Memorandum.sqlite";
+            
+            _singleInstance.note = @"Note";
+            _singleInstance.noteList = @"note_list";
+            _singleInstance.noteDB = @"Note.sqlite";
         }
     });
     return _singleInstance;

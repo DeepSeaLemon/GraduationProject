@@ -7,6 +7,7 @@
 //
 
 #import "GPMemorandumTableViewCell.h"
+#import "GPMemorandumModel.h"
 
 @interface GPMemorandumTableViewCell ()
 
@@ -21,6 +22,30 @@
 
 
 @implementation GPMemorandumTableViewCell
+
+- (void)setGPMemorandumModel:(GPMemorandumModel *)model {
+    self.contentLabel.text = model.content;
+    NSArray *remindArr = [model.remindTime componentsSeparatedByString:@" "];
+    NSArray *startArr  = [model.startTime componentsSeparatedByString:@" "];
+    NSArray *endArr    = [model.endTime componentsSeparatedByString:@" "];
+    if ([startArr.firstObject isEqualToString:endArr.firstObject]) {
+        self.dateLabel.text = [NSString stringWithFormat:@"%@ ~ %@",model.startTime,endArr.lastObject];
+    } else {
+        self.dateLabel.text = [NSString stringWithFormat:@"%@ ~ %@",model.startTime,model.endTime];
+    }
+    if ([model.isRemind boolValue]) {
+        self.clockImageView.hidden = NO;
+        self.timeLabel.text = remindArr.lastObject;
+    } else {
+        self.clockImageView.hidden = YES;
+        self.timeLabel.text = startArr.lastObject;
+    }
+    if ([model.isCountDown boolValue]) {
+        self.countDownTimeLabel.hidden = NO;
+    } else {
+        self.countDownTimeLabel.hidden = YES;
+    }
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

@@ -11,6 +11,8 @@
 #import "GPItemView.h"
 #import "GPCustomTextField.h"
 #import "CXDatePickerView.h"
+#import "GPMemorandumModel.h"
+#import "ZBLocalNotification.h"
 
 @interface GPAddPlanViewController ()<GPItemViewDelegate,GPTimeSelecteViewDelegate>
 
@@ -56,6 +58,8 @@
     NSString *currentDateString = [dateFormater stringFromDate:datenow];
     [self.timeSelecteView setStartTime:currentDateString];
     [self.timeSelecteView setEndTime:currentDateString];
+    self.startTimeStr = currentDateString;
+    self.endTimeStr = currentDateString;
 }
 
 #pragma mark -GPTimeSelecteViewDelegate
@@ -125,17 +129,43 @@
 
 // 完成
 - (void)clickRightButton:(UIButton *)sender {
-    NSLog(@"content = %@",self.contentTextField.text);
-    NSLog(@"isCountDown = %d",self.isCountDown);
-    NSLog(@"isTurnOn = %d",self.isTurnOn);
-    NSLog(@"isEveryday = %d",self.isEveryday);
-    NSLog(@"timeAhead = %ld",(long)self.timeAhead);
-    NSLog(@"startTimeStr = %@",self.startTimeStr);
-    NSLog(@"endTimeStr = %@",self.endTimeStr);
-    
+    GPMemorandumModel *model = [[GPMemorandumModel alloc] initWith:self.contentTextField.text
+                                                         startTime:self.startTimeStr
+                                                           endTime:self.endTimeStr
+                                                       isCountDown:self.isCountDown
+                                                          isRemind:self.isTurnOn
+                                                        isEveryday:self.isEveryday
+                                                         timeAhead:self.timeAhead
+                                ];
+    [self addLocalNotificationWithModel:model];
+    !self.returnModelBlock?:self.returnModelBlock(model);
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)addLocalNotificationWithModel:(GPMemorandumModel *)model {
+    if (!model.isRemind) {
+        return;
+    }
+    NSDate *datenow = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSCalendarUnitYear;
+    comps = [calendar components:unitFlags fromDate:datenow];
+    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate * date = [formatter dateFromString:[NSString stringWithFormat:@"%ld-%@",(long)[comps year],model.remindTime]];
+    NSNumber *repeat = [model.isEveryday boolValue]?@(ZBLocalNotificationRepeatEveryDay):@(ZBLocalNotificationRepeatNone);
+    [ZBLocalNotification createLocalNotificationWithAttribute:@{ZBNotificationUserInfoName:model.numberStr,
+                                                                ZBNotificationSoundName:ZBNotificationSoundAlarm,
+                                                                ZBNotificationAlertBody:model.content,
+                                                                ZBNotificationAlertTitle:@"学习助手提醒闹钟",
+                                                                ZBNotificationFireDate:date,
+                                                                ZBNotificationPriority:@(0),
+                                                                ZBNotificationRepeat:repeat}];
 }
 
 #pragma mark - UI
+
 - (void)initUI {
     [self.view addSubview:self.contentTextField];
     [self.contentTextField mas_makeConstraints:^(MASConstraintMaker *make) {

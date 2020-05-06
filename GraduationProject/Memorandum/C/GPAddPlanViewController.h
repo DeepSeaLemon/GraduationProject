@@ -10,7 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GPMemorandumModel;
+
+typedef void(^ReturnModelBlock)(GPMemorandumModel *model);
+
 @interface GPAddPlanViewController : GPBaseViewController
+
+@property (nonatomic, copy) ReturnModelBlock returnModelBlock;
 
 @end
 

@@ -9,12 +9,15 @@
 #import "GPMemorandumViewController.h"
 #import "GPAddPlanViewController.h"
 #import "GPMemorandumTableViewCell.h"
+#import "GPMemorandumViewModel.h"
 
 static NSString *GPMemorandumViewControllerCellID = @"GPMemorandumViewController";
 
 @interface GPMemorandumViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) GPMemorandumViewModel *viewModel;
 
 @end
 
@@ -42,13 +45,16 @@ static NSString *GPMemorandumViewControllerCellID = @"GPMemorandumViewController
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.viewModel.modelsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GPMemorandumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:GPMemorandumViewControllerCellID];
     if (!cell) {
         cell = [[GPMemorandumTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPMemorandumViewControllerCellID];
+    }
+    if (self.viewModel.modelsArray.count > 0) {
+        [cell setGPMemorandumModel:self.viewModel.modelsArray[indexPath.row]];
     }
     return cell;
 }
@@ -61,10 +67,26 @@ static NSString *GPMemorandumViewControllerCellID = @"GPMemorandumViewController
 - (void)clickRightButton:(UIButton *)sender {
     GPAddPlanViewController *vc = [[GPAddPlanViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
+    vc.returnModelBlock = ^(GPMemorandumModel * _Nonnull model) {
+        [[DBTool shareInstance] saveMemorandumWith:model complate:^(BOOL success) {
+            if (success) {
+                [self.viewModel getMemorandums];
+                [self.tableView reloadData];
+            }
+        }];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - lazy
+
+- (GPMemorandumViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[GPMemorandumViewModel alloc] initWithData];
+    }
+    return _viewModel;
+}
+
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] init];

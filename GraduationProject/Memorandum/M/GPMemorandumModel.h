@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *isCountDown;
 @property (nonatomic, strong) NSNumber *isRemind;
 @property (nonatomic, strong) NSNumber *isEveryday;
+@property (nonatomic, strong) NSNumber *sortTime;
 @property (nonatomic, copy  ) NSString *content;
 @property (nonatomic, copy  ) NSString *startTime;
 @property (nonatomic, copy  ) NSString *endTime;

@@ -104,7 +104,17 @@
     [UIAlertController setSheetTitle:@"设置提醒时间" msg:@"" ctr:self items:items handler:^(UIAlertAction * _Nullable action) {
         if ([items containsObject:action.title]) {
             NSInteger index = [items indexOfObject:action.title];
-            self.timeAhead = index * 5;
+            NSString *str = [NSDate setAadditionSubtractionWithTimeInterval:(0 - index*5*60) sinceTime:self.startTimeStr];
+            if ([NSDate compareDateWithNow:str]) {
+                self.timeAhead = index * 5;
+            } else {
+                [UIAlertController setTipsTitle:@"提醒"
+                                            msg:@"闹钟时间不能早于当前时间,请重新选择！"
+                                            ctr:self
+                                        handler:^(UIAlertAction * _Nullable action) {
+                                            self.timeAhead = 0;
+                                        }];
+            }
         }
     }];
 }
@@ -137,13 +147,31 @@
                                                         isEveryday:self.isEveryday
                                                          timeAhead:self.timeAhead
                                 ];
-    [self addLocalNotificationWithModel:model];
-    !self.returnModelBlock?:self.returnModelBlock(model);
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.contentTextField.text.length < 1) {
+        [UIAlertController setTipsTitle:@"提示"
+                                    msg:@"计划详情不能为空！"
+                                    ctr:self
+                                handler:^(UIAlertAction * _Nullable action) {
+                                    // 不操作
+                                }];
+    } else {
+        if ([NSDate compareDateWithNow:self.startTimeStr]) {
+            [self addLocalNotificationWithModel:model];
+            !self.returnModelBlock?:self.returnModelBlock(model);
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [UIAlertController setTipsTitle:@"提示"
+                                        msg:@"设置起始时间不能早于当前时间,请重新选择！"
+                                        ctr:self
+                                    handler:^(UIAlertAction * _Nullable action) {
+                                        // 不操作
+                                    }];
+        }
+    }
 }
 
 - (void)addLocalNotificationWithModel:(GPMemorandumModel *)model {
-    if (!model.isRemind) {
+    if (![model.isRemind boolValue]) {
         return;
     }
     NSDate *datenow = [NSDate date];

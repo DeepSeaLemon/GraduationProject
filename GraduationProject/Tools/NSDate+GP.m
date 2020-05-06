@@ -9,8 +9,22 @@
 #import "NSDate+GP.h"
 
 @implementation NSDate (GP)
+
++ (int)computingTimeWith:(NSString *)startTimeStr {
+    NSDate *datenow = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSCalendarUnitYear;
+    comps = [calendar components:unitFlags fromDate:datenow];
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate *startDate = [dateFormater dateFromString:[NSString stringWithFormat:@"%ld-%@",(long)[comps year],startTimeStr]];
+    //得到倒计时时间
+    int timeout = (int)[NSDate calculationTimeDifferenceSecondWith:datenow endDate:startDate];
+    return timeout;
+}
+
 + (BOOL)compareDateWithNow:(NSString *)time {
-    
     NSDate *datenow = [NSDate date];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
@@ -45,6 +59,13 @@
     NSCalendarUnit type = NSCalendarUnitDay;
     NSDateComponents *cmps = [calendar components:type fromDate:startDate toDate:endDate options:0];
     return cmps.day;
+}
+
++ (NSInteger)calculationTimeDifferenceSecondWith:(NSDate *)startDate endDate:(NSDate *)endDate {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendarUnit type = NSCalendarUnitSecond;
+    NSDateComponents *cmps = [calendar components:type fromDate:startDate toDate:endDate options:0];
+    return cmps.second;
 }
 
 + (NSDate *)getFirstDayOfWeek {

@@ -161,7 +161,7 @@
 
 - (UIImageView *)coverImageView {
     if (!_coverImageView) {
-        _coverImageView = [[UIImageView alloc] init];
+        _coverImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noteCover"]];
         _coverImageView.backgroundColor = GPBackgroundColor;
         _coverImageView.layer.masksToBounds = YES;
         _coverImageView.layer.cornerRadius = 5;

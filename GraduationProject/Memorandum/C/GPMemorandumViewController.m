@@ -70,8 +70,9 @@ static NSString *GPMemorandumViewControllerCellID = @"GPMemorandumViewController
     vc.returnModelBlock = ^(GPMemorandumModel * _Nonnull model) {
         [[DBTool shareInstance] saveMemorandumWith:model complate:^(BOOL success) {
             if (success) {
-                [self.viewModel getMemorandums];
-                [self.tableView reloadData];
+                [self.viewModel getMemorandums:^(BOOL success) {
+                    [self.tableView reloadData];
+                }];
             }
         }];
     };

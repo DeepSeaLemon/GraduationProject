@@ -93,61 +93,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GraduationProject/Memorandum/C/GPMemorandumViewController.m"
-            timestampString = "610421579.305679"
+            filePath = "GraduationProject/Memorandum/C/GPAddPlanViewController.m"
+            timestampString = "610441476.687095"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "-clickRightButton:"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-itemSwitchChanged:itemView:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__47-[GPMemorandumViewController clickRightButton:]_block_invoke"
-                  moduleName = "GraduationProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cym/Desktop/GraduationProject/GraduationProject/Memorandum/C/GPMemorandumViewController.m"
-                  timestampString = "610422111.261555"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "55">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__47-[GPMemorandumViewController clickRightButton:]_block_invoke_2"
-                  moduleName = "GraduationProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cym/Desktop/GraduationProject/GraduationProject/Memorandum/C/GPMemorandumViewController.m"
-                  timestampString = "610422111.263687"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_"
-                  moduleName = "GraduationProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cym/Desktop/GraduationProject/GraduationProject/Memorandum/C/GPMemorandumViewController.m"
-                  timestampString = "610422111.265931"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

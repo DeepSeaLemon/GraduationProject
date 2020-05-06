@@ -13,17 +13,30 @@
 
 - (instancetype)initWithData {
     if (self = [super init]) {
-        [[DBTool shareInstance] getMemorandum:^(NSArray *memorandums) {
-            self.modelsArray = [NSMutableArray arrayWithArray:memorandums];
+        [self getMemorandums:^(BOOL success) {
+            // 
         }];
     }
     return self;
 }
 
-- (void)getMemorandums {
+- (void)getMemorandums:(void (^)(BOOL success))finish{
     [self.modelsArray removeAllObjects];
     [[DBTool shareInstance] getMemorandum:^(NSArray *memorandums) {
-        self.modelsArray = [NSMutableArray arrayWithArray:memorandums];
+        NSArray *sortArray = [memorandums sortedArrayWithOptions:NSSortStable usingComparator:
+                              ^NSComparisonResult(GPMemorandumModel *obj1,GPMemorandumModel *obj2) {
+                                  int value1 = [obj1.sortTime intValue];
+                                  int value2 = [obj2.sortTime intValue];
+                                  if (value1 > value2) {
+                                      return NSOrderedDescending;
+                                  }else if (value1 == value2){
+                                      return NSOrderedSame;
+                                  }else{
+                                      return NSOrderedAscending;
+                                  }
+                              }];
+        self.modelsArray = [NSMutableArray arrayWithArray:sortArray];
+        !finish?:finish(YES);
     }];
 }
 

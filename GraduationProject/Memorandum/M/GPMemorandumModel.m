@@ -24,6 +24,7 @@
         self.isRemind = [NSNumber numberWithBool:isRemind];
         self.isEveryday = [NSNumber numberWithBool:isEveryday];
         self.numberStr = [NSDate getNowTimeTimestamp];
+        self.sortTime = [NSNumber numberWithInt:[NSDate computingTimeWith:startTime]];
     }
     return self;
 }

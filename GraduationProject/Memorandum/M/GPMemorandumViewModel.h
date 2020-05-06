@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray <GPMemorandumModel *>*modelsArray;
 
-- (void)getMemorandums;
+- (void)getMemorandums:(void (^)(BOOL success))finish;
 
 - (void)saveMemorandums:(void (^)(BOOL success))finish;
 

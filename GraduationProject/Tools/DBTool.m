@@ -53,12 +53,13 @@ static DBTool *_singleInstance = nil;
             while ([rs next]) {
                 GPMemorandumModel *model = [[GPMemorandumModel alloc] init];
                 model.endTime = [rs stringForColumn:@"endTime"];
-                if ([NSDate compareDateWithNow:model.endTime]) {
+                model.isEveryday  = [NSNumber numberWithInt:[rs intForColumn:@"isEveryday"]];
+                if ([NSDate compareDateWithNow:model.endTime] || [model.isEveryday boolValue]) {
                     model.content   = [rs stringForColumn:@"content"];
                     model.startTime = [rs stringForColumn:@"startTime"];
                     model.isCountDown = [NSNumber numberWithInt:[rs intForColumn:@"isCountDown"]];
-                    model.isEveryday  = [NSNumber numberWithInt:[rs intForColumn:@"isEveryday"]];
                     model.isRemind    = [NSNumber numberWithInt:[rs intForColumn:@"isRemind"]];
+                    model.sortTime    = [NSNumber numberWithInt:[rs intForColumn:@"sortTime"]];
                     model.remindTime = [rs stringForColumn:@"remindTime"];
                     model.numberStr = [rs stringForColumn:@"numberStr"];
                     [memorandumArr addObject:model];
@@ -183,13 +184,13 @@ static DBTool *_singleInstance = nil;
         FMResultSet *rs = [memorandumDB executeQuery:sql,model.numberStr];
         if (rs.next) {
             // 存在，走修改
-            NSString *update = [NSString stringWithFormat:@"update %@ set content = ?, startTime = ?, endTime = ?,remindTime = ?,isCountDown = ?,isRemind = ?,isEveryday = ? where numberStr = ?",self.memorandumList];
-            BOOL success = [memorandumDB executeUpdate:update,model.content,model.startTime,model.endTime,model.remindTime,model.isCountDown,model.isRemind,model.isEveryday,model.numberStr];
+            NSString *update = [NSString stringWithFormat:@"update %@ set content = ?, startTime = ?, endTime = ?,remindTime = ?,isCountDown = ?,isRemind = ?,isEveryday = ?,sortTime = ? where numberStr = ?",self.memorandumList];
+            BOOL success = [memorandumDB executeUpdate:update,model.content,model.startTime,model.endTime,model.remindTime,model.isCountDown,model.isRemind,model.isEveryday,model.sortTime,model.numberStr];
             !complate?:complate(success);
         } else {
             // 不存在，走保存
-            NSString *insertData = [NSString stringWithFormat:@"insert into %@ (content,startTime,endTime,remindTime,isCountDown,isRemind,isEveryday,numberStr) values (?,?,?,?,?,?,?,?)",self.memorandumList];
-            BOOL success = [memorandumDB executeUpdate:insertData,model.content,model.startTime,model.endTime,model.remindTime,model.isCountDown,model.isRemind,model.isEveryday,model.numberStr];
+            NSString *insertData = [NSString stringWithFormat:@"insert into %@ (content,startTime,endTime,remindTime,isCountDown,isRemind,isEveryday,sortTime,numberStr) values (?,?,?,?,?,?,?,?,?)",self.memorandumList];
+            BOOL success = [memorandumDB executeUpdate:insertData,model.content,model.startTime,model.endTime,model.remindTime,model.isCountDown,model.isRemind,model.isEveryday,model.sortTime,model.numberStr];
             !complate?:complate(success);
         }
     }
@@ -302,7 +303,7 @@ static DBTool *_singleInstance = nil;
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     if ([db open]) {
         NSLog(@"打开Memorandum数据库成功");
-        NSString *createTable = [NSString stringWithFormat:@"create table if not exists %@ (content text, startTime text, endTime text,remindTime text,isCountDown integer,isRemind integer,isEveryday integer ,numberStr text primary key)",self.memorandumList];
+        NSString *createTable = [NSString stringWithFormat:@"create table if not exists %@ (content text, startTime text, endTime text,remindTime text,isCountDown integer,isRemind integer,isEveryday integer,sortTime integer ,numberStr text primary key)",self.memorandumList];
         if ([db executeUpdate:createTable]) {
             NSLog(@"创造Memorandum表成功");
         } else {

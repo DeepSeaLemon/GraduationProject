@@ -21,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [NSThread sleepForTimeInterval:1];
     self.userInfos = [[NSMutableArray alloc]init];
     [self registerLocalNotification:launchOptions application:application];
     [self setTabbarAndWindow];

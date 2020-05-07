@@ -12,6 +12,8 @@
 @class GPDrawModel;
 @class GPAccountModel;
 @class GPMemorandumModel;
+@class GPNoteModel;
+@class GPNoteContentModel;
 
 @interface DBTool : NSObject
 
@@ -34,6 +36,14 @@
 // 备忘录
 - (void)saveMemorandumWith:(GPMemorandumModel *)model complate:(void(^)(BOOL success))complate;
 - (void)getMemorandum:(void(^)(NSArray *memorandums))memorandum;
+
+// 笔记本
+- (void)saveNoteWith:(GPNoteModel *)model complate:(void(^)(BOOL success))complate;
+- (void)getNote:(void(^)(NSArray *notes))note;
+
+- (void)saveNoteContentWith:(GPNoteContentModel *)contentModel complate:(void(^)(BOOL success))complate;
+- (void)getNoteContentWith:(GPNoteModel *)noteModel noteContents:(void(^)(NSArray *noteContents))noteContent;
+
 @end
 
 

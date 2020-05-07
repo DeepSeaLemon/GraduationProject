@@ -12,6 +12,8 @@
 #import "GPDrawModel.h"
 #import "GPAccountModel.h"
 #import "GPMemorandumModel.h"
+#import "GPNoteModel.h"
+#import "GPNoteContentModel.h"
 
 static DBTool *_singleInstance = nil;
 
@@ -35,6 +37,7 @@ static DBTool *_singleInstance = nil;
 
 @property (nonatomic, copy) NSString *noteList;
 @property (nonatomic, copy) NSString *note;
+@property (nonatomic, copy) NSString *noteContentList;
 @property (nonatomic, copy) NSString *noteDB;
 
 @end
@@ -42,6 +45,54 @@ static DBTool *_singleInstance = nil;
 @implementation DBTool
 
 #pragma mark - get
+
+- (void)getNoteContentWith:(GPNoteModel *)noteModel noteContents:(void (^)(NSArray *noteContents))noteContent {
+    NSMutableArray <GPNoteContentModel *>*noteContentArray = [NSMutableArray array];
+    FMDatabase *noteDB = [self getDatabaseWith:self.note];
+    if ([noteDB open]) {
+        NSString *sql = [NSString stringWithFormat:@"select * FROM %@ where numberStr = ?",self.noteContentList];
+        FMResultSet *rs = [noteDB executeQuery:sql,noteModel.numberStr];
+        if (rs.columnCount > 0) {
+            while ([rs next]) {
+                GPNoteContentModel *model = [[GPNoteContentModel alloc] init];
+                
+                [noteContentArray addObject:model];
+            }
+            !noteContent?:noteContent(noteContentArray);
+        } else {
+            !noteContent?:noteContent(noteContentArray);
+        }
+    } else {
+        !noteContent?:noteContent(noteContentArray);
+    }
+    [noteDB close];
+}
+
+- (void)getNote:(void (^)(NSArray *notes))note {
+    NSMutableArray <GPNoteModel *>*noteArray = [NSMutableArray array];
+    FMDatabase *noteDB = [self getDatabaseWith:self.note];
+    if ([noteDB open]) {
+        NSString *sql = [NSString stringWithFormat:@"select * FROM %@",self.noteList];
+        FMResultSet *rs = [noteDB executeQuery:sql];
+        if (rs.columnCount > 0) {
+            while ([rs next]) {
+                GPNoteModel *model = [[GPNoteModel alloc] init];
+                model.name = [rs stringForColumn:@"name"];
+                model.numberStr = [rs stringForColumn:@"numberStr"];
+                model.coverImageStr = [rs stringForColumn:@"coverImageStr"];
+                NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:[rs stringForColumn:@"coverImageStr"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                model.coverImage = [UIImage imageWithData:decodedImageData];
+                [noteArray addObject:model];
+            }
+            !note?:note(noteArray);
+        } else {
+            !note?:note(noteArray);
+        }
+    } else {
+        !note?:note(noteArray);
+    }
+    [noteDB close];
+}
 
 - (void)getMemorandum:(void (^)(NSArray *))memorandum {
     NSMutableArray <GPMemorandumModel *>*memorandumArr = [NSMutableArray array];
@@ -175,6 +226,47 @@ static DBTool *_singleInstance = nil;
 
 
 #pragma mark - save
+- (void)saveNoteWith:(GPNoteModel *)model complate:(void(^)(BOOL success))complate {
+    FMDatabase *noteDB = [self getDatabaseWith:self.note];
+    if ([noteDB open]) {
+        // 查询是否存在这一条数据
+        NSString *sql = [NSString stringWithFormat:@"select * FROM %@ where numberStr = ?",self.noteList];
+        FMResultSet *rs = [noteDB executeQuery:sql,model.numberStr];
+        if (rs.next) {
+            // 存在，走修改
+            NSString *update = [NSString stringWithFormat:@"update %@ set name = ?, coverImageStr = ? where numberStr = ?",self.noteList];
+            BOOL success = [noteDB executeUpdate:update,model.name,model.coverImageStr,model.numberStr];
+            !complate?:complate(success);
+        } else {
+            // 不存在，走保存
+            NSString *insertData = [NSString stringWithFormat:@"insert into %@ (name,coverImageStr,numberStr) values (?,?,?)",self.noteList];
+            BOOL success = [noteDB executeUpdate:insertData,model.name,model.coverImageStr,model.numberStr];
+            !complate?:complate(success);
+        }
+    }
+}
+
+
+- (void)saveNoteContentWith:(GPNoteContentModel *)contentModel complate:(void(^)(BOOL success))complate {
+//    FMDatabase *noteDB = [self getDatabaseWith:self.note];
+//    if ([noteDB open]) {
+//        // 查询是否存在这一条数据
+//        NSString *sql = [NSString stringWithFormat:@"select * FROM %@ where numberStr = ?",self.noteContentList];
+//        FMResultSet *rs = [noteDB executeQuery:sql,model.numberStr];
+//        if (rs.next) {
+//            // 存在，走修改
+//            NSString *update = [NSString stringWithFormat:@"update %@ set name = ?, coverImageStr = ? where numberStr = ?",self.noteList];
+//            BOOL success = [noteDB executeUpdate:update,model.name,model.coverImageStr,model.numberStr];
+//            !complate?:complate(success);
+//        } else {
+//            // 不存在，走保存
+//            NSString *insertData = [NSString stringWithFormat:@"insert into %@ (name,coverImageStr,numberStr) values (?,?,?)",self.noteList];
+//            BOOL success = [noteDB executeUpdate:insertData,model.name,model.coverImageStr,model.numberStr];
+//            !complate?:complate(success);
+//        }
+//    }
+}
+
 
 - (void)saveMemorandumWith:(GPMemorandumModel *)model complate:(void (^)(BOOL))complate {
     FMDatabase *memorandumDB = [self getDatabaseWith:self.memorandum];
@@ -316,7 +408,27 @@ static DBTool *_singleInstance = nil;
 }
 
 - (void)createNoteDB {
-    
+    NSString *folderPath = [self createFolderDBWithName:self.note];
+    NSString *dbPath = [folderPath stringByAppendingPathComponent:self.noteDB];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    if ([db open]) {
+        NSLog(@"打开Note数据库成功");
+        NSString *createTable1 = [NSString stringWithFormat:@"create table if not exists %@ (name text, coverImageStr text,numberStr text primary key)",self.noteList];
+        if ([db executeUpdate:createTable1]) {
+            NSLog(@"创造Note表成功");
+        } else {
+            NSLog(@"创造Note表失败");
+        }
+//        NSString *createTable2 = [NSString stringWithFormat:@"create table if not exists %@ (name text, coverImageStr text,numberStr text primary key)",self.noteContentList];
+//        if ([db executeUpdate:createTable2]) {
+//            NSLog(@"创造NoteContent表成功");
+//        } else {
+//            NSLog(@"创造NoteContent表失败");
+//        }
+    }else{
+        NSLog(@"打开Note数据库失败");
+    }
+    [db close];
 }
 
 - (void)createDrawingDB {
@@ -395,6 +507,7 @@ static DBTool *_singleInstance = nil;
             
             _singleInstance.note = @"Note";
             _singleInstance.noteList = @"note_list";
+            _singleInstance.noteContentList = @"note_content_list";
             _singleInstance.noteDB = @"Note.sqlite";
         }
     });

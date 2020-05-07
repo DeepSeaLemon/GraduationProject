@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize;
 
++ (UIImage *)convertViewToImage:(UIView *)view;
+
 @end
 
 NS_ASSUME_NONNULL_END

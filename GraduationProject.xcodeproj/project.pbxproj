@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		267C469E91DE67A2E178ED7E /* Pods_GraduationProject_GraduationProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D96A73A73047BFC1FFD984 /* Pods_GraduationProject_GraduationProjectUITests.framework */; };
+		310C09462463D1F90045C30A /* GPNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 310C09452463D1F90045C30A /* GPNoteModel.m */; };
+		310C09492463D20C0045C30A /* GPNoteContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 310C09482463D20C0045C30A /* GPNoteContentModel.m */; };
 		3119F1342455AD6E00616F27 /* GPNoteContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3119F1332455AD6E00616F27 /* GPNoteContentViewController.m */; };
 		3119F1372455AD8A00616F27 /* GPNoteContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3119F1362455AD8A00616F27 /* GPNoteContentCell.m */; };
 		31235675245425D300EECFFB /* GPMemorandumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31235674245425D300EECFFB /* GPMemorandumTableViewCell.m */; };
@@ -47,6 +49,8 @@
 		316809E3244AC9180013CF15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809E2244AC9180013CF15 /* main.m */; };
 		316809ED244AC9180013CF15 /* GraduationProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809EC244AC9180013CF15 /* GraduationProjectTests.m */; };
 		316809F8244AC9180013CF15 /* GraduationProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 316809F7244AC9180013CF15 /* GraduationProjectUITests.m */; };
+		317289892463D54200E0E71B /* GPNoteViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 317289882463D54200E0E71B /* GPNoteViewModel.m */; };
+		3172898C2463DFD600E0E71B /* GPAddNoteContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3172898B2463DFD600E0E71B /* GPAddNoteContentViewController.m */; };
 		318832862453092A00B51D7E /* GPAddPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 318832852453092A00B51D7E /* GPAddPlanViewController.m */; };
 		3188328924530AB800B51D7E /* GPTimeSelecteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3188328824530AB800B51D7E /* GPTimeSelecteView.m */; };
 		3188328C2453134E00B51D7E /* GPItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3188328B2453134E00B51D7E /* GPItemView.m */; };
@@ -54,6 +58,7 @@
 		319BE189246143FC00E5CBF7 /* NSDate+CXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BE185246143FC00E5CBF7 /* NSDate+CXCategory.m */; };
 		319BE18A246143FC00E5CBF7 /* CXDatePickerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BE187246143FC00E5CBF7 /* CXDatePickerViewManager.m */; };
 		319BE18D2461443F00E5CBF7 /* ZBLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BE18B2461443F00E5CBF7 /* ZBLocalNotification.m */; };
+		319FCDB024645366005BB051 /* GPPlaceImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 319FCDAF24645366005BB051 /* GPPlaceImageView.m */; };
 		31A301D8245C0A84006B28ED /* GPDrawControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A301D7245C0A84006B28ED /* GPDrawControlView.m */; };
 		31A301DB245C49DD006B28ED /* GPColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A301DA245C49DD006B28ED /* GPColorPickerViewController.m */; };
 		31A301DE245C5646006B28ED /* UIImage+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A301DD245C5646006B28ED /* UIImage+GP.m */; };
@@ -94,6 +99,10 @@
 
 /* Begin PBXFileReference section */
 		0EAF666EB0793B9BDD02221F /* Pods-GraduationProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProject/Pods-GraduationProject.debug.xcconfig"; sourceTree = "<group>"; };
+		310C09442463D1F90045C30A /* GPNoteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPNoteModel.h; sourceTree = "<group>"; };
+		310C09452463D1F90045C30A /* GPNoteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPNoteModel.m; sourceTree = "<group>"; };
+		310C09472463D20C0045C30A /* GPNoteContentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPNoteContentModel.h; sourceTree = "<group>"; };
+		310C09482463D20C0045C30A /* GPNoteContentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPNoteContentModel.m; sourceTree = "<group>"; };
 		3119F1322455AD6E00616F27 /* GPNoteContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPNoteContentViewController.h; sourceTree = "<group>"; };
 		3119F1332455AD6E00616F27 /* GPNoteContentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPNoteContentViewController.m; sourceTree = "<group>"; };
 		3119F1352455AD8A00616F27 /* GPNoteContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPNoteContentCell.h; sourceTree = "<group>"; };
@@ -176,6 +185,10 @@
 		316809F9244AC9180013CF15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31680A05244ACF250013CF15 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		3168775AA5FD68A92E6F902F /* Pods-GraduationProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProjectTests.release.xcconfig"; path = "Target Support Files/Pods-GraduationProjectTests/Pods-GraduationProjectTests.release.xcconfig"; sourceTree = "<group>"; };
+		317289872463D54200E0E71B /* GPNoteViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPNoteViewModel.h; sourceTree = "<group>"; };
+		317289882463D54200E0E71B /* GPNoteViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPNoteViewModel.m; sourceTree = "<group>"; };
+		3172898A2463DFD600E0E71B /* GPAddNoteContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAddNoteContentViewController.h; sourceTree = "<group>"; };
+		3172898B2463DFD600E0E71B /* GPAddNoteContentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAddNoteContentViewController.m; sourceTree = "<group>"; };
 		318832842453092A00B51D7E /* GPAddPlanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAddPlanViewController.h; sourceTree = "<group>"; };
 		318832852453092A00B51D7E /* GPAddPlanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAddPlanViewController.m; sourceTree = "<group>"; };
 		3188328724530AB800B51D7E /* GPTimeSelecteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPTimeSelecteView.h; sourceTree = "<group>"; };
@@ -192,6 +205,8 @@
 		319BE187246143FC00E5CBF7 /* CXDatePickerViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXDatePickerViewManager.m; sourceTree = "<group>"; };
 		319BE18B2461443F00E5CBF7 /* ZBLocalNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBLocalNotification.m; sourceTree = "<group>"; };
 		319BE18C2461443F00E5CBF7 /* ZBLocalNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBLocalNotification.h; sourceTree = "<group>"; };
+		319FCDAE24645366005BB051 /* GPPlaceImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPPlaceImageView.h; sourceTree = "<group>"; };
+		319FCDAF24645366005BB051 /* GPPlaceImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPPlaceImageView.m; sourceTree = "<group>"; };
 		31A301D6245C0A84006B28ED /* GPDrawControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawControlView.h; sourceTree = "<group>"; };
 		31A301D7245C0A84006B28ED /* GPDrawControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawControlView.m; sourceTree = "<group>"; };
 		31A301D9245C49DD006B28ED /* GPColorPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPColorPickerViewController.h; sourceTree = "<group>"; };
@@ -337,6 +352,12 @@
 		315B8BB324600E2B008DCC97 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				317289872463D54200E0E71B /* GPNoteViewModel.h */,
+				317289882463D54200E0E71B /* GPNoteViewModel.m */,
+				310C09442463D1F90045C30A /* GPNoteModel.h */,
+				310C09452463D1F90045C30A /* GPNoteModel.m */,
+				310C09472463D20C0045C30A /* GPNoteContentModel.h */,
+				310C09482463D20C0045C30A /* GPNoteContentModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -346,6 +367,8 @@
 			children = (
 				3119F1352455AD8A00616F27 /* GPNoteContentCell.h */,
 				3119F1362455AD8A00616F27 /* GPNoteContentCell.m */,
+				319FCDAE24645366005BB051 /* GPPlaceImageView.h */,
+				319FCDAF24645366005BB051 /* GPPlaceImageView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -359,6 +382,8 @@
 				31235677245452F400EECFFB /* GPAddNoteViewController.m */,
 				3119F1322455AD6E00616F27 /* GPNoteContentViewController.h */,
 				3119F1332455AD6E00616F27 /* GPNoteContentViewController.m */,
+				3172898A2463DFD600E0E71B /* GPAddNoteContentViewController.h */,
+				3172898B2463DFD600E0E71B /* GPAddNoteContentViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -906,6 +931,7 @@
 				31648F142458015C002ED198 /* DBTool.m in Sources */,
 				3149E23E244F1A4800AF50EE /* GPCollectionViewCell.m in Sources */,
 				313B516B244AEF3A002B1061 /* GPMemorandumViewController.m in Sources */,
+				310C09462463D1F90045C30A /* GPNoteModel.m in Sources */,
 				3126DC24245582CB00084E5E /* GPCourseShowCell.m in Sources */,
 				31235675245425D300EECFFB /* GPMemorandumTableViewCell.m in Sources */,
 				31F8E4D4245A806400F7540E /* GPCurriculumViewModel.m in Sources */,
@@ -919,6 +945,7 @@
 				31D9E1E4245E949000F0F1F3 /* GPAccountModel.m in Sources */,
 				31E2A1F324516BF900EAE46D /* GPAccountTableHeaderView.m in Sources */,
 				313B5168244AEF20002B1061 /* GPNoteViewController.m in Sources */,
+				3172898C2463DFD600E0E71B /* GPAddNoteContentViewController.m in Sources */,
 				31CB76172461274400DF3DEF /* GPCustomTextField.m in Sources */,
 				31387686246150A600F1FE92 /* GPMemorandumModel.m in Sources */,
 				315C9B062452951D00F38964 /* GPTagSelecteView.m in Sources */,
@@ -926,6 +953,7 @@
 				315C9B092452A03300F38964 /* GPTagLabel.m in Sources */,
 				316809D8244AC9170013CF15 /* ViewController.m in Sources */,
 				3149E241244F1CC900AF50EE /* GPDrawViewController.m in Sources */,
+				319FCDB024645366005BB051 /* GPPlaceImageView.m in Sources */,
 				315C9B0D2452BCCB00F38964 /* GPStatisticsViewController.m in Sources */,
 				3188328924530AB800B51D7E /* GPTimeSelecteView.m in Sources */,
 				31235678245452F400EECFFB /* GPAddNoteViewController.m in Sources */,
@@ -938,7 +966,9 @@
 				316809E3244AC9180013CF15 /* main.m in Sources */,
 				3126DC0F245539A500084E5E /* GPTimeTableListHeaderView.m in Sources */,
 				31FE07E5245AF2290059E6F0 /* NSDate+GP.m in Sources */,
+				317289892463D54200E0E71B /* GPNoteViewModel.m in Sources */,
 				31BD4A68244C799B00549C2E /* GPDrawPath.m in Sources */,
+				310C09492463D20C0045C30A /* GPNoteContentModel.m in Sources */,
 				313B516E244AEFA7002B1061 /* GPDrawingViewController.m in Sources */,
 				316809D5244AC9170013CF15 /* AppDelegate.m in Sources */,
 				315C9B102452BCE800F38964 /* GPStatisticsTableHeaderView.m in Sources */,

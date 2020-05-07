@@ -8,6 +8,7 @@
 
 #import "GPAddNoteViewController.h"
 #import "GPNoteContentViewController.h"
+#import "GPnoteModel.h"
 
 @interface GPAddNoteViewController ()
 
@@ -36,8 +37,17 @@
 }
 
 - (void)sureButtonClicked:(UIButton *)sender {
-    GPNoteContentViewController *vc = [[GPNoteContentViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.nameLabel.text.length < 1) {
+        [UIAlertController setTipsTitle:@"提示" msg:@"笔记本名字不能为空" ctr:self handler:^(UIAlertAction * _Nullable action) {
+            // 无操作
+        }];
+    } else {
+        GPNoteModel *model = [[GPNoteModel alloc] initWith:self.nameLabel.text image:self.coverImageView.image];
+        GPNoteContentViewController *vc = [[GPNoteContentViewController alloc] init];
+        vc.noteModel = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 
 - (void)initUI {

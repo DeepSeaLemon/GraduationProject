@@ -8,6 +8,8 @@
 
 #import "GPNoteContentViewController.h"
 #import "GPNoteContentCell.h"
+#import "GPNoteModel.h"
+#import "GPAddNoteContentViewController.h"
 
 static NSString *GPNoteContentViewControllerCellID = @"GPNoteContentViewController";
 
@@ -25,6 +27,16 @@ static NSString *GPNoteContentViewControllerCellID = @"GPNoteContentViewControll
     [self setLeftBackButton];
     [self setTitle:@"笔记本标题"];
     [self initUI];
+}
+
+- (void)setNoteModel:(GPNoteModel *)noteModel {
+    _noteModel = noteModel;
+    // 查询这个model的numberStr的内容model后reload
+}
+
+- (void)clickRightButton:(UIButton *)sender {
+    GPAddNoteContentViewController *vc = [[GPAddNoteContentViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)initUI {

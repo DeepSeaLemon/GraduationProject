@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GPNoteContentModel;
+
 @interface GPNoteModel : NSObject
 
 @property (nonatomic, copy) NSString *coverImageStr;

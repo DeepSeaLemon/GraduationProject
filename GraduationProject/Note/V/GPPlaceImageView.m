@@ -16,7 +16,6 @@
 
 @interface GPPlaceImageView ()
 
-@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) UIButton *confirmButton;
 @property (nonatomic, assign ,readwrite) BOOL canTransform;
@@ -38,11 +37,12 @@
         CGFloat vh = kScreenHeight;
         CGFloat scaleSize = (iw > ih) ? (vw / iw) : (vh / ih);
         self.placeImage = [UIImage scaleImage:image toScale:scaleSize];
-        self.frame = CGRectMake(0, 0, self.placeImage.size.width-50, self.placeImage.size.height-50);
+        self.frame = CGRectMake(0, 0, self.placeImage.size.width, self.placeImage.size.height);
         self.center = CGPointMake(kScreenWidth/2, kScreenHeight/2);
         self.placeImage = image;
         [self initUI];
         [self addGestureRecognizer:self.pinchGestureRecognizer];
+        self.imageView.image = self.placeImage;
     }
     return self;
 }
@@ -139,7 +139,10 @@
 - (UIButton *)closeButton {
     if (!_closeButton) {
         _closeButton = [[UIButton alloc] init];
-        _closeButton.backgroundColor = [UIColor redColor];
+        _closeButton.backgroundColor = [UIColor clearColor];
+        [_closeButton setImageEdgeInsets:UIEdgeInsetsMake(1, 1, 1, 1)];
+        _closeButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [_closeButton setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
         [_closeButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _closeButton;
@@ -148,7 +151,10 @@
 - (UIButton *)confirmButton {
     if (!_confirmButton) {
         _confirmButton = [[UIButton alloc] init];
-        _confirmButton.backgroundColor = [UIColor greenColor];
+        _confirmButton.backgroundColor = [UIColor clearColor];
+        [_confirmButton setImageEdgeInsets:UIEdgeInsetsMake(1, 1, 1, 1)];
+        _confirmButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [_confirmButton setImage:[UIImage imageNamed:@"confirm"] forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(confirm:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _confirmButton;

@@ -8,6 +8,7 @@
 
 #import "GPCollectionViewCell.h"
 #import "GPDrawModel.h"
+#import "GPNoteModel.h"
 
 @interface GPCollectionViewCell()
 
@@ -27,12 +28,27 @@
     return self;
 }
 
+- (void)setTitle:(NSString *)title {
+    self.nameLabel.text = title;
+    self.photoView.image = [UIImage imageNamed:@"cell_background"];
+}
+
 - (void)setGPDrawModel:(GPDrawModel *)model {
     if (model.numberStr && model.numberStr.length > 0) {
         self.nameLabel.text = model.name;
         self.photoView.image = model.image;
     } else {
         self.nameLabel.text = @"新画板";
+        self.photoView.image = [UIImage imageNamed:@"cell_background"];
+    }
+}
+
+- (void)setGPNoteModel:(GPNoteModel *)model {
+    if (model.numberStr && model.numberStr.length > 0) {
+        self.nameLabel.text = model.name;
+        self.photoView.image = model.coverImage;
+    } else {
+        self.nameLabel.text = @"新笔记";
         self.photoView.image = [UIImage imageNamed:@"cell_background"];
     }
 }

@@ -11,11 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class GPNoteModel;
+@class GPNoteViewModel;
 
 @interface GPNoteContentViewController : GPBaseViewController
 
 @property (nonatomic, strong)GPNoteModel *noteModel;
-
+@property (nonatomic, strong)GPNoteViewModel *viewModel;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,7 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GPNoteModel;
+@class GPNoteContentModel;
+
 @interface GPNoteViewModel : NSObject
+
+@property (nonatomic, strong)NSMutableArray <GPNoteModel *>*notes;
+@property (nonatomic, strong)NSMutableArray <GPNoteContentModel *> *currentNoteContents;
+
+- (void)reloadCurrentNoteContentsWith:(GPNoteModel *)model finish:(void(^)(BOOL finish))finish;
+- (void)reloadNotes:(void(^)(BOOL finish))finish;
+- (instancetype)initWithData;
 
 @end
 

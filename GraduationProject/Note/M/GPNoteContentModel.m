@@ -10,4 +10,17 @@
 
 @implementation GPNoteContentModel
 
+- (instancetype)initWithTime:(NSString *)timeStr title:(NSString *)titleStr content:(NSAttributedString *)contentStr image:(UIImage *)image {
+    if (self = [super init]) {
+        self.timeStr = timeStr;
+        self.titleStr = titleStr;
+        self.image = image;
+        NSData *imageData = UIImagePNGRepresentation(image);
+        self.imageStr = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        NSArray *arr = @[contentStr];
+        self.contentData = [NSKeyedArchiver archivedDataWithRootObject:arr];
+        self.contentNumberStr = [NSDate getNowTimeTimestamp];
+    }
+    return self;
+}
 @end

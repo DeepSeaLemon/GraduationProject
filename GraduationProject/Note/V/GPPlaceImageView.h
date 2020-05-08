@@ -17,12 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface GPPlaceImageView : UIView
-
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, assign ,readonly) BOOL canTransform;
 @property (nonatomic, assign ,readonly) CGFloat totalScale;
 @property (nonatomic, strong)           UIImage *placeImage;
 @property (nonatomic, weak) id <GPPlaceImageViewDelegate> delegate;
-- (instancetype)initWithImage:(UIImage *)image 
+- (instancetype)initWithImage:(UIImage *)image;
 @end
 
 NS_ASSUME_NONNULL_END

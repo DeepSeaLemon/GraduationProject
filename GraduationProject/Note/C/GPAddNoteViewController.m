@@ -9,8 +9,9 @@
 #import "GPAddNoteViewController.h"
 #import "GPNoteContentViewController.h"
 #import "GPnoteModel.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface GPAddNoteViewController ()
+@interface GPAddNoteViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIImageView *coverImageView;
@@ -24,6 +25,8 @@
 @property (nonatomic, strong) UIImageView *arrowImageView;
 
 @property (nonatomic, strong) UIButton *sureButton;
+@property (nonatomic, strong) UIButton *selectImageButton;
+@property (nonatomic, strong) UIImagePickerController* pickController;
 
 @end
 
@@ -36,19 +39,68 @@
     [self initUI];
 }
 
+- (void)selectImageButtonClick:(UIButton *)sender {
+    __block NSArray <NSString *>*items = @[@"相册",@"相机"];
+    [UIAlertController setSheetTitle:@"提示" msg:@"选择图片来源" ctr:self items:items handler:^(UIAlertAction * _Nullable action) {
+        if ([items containsObject:action.title]) {
+            NSInteger index = [items indexOfObject:action.title];
+            if (index == 1) { // 进入相机
+                [self intoCamera];
+            } else { // 进入相册
+                [self intoPhotoLibrary];
+            }
+        }
+    }];
+}
+
+- (void)intoPhotoLibrary {
+    self.pickController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:self.pickController animated:YES completion:nil];
+}
+
+- (void)intoCamera {
+    if ([UIImagePickerController isSourceTypeAvailable : UIImagePickerControllerSourceTypeCamera]) {
+        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        if (authStatus == AVAuthorizationStatusRestricted || authStatus ==AVAuthorizationStatusDenied) {
+            NSLog(@"无权限");
+        }else{
+            self.pickController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            self.pickController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+            [self presentViewController:self.pickController animated:YES completion:nil];
+        }
+    }else{
+        NSLog(@"不存在相机");
+    }
+}
+
 - (void)sureButtonClicked:(UIButton *)sender {
-    if (self.nameLabel.text.length < 1) {
+    if (self.nameTextField.text.length < 1) {
         [UIAlertController setTipsTitle:@"提示" msg:@"笔记本名字不能为空" ctr:self handler:^(UIAlertAction * _Nullable action) {
             // 无操作
         }];
     } else {
-        GPNoteModel *model = [[GPNoteModel alloc] initWith:self.nameLabel.text image:self.coverImageView.image];
-        GPNoteContentViewController *vc = [[GPNoteContentViewController alloc] init];
-        vc.noteModel = model;
-        [self.navigationController pushViewController:vc animated:YES];
+        GPNoteModel *model = [[GPNoteModel alloc] initWith:self.nameTextField.text image:self.coverImageView.image];
+        !self.returnBlock?:self.returnBlock(model);
+        [self.navigationController popViewControllerAnimated:YES];
     }
-    
 }
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey, id> *)info{
+    NSString * mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    if ([mediaType isEqualToString:@"public.image"]) {//照片
+        UIImage* originalImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];//取出原生照片
+        self.coverImageView.image = originalImage;
+        [self.pickController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self.pickController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - lazy
 
 - (void)initUI {
     [self.view addSubview:self.backView];
@@ -105,6 +157,11 @@
         make.centerY.equalTo(self.coverBackView);
     }];
     
+    [self.coverBackView addSubview:self.selectImageButton];
+    [self.selectImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.coverBackView);
+    }];
+    
     [self.view addSubview:self.sureButton];
     [self.sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -148,6 +205,7 @@
         _nameTextField.font = [UIFont systemFontOfSize:17];
         _nameTextField.placeholder = @"给笔记本起一个喜欢的名字吧";
         _nameTextField.textAlignment = NSTextAlignmentRight;
+        [_nameTextField becomeFirstResponder];
     }
     return _nameTextField;
 }
@@ -175,6 +233,7 @@
         _coverImageView.backgroundColor = GPBackgroundColor;
         _coverImageView.layer.masksToBounds = YES;
         _coverImageView.layer.cornerRadius = 5;
+        _coverImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _coverImageView;
 }
@@ -204,5 +263,23 @@
         [_sureButton addTarget:self action:@selector(sureButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sureButton;
+}
+
+- (UIButton *)selectImageButton {
+    if (!_selectImageButton) {
+        _selectImageButton = [[UIButton alloc] init];
+        _selectImageButton.backgroundColor = [UIColor clearColor];
+        [_selectImageButton addTarget:self action:@selector(selectImageButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _selectImageButton;
+}
+
+- (UIImagePickerController *)pickController {
+    if (!_pickController) {
+        _pickController = [[UIImagePickerController alloc] init];
+        _pickController.delegate = self;
+        _pickController.allowsEditing = NO;
+    }
+    return _pickController;
 }
 @end

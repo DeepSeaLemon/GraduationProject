@@ -9,6 +9,8 @@
 #import "GPNoteViewController.h"
 #import "GPCollectionViewCell.h"
 #import "GPAddNoteViewController.h"
+#import "GPNoteViewModel.h"
+#import "GPNoteContentViewController.h"
 
 static NSString *GPNoteViewControllerCellID = @"GPNoteViewController";
 
@@ -16,6 +18,7 @@ static NSString *GPNoteViewControllerCellID = @"GPNoteViewController";
 
 @property (nonatomic, strong) UICollectionView           *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionLayout;
+@property (nonatomic, strong) GPNoteViewModel *viewModel;
 
 @end
 
@@ -33,6 +36,66 @@ static NSString *GPNoteViewControllerCellID = @"GPNoteViewController";
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(74);
     }];
+}
+
+#pragma make - delegate & datesource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.viewModel.notes.count + 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    GPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:GPNoteViewControllerCellID forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[GPCollectionViewCell alloc] init];
+    }
+    if (indexPath.row == 0) {
+        [cell setTitle:@"新笔记"];
+    }
+    if (indexPath.row != 0 && self.viewModel.notes.count > 0) {
+        [cell setGPNoteModel:self.viewModel.notes[indexPath.row - 1]];
+    }
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        GPAddNoteViewController *vc = [[GPAddNoteViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.returnBlock = ^(GPNoteModel * _Nonnull model) {
+          [[DBTool shareInstance] saveNoteWith:model complate:^(BOOL success) {
+                if (success) {
+                    [self.viewModel reloadNotes:^(BOOL finish) {
+                        [self.collectionView reloadData];
+                    }];
+                } else {
+                    [UIAlertController setTipsTitle:@"错误" msg:@"笔记本保存失败了,请重试!" ctr:self handler:^(UIAlertAction * _Nullable action) {
+                        // 无操作
+                    }];
+                }
+            }];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        GPNoteContentViewController *vc = [[GPNoteContentViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.viewModel = self.viewModel;
+        vc.noteModel = self.viewModel.notes[indexPath.row - 1];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+#pragma mark - lazy
+
+- (GPNoteViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[GPNoteViewModel alloc] initWithData];
+    }
+    return _viewModel;
 }
 
 - (UICollectionView *)collectionView {
@@ -58,32 +121,6 @@ static NSString *GPNoteViewControllerCellID = @"GPNoteViewController";
         _collectionLayout.minimumInteritemSpacing = 10;
     }
     return _collectionLayout;
-}
-
-
-#pragma make - delegate & datesource
-
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
-}
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    GPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:GPNoteViewControllerCellID forIndexPath:indexPath];
-    if (cell == nil) {
-        cell = [[GPCollectionViewCell alloc] init];
-    }
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"click %ld-%ld",(long)indexPath.section,(long)indexPath.row);
-    GPAddNoteViewController *vc = [[GPAddNoteViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

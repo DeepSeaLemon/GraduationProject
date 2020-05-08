@@ -9,7 +9,9 @@
 #import "GPNoteContentViewController.h"
 #import "GPNoteContentCell.h"
 #import "GPNoteModel.h"
+#import "GPNoteViewModel.h"
 #import "GPAddNoteContentViewController.h"
+#import "GPNoteContentImageCell.h"
 
 static NSString *GPNoteContentViewControllerCellID = @"GPNoteContentViewController";
 
@@ -25,17 +27,30 @@ static NSString *GPNoteContentViewControllerCellID = @"GPNoteContentViewControll
     [super viewDidLoad];
     [self setRightText:@"添加"];
     [self setLeftBackButton];
-    [self setTitle:@"笔记本标题"];
+    self.title = (self.noteModel)?self.noteModel.name:@"笔记本标题";
     [self initUI];
 }
 
 - (void)setNoteModel:(GPNoteModel *)noteModel {
     _noteModel = noteModel;
     // 查询这个model的numberStr的内容model后reload
+    [self.viewModel reloadCurrentNoteContentsWith:noteModel finish:^(BOOL finish) {
+        
+    }];
 }
 
 - (void)clickRightButton:(UIButton *)sender {
     GPAddNoteContentViewController *vc = [[GPAddNoteContentViewController alloc] init];
+    vc.numberStr = self.noteModel.numberStr;
+    vc.returnBlock = ^(GPNoteContentModel * _Nonnull model) {
+        [[DBTool shareInstance] saveNoteContentWith:model complate:^(BOOL success) {
+            if (success) {
+                [self.viewModel reloadCurrentNoteContentsWith:self.noteModel finish:^(BOOL finish) {
+                     [self.tableView reloadData];
+                }];
+            }
+        }];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -53,23 +68,41 @@ static NSString *GPNoteContentViewControllerCellID = @"GPNoteContentViewControll
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.viewModel.currentNoteContents.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    GPNoteContentCell *cell = [tableView dequeueReusableCellWithIdentifier:GPNoteContentViewControllerCellID];
+    GPNoteContentImageCell *cell = [tableView dequeueReusableCellWithIdentifier:GPNoteContentViewControllerCellID];
     if (!cell) {
-        cell = [[GPNoteContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPNoteContentViewControllerCellID];
+        cell = [[GPNoteContentImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:GPNoteContentViewControllerCellID];
+    }
+    [cell setPage:indexPath.row+1];
+    if (self.viewModel.currentNoteContents.count > 0) {
+        [cell setGPNoteContentModel:self.viewModel.currentNoteContents[indexPath.row]];
     }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 200;
+    return SCREEN_HEIGHT - 64 - 1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    GPAddNoteContentViewController *vc = [[GPAddNoteContentViewController alloc] init];
+    vc.numberStr = self.noteModel.numberStr;
+    vc.contentModel = self.viewModel.currentNoteContents[indexPath.row];
+    vc.returnBlock = ^(GPNoteContentModel * _Nonnull model) {
+        // 保存返回来的model
+        [[DBTool shareInstance] saveNoteContentWith:model complate:^(BOOL success) {
+            if (success) {
+                // viewModel 刷新数据
+                [self.viewModel reloadCurrentNoteContentsWith:self.noteModel finish:^(BOOL finish) {
+                    [self.tableView reloadData];
+                }];
+            }
+        }];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - lazy
@@ -82,7 +115,7 @@ static NSString *GPNoteContentViewControllerCellID = @"GPNoteContentViewControll
         _tableView.backgroundColor = GPBackgroundColor;
         _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
         _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-        [_tableView registerClass:[GPNoteContentCell class] forCellReuseIdentifier:GPNoteContentViewControllerCellID];
+        [_tableView registerClass:[GPNoteContentImageCell class] forCellReuseIdentifier:GPNoteContentViewControllerCellID];
     }
     return _tableView;
 }

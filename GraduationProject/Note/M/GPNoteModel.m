@@ -7,6 +7,7 @@
 //
 
 #import "GPNoteModel.h"
+#import "GPNoteContentModel.h"
 
 @implementation GPNoteModel
 

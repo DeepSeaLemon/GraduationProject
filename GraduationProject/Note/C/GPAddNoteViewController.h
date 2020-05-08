@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class GPNoteModel;
+typedef void(^ReturnModelBlock)(GPNoteModel *model);
 
 @interface GPAddNoteViewController : GPBaseViewController
+
+@property (nonatomic, strong)ReturnModelBlock returnBlock;
 
 @end
 

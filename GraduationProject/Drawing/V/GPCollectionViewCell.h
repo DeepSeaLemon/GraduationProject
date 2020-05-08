@@ -11,10 +11,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class GPDrawModel;
+@class GPNoteModel;
 
 @interface GPCollectionViewCell : UICollectionViewCell
 
+- (void)setTitle:(NSString *)title;
+
 - (void)setGPDrawModel:(GPDrawModel *)model;
+
+- (void)setGPNoteModel:(GPNoteModel *)model;
 
 @end
 

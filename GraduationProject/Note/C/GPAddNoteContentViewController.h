@@ -10,7 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GPNoteContentModel;
+
+typedef void(^ReturnModelBlock)(GPNoteContentModel *model);
+
 @interface GPAddNoteContentViewController : GPBaseViewController
+
+@property (nonatomic, copy)NSString *numberStr;
+
+@property (nonatomic, copy)ReturnModelBlock returnBlock;
+
+@property (nonatomic, strong)GPNoteContentModel *contentModel;
 
 @end
 

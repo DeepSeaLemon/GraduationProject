@@ -55,7 +55,14 @@ static DBTool *_singleInstance = nil;
         if (rs.columnCount > 0) {
             while ([rs next]) {
                 GPNoteContentModel *model = [[GPNoteContentModel alloc] init];
-                
+                model.timeStr = [rs stringForColumn:@"timeStr"];
+                model.titleStr = [rs stringForColumn:@"titleStr"];
+                model.numberStr = [rs stringForColumn:@"numberStr"];
+                model.imageStr = [rs stringForColumn:@"imageStr"];
+                NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:[rs stringForColumn:@"imageStr"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                model.image = [UIImage imageWithData:decodedImageData];
+                model.contentData = [rs dataForColumn:@"content"];
+                model.contentNumberStr = [rs stringForColumn:@"contentNumberStr"];
                 [noteContentArray addObject:model];
             }
             !noteContent?:noteContent(noteContentArray);
@@ -248,23 +255,24 @@ static DBTool *_singleInstance = nil;
 
 
 - (void)saveNoteContentWith:(GPNoteContentModel *)contentModel complate:(void(^)(BOOL success))complate {
-//    FMDatabase *noteDB = [self getDatabaseWith:self.note];
-//    if ([noteDB open]) {
-//        // 查询是否存在这一条数据
-//        NSString *sql = [NSString stringWithFormat:@"select * FROM %@ where numberStr = ?",self.noteContentList];
-//        FMResultSet *rs = [noteDB executeQuery:sql,model.numberStr];
-//        if (rs.next) {
-//            // 存在，走修改
-//            NSString *update = [NSString stringWithFormat:@"update %@ set name = ?, coverImageStr = ? where numberStr = ?",self.noteList];
-//            BOOL success = [noteDB executeUpdate:update,model.name,model.coverImageStr,model.numberStr];
-//            !complate?:complate(success);
-//        } else {
-//            // 不存在，走保存
-//            NSString *insertData = [NSString stringWithFormat:@"insert into %@ (name,coverImageStr,numberStr) values (?,?,?)",self.noteList];
-//            BOOL success = [noteDB executeUpdate:insertData,model.name,model.coverImageStr,model.numberStr];
-//            !complate?:complate(success);
-//        }
-//    }
+    FMDatabase *noteDB = [self getDatabaseWith:self.note];
+    if ([noteDB open]) {
+        // 查询是否存在这一条数据
+        NSString *sql = [NSString stringWithFormat:@"select * FROM %@ where contentNumberStr = ?",self.noteContentList];
+        FMResultSet *rs = [noteDB executeQuery:sql,contentModel.numberStr];
+        if (rs.next) {
+            // 存在，走修改
+            NSString *update = [NSString stringWithFormat:@"update %@ set timeStr = ?, titleStr = ?,imageStr = ?,content = ? where contentNumberStr = ?",self.noteContentList];
+            
+            BOOL success = [noteDB executeUpdate:update,contentModel.timeStr,contentModel.titleStr,contentModel.imageStr,contentModel.contentData];
+            !complate?:complate(success);
+        } else {
+            // 不存在，走保存
+            NSString *insertData = [NSString stringWithFormat:@"insert into %@ (timeStr, titleStr,imageStr,content ,numberStr,contentNumberStr) values (?,?,?,?,?,?)",self.noteContentList];
+            BOOL success = [noteDB executeUpdate:insertData,contentModel.timeStr,contentModel.titleStr,contentModel.imageStr,contentModel.contentData,contentModel.numberStr,contentModel.contentNumberStr];
+            !complate?:complate(success);
+        }
+    }
 }
 
 
@@ -419,12 +427,12 @@ static DBTool *_singleInstance = nil;
         } else {
             NSLog(@"创造Note表失败");
         }
-//        NSString *createTable2 = [NSString stringWithFormat:@"create table if not exists %@ (name text, coverImageStr text,numberStr text primary key)",self.noteContentList];
-//        if ([db executeUpdate:createTable2]) {
-//            NSLog(@"创造NoteContent表成功");
-//        } else {
-//            NSLog(@"创造NoteContent表失败");
-//        }
+        NSString *createTable2 = [NSString stringWithFormat:@"create table if not exists %@ (timeStr text, titleStr text,imageStr text,content blob,numberStr text,contentNumberStr text primary key)",self.noteContentList];
+        if ([db executeUpdate:createTable2]) {
+            NSLog(@"创造NoteContent表成功");
+        } else {
+            NSLog(@"创造NoteContent表失败");
+        }
     }else{
         NSLog(@"打开Note数据库失败");
     }

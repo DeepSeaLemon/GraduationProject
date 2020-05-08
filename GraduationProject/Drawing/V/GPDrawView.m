@@ -7,22 +7,22 @@
 //
 
 #import "GPDrawView.h"
-#import "GPDrawPath.h"
 
 @interface GPDrawView()
 
-@property(nonatomic,strong) GPDrawPath* path;
+@property(nonatomic,strong) UIBezierPath* path;
 // 线的数组
 @property(nonatomic,strong) NSMutableArray* paths;
-
-@property(nonatomic,retain)UIColor *lastPathColor;
+@property(nonatomic,strong) NSMutableArray* pathColors;
+@property(nonatomic,retain) UIColor *lastPathColor;
 
 @end
 
 @implementation GPDrawView
 
-- (void)setPathsForView:(NSMutableArray *)paths {
+- (void)setPathsForView:(NSMutableArray *)paths colors:(nonnull NSMutableArray *)colors {
     self.paths = paths;
+    self.pathColors = colors;
     [self setNeedsDisplay];
 }
 
@@ -37,21 +37,20 @@
 
 // 重绘UI
 - (void)drawRect:(CGRect)rect {
-    for (GPDrawPath* path in self.paths) {
-        if ([path isKindOfClass:[UIImage class]]) {
-            // 画图片
-            UIImage* image = (UIImage*)path;
+    [self.paths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[UIImage class]]) {
+            UIImage* image = obj;
             [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-        } else if ([path isKindOfClass:[GPDrawPath class]]){
-            // 画线
-            // 设置画笔颜色
-            [path.pathColor set];
-            // 绘制
-            [path stroke];
         } else {
+            // 设置画笔颜色
+            UIBezierPath *path = obj;
+            if (self.pathColors.count >= idx && self.pathColors[idx] != nil) {
+                path.pathColor = self.pathColors[idx];
+            }
+            [path.pathColor set];
             [path stroke];
         }
-    }
+    }];
 }
 
 // 懒加载属性
@@ -60,6 +59,13 @@
         _paths = [NSMutableArray array];
     }
     return _paths;
+}
+
+- (NSMutableArray *)pathColors {
+    if (!_pathColors) {
+        _pathColors = [NSMutableArray array];
+    }
+    return _pathColors;
 }
 
 // 重写image属性
@@ -71,6 +77,7 @@
     CGFloat scaleSize = (iw > ih) ? (vw / iw) : (vh / ih);
     _image = [UIImage scaleImage:image toScale:scaleSize];
     [self.paths addObject:_image];
+    [self.pathColors addObject:[UIColor whiteColor]];
     [self setNeedsDisplay];
 }
 
@@ -95,7 +102,7 @@
     CGPoint curPoint = [ges locationInView:self];
     if (ges.state == UIGestureRecognizerStateBegan) { // 开始移动
         // 创建贝塞尔曲线
-        _path = [[GPDrawPath alloc]init];
+        _path = [[UIBezierPath alloc]init];
         // 设置线条宽度
         _path.lineWidth = _lineWidth;
         // 线条默认颜色
@@ -103,6 +110,7 @@
         // 设置起始点
         [_path moveToPoint:curPoint];
         [self.paths addObject:_path];
+        [self.pathColors addObject:_pathColor];
     }
     // 连线
     [_path addLineToPoint:curPoint];
@@ -158,7 +166,7 @@
 
 // 图片保存方法，必需写这个方法体，不能会保存不了图片
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    !self.imageSaveBlock?:self.imageSaveBlock(image,error,self.paths);
+    !self.imageSaveBlock?:self.imageSaveBlock(image,error,self.paths,self.pathColors);
 }
 
 @end

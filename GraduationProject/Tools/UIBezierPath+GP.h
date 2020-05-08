@@ -1,8 +1,8 @@
 //
-//  GPDrawPath.h
+//  UIBezierPath+GP.h
 //  GraduationProject
 //
-//  Created by CYM on 2020/4/19.
+//  Created by CYM on 2020/5/8.
 //  Copyright © 2020年 CYM. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GPDrawPath : UIBezierPath
+@interface UIBezierPath (GP)
 
 @property (nonatomic,retain) UIColor *pathColor;
 

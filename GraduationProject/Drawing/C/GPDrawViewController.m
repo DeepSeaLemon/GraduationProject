@@ -44,7 +44,7 @@
 
 - (void)setDrawModel:(GPDrawModel *)drawModel {
     _drawModel = drawModel;
-    [self.drawView setPathsForView:drawModel.paths];
+    [self.drawView setPathsForView:drawModel.paths colors:drawModel.colors];
     self.title = drawModel.name;
 }
 
@@ -96,16 +96,17 @@
                         }];
                     } else {
                         [self.drawView save];
-                        self.drawView.imageSaveBlock = ^(UIImage * _Nonnull image, NSError * _Nullable error, NSMutableArray * _Nonnull paths) {
+                        self.drawView.imageSaveBlock = ^(UIImage * _Nonnull image, NSError * _Nullable error, NSMutableArray * _Nonnull paths, NSMutableArray * _Nonnull colors) {
                             if (error) {
                                 [UIAlertController setTipsTitle:@"错误提示" msg:error.description ctr:weakself handler:^(UIAlertAction * _Nullable action) {
                                     //
                                 }];
                             } else {
-                                GPDrawModel *model = [[GPDrawModel alloc] initWithName:text image:image paths:paths];
+                                GPDrawModel *model = [[GPDrawModel alloc] initWithName:text image:image paths:paths colors:colors];
                                 [[DBTool shareInstance] saveDrawingWith:model complate:^(BOOL success) {
                                     // HUD和提示
                                     weakself.isSaved = success;
+                                    [weakself.navigationController popViewControllerAnimated:YES];
                                 }];
                             }
                         };
@@ -113,25 +114,23 @@
                 }];
             } else {
                 [self.drawView save];
-                self.drawView.imageSaveBlock = ^(UIImage * _Nonnull image, NSError * _Nullable error, NSMutableArray * _Nonnull paths) {
+                self.drawView.imageSaveBlock = ^(UIImage * _Nonnull image, NSError * _Nullable error, NSMutableArray * _Nonnull paths, NSMutableArray * _Nonnull colors) {
                     if (error) {
                         [UIAlertController setTipsTitle:@"错误提示" msg:error.description ctr:weakself handler:^(UIAlertAction * _Nullable action) {
                             //
                         }];
                     } else {
-                        GPDrawModel *model = [[GPDrawModel alloc] initWithName:weakself.drawModel.name image:image paths:weakself.drawModel.paths];
+                        GPDrawModel *model = [[GPDrawModel alloc] initWithName:weakself.drawModel.name image:image paths:weakself.drawModel.paths colors:colors];
                         model.numberStr = weakself.drawModel.numberStr;
                         [[DBTool shareInstance] saveDrawingWith:model complate:^(BOOL success) {
                             // HUD和提示
                             weakself.isSaved = success;
+                            [weakself.navigationController popViewControllerAnimated:YES];
                         }];
                     }
                 };
-                
             }
-            
         }
-            
             break;
         case 2:
             // 图片选择
@@ -185,7 +184,7 @@
 - (void)colorButtonClicked:(UIButton *)sender {
     GPColorPickerViewController *vc = [[GPColorPickerViewController alloc] init];
     vc.colorBlock = ^(UIColor * _Nonnull pickerColor) {
-        self.drawView.pathColor = pickerColor;
+        self.drawView.pathColor = !pickerColor?[UIColor blackColor]:pickerColor;
         sender.backgroundColor = pickerColor;
     };
     [self.navigationController pushViewController:vc animated:YES];

@@ -62,10 +62,10 @@
 		31A301D8245C0A84006B28ED /* GPDrawControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A301D7245C0A84006B28ED /* GPDrawControlView.m */; };
 		31A301DB245C49DD006B28ED /* GPColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A301DA245C49DD006B28ED /* GPColorPickerViewController.m */; };
 		31A301DE245C5646006B28ED /* UIImage+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A301DD245C5646006B28ED /* UIImage+GP.m */; };
+		31A790932465908C009E5BF8 /* UIBezierPath+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A790922465908C009E5BF8 /* UIBezierPath+GP.m */; };
 		31B76321246157D700B2B192 /* GPMemorandumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B76320246157D700B2B192 /* GPMemorandumViewModel.m */; };
 		31BD4A1A244C1C7C00549C2E /* UIColor+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A19244C1C7C00549C2E /* UIColor+GP.m */; };
 		31BD4A65244C796000549C2E /* GPDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A64244C796000549C2E /* GPDrawView.m */; };
-		31BD4A68244C799B00549C2E /* GPDrawPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A67244C799B00549C2E /* GPDrawPath.m */; };
 		31C299AC245D622D00D0A68C /* GPDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C299AB245D622D00D0A68C /* GPDrawModel.m */; };
 		31CB76172461274400DF3DEF /* GPCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CB76162461274400DF3DEF /* GPCustomTextField.m */; };
 		31D9806F245C5BA4008C258F /* UIAlertController+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D9806E245C5BA4008C258F /* UIAlertController+GP.m */; };
@@ -214,14 +214,14 @@
 		31A301DA245C49DD006B28ED /* GPColorPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPColorPickerViewController.m; sourceTree = "<group>"; };
 		31A301DC245C5646006B28ED /* UIImage+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+GP.h"; sourceTree = "<group>"; };
 		31A301DD245C5646006B28ED /* UIImage+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GP.m"; sourceTree = "<group>"; };
+		31A790912465908C009E5BF8 /* UIBezierPath+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+GP.h"; sourceTree = "<group>"; };
+		31A790922465908C009E5BF8 /* UIBezierPath+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+GP.m"; sourceTree = "<group>"; };
 		31B7631F246157D700B2B192 /* GPMemorandumViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPMemorandumViewModel.h; sourceTree = "<group>"; };
 		31B76320246157D700B2B192 /* GPMemorandumViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPMemorandumViewModel.m; sourceTree = "<group>"; };
 		31BD4A18244C1C7C00549C2E /* UIColor+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+GP.h"; sourceTree = "<group>"; };
 		31BD4A19244C1C7C00549C2E /* UIColor+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GP.m"; sourceTree = "<group>"; };
 		31BD4A63244C796000549C2E /* GPDrawView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawView.h; sourceTree = "<group>"; };
 		31BD4A64244C796000549C2E /* GPDrawView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawView.m; sourceTree = "<group>"; };
-		31BD4A66244C799B00549C2E /* GPDrawPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawPath.h; sourceTree = "<group>"; };
-		31BD4A67244C799B00549C2E /* GPDrawPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawPath.m; sourceTree = "<group>"; };
 		31C299AA245D622D00D0A68C /* GPDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawModel.h; sourceTree = "<group>"; };
 		31C299AB245D622D00D0A68C /* GPDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawModel.m; sourceTree = "<group>"; };
 		31CB76152461274400DF3DEF /* GPCustomTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPCustomTextField.h; sourceTree = "<group>"; };
@@ -582,6 +582,8 @@
 				31648F122458015C002ED198 /* DBTool.h */,
 				31648F132458015C002ED198 /* DBTool.m */,
 				31FE07E3245AF2290059E6F0 /* NSDate+GP.h */,
+				31A790912465908C009E5BF8 /* UIBezierPath+GP.h */,
+				31A790922465908C009E5BF8 /* UIBezierPath+GP.m */,
 				31FE07E4245AF2290059E6F0 /* NSDate+GP.m */,
 				31A301DC245C5646006B28ED /* UIImage+GP.h */,
 				31A301DD245C5646006B28ED /* UIImage+GP.m */,
@@ -607,8 +609,6 @@
 				31A301D7245C0A84006B28ED /* GPDrawControlView.m */,
 				31BD4A63244C796000549C2E /* GPDrawView.h */,
 				31BD4A64244C796000549C2E /* GPDrawView.m */,
-				31BD4A66244C799B00549C2E /* GPDrawPath.h */,
-				31BD4A67244C799B00549C2E /* GPDrawPath.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -973,12 +973,12 @@
 				3126DC0F245539A500084E5E /* GPTimeTableListHeaderView.m in Sources */,
 				31FE07E5245AF2290059E6F0 /* NSDate+GP.m in Sources */,
 				317289892463D54200E0E71B /* GPNoteViewModel.m in Sources */,
-				31BD4A68244C799B00549C2E /* GPDrawPath.m in Sources */,
 				310C09492463D20C0045C30A /* GPNoteContentModel.m in Sources */,
 				313B516E244AEFA7002B1061 /* GPDrawingViewController.m in Sources */,
 				316809D5244AC9170013CF15 /* AppDelegate.m in Sources */,
 				315C9B102452BCE800F38964 /* GPStatisticsTableHeaderView.m in Sources */,
 				319BE189246143FC00E5CBF7 /* NSDate+CXCategory.m in Sources */,
+				31A790932465908C009E5BF8 /* UIBezierPath+GP.m in Sources */,
 				31A301DE245C5646006B28ED /* UIImage+GP.m in Sources */,
 				3126DC12245539D600084E5E /* GPTimeTableDayView.m in Sources */,
 				3126DC15245568D800084E5E /* GPTimeTableInputViewController.m in Sources */,

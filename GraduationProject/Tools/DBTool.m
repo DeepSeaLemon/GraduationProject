@@ -214,11 +214,15 @@ static DBTool *_singleInstance = nil;
                 GPDrawModel *model = [[GPDrawModel alloc] init];
                 model.name      = [rs stringForColumn:@"name"];
                 model.imageData = [rs stringForColumn:@"imageData"];
-                model.pathsData = [rs stringForColumn:@"pathsData"];
+                model.pathsData = [rs dataForColumn:@"pathsData"];
                 model.numberStr = [rs stringForColumn:@"numberStr"];
+                model.colorsData = [rs dataForColumn:@"colorsData"];
                 NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:[rs stringForColumn:@"imageData"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
                 model.image =  [UIImage imageWithData:decodedImageData];
-                [model restorePathsArrayWith:[rs stringForColumn:@"pathsData"] pathsImage:[rs stringForColumn:@"pathImage"] imageIndex:[NSNumber numberWithInt:[rs intForColumn:@"imageIndex"]]];                
+                NSArray *pathsArray = [NSKeyedUnarchiver unarchiveObjectWithData:model.pathsData];
+                model.paths = [NSMutableArray arrayWithArray:pathsArray];
+                NSArray *colorsArray = [NSKeyedUnarchiver unarchiveObjectWithData:model.colorsData];
+                model.colors = [NSMutableArray arrayWithArray:colorsArray];
                 [drawingsArr addObject:model];
             }
             !draw?:draw(drawingsArr);
@@ -324,13 +328,13 @@ static DBTool *_singleInstance = nil;
         FMResultSet *rs = [drawingDB executeQuery:sql,model.numberStr];
         if (rs.next) {
             // 存在，走修改
-            NSString *update = [NSString stringWithFormat:@"update %@ set name = ?,imageData = ?,pathsData = ?,imageIndex = ?,pathImage = ? where numberStr = ?",self.drawingList];
-            BOOL success = [drawingDB executeUpdate:update,model.name,model.imageData,model.pathsData,model.imageIndex,model.pathsImageData,model.numberStr];
+            NSString *update = [NSString stringWithFormat:@"update %@ set name = ?,imageData = ?,pathsData = ? ,colorsData = ? where numberStr = ?",self.drawingList];
+            BOOL success = [drawingDB executeUpdate:update,model.name,model.imageData,model.pathsData,model.colorsData,model.numberStr];
             !complate?:complate(success);
         } else {
             // 不存在，走保存
-            NSString *insertData = [NSString stringWithFormat:@"insert into %@ (name,imageData,pathsData,imageIndex,pathImage,numberStr) values (?,?,?,?,?,?)",self.drawingList];
-            BOOL success = [drawingDB executeUpdate:insertData,model.name,model.imageData,model.pathsData,model.imageIndex,model.pathsImageData,model.numberStr];
+            NSString *insertData = [NSString stringWithFormat:@"insert into %@ (name,imageData,pathsData,colorsData,numberStr) values (?,?,?,?,?)",self.drawingList];
+            BOOL success = [drawingDB executeUpdate:insertData,model.name,model.imageData,model.pathsData,model.colorsData,model.numberStr];
             !complate?:complate(success);
         }
     }
@@ -445,7 +449,7 @@ static DBTool *_singleInstance = nil;
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     if ([db open]) {
         NSLog(@"打开Drawing数据库成功");
-        NSString *createTable = [NSString stringWithFormat:@"create table if not exists %@ (name text, imageData text, pathsData text, imageIndex integer, pathImage text,numberStr text primary key)",self.drawingList];
+        NSString *createTable = [NSString stringWithFormat:@"create table if not exists %@ (name text, imageData text, pathsData blob, colorsData blob,numberStr text primary key)",self.drawingList];
         if ([db executeUpdate:createTable]) {
             NSLog(@"创造Drawing表成功");
         } else {

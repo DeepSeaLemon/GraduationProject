@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^ImageSaveBlock)(UIImage *image, NSError * _Nullable error, NSMutableArray *paths);
+typedef void(^ImageSaveBlock)(UIImage *image, NSError * _Nullable error, NSMutableArray *paths, NSMutableArray *colors);
 
 @interface GPDrawView : UIView
 
@@ -40,7 +40,7 @@ typedef void(^ImageSaveBlock)(UIImage *image, NSError * _Nullable error, NSMutab
 // 画笔
 - (void)resetPen;
 
-- (void)setPathsForView:(NSMutableArray *)paths;
+- (void)setPathsForView:(NSMutableArray *)paths colors:(NSMutableArray *)colors;
 
 @end
 

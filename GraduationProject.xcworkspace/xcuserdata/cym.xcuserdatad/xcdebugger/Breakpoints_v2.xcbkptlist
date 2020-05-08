@@ -109,22 +109,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GraduationProject/Tools/DBTool.m"
-            timestampString = "610620453.191595"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
-            landmarkName = "-saveNoteContentWith:complate:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GraduationProject/Note/M/GPNoteViewModel.m"
             timestampString = "610620453.191685"
             startingColumnNumber = "9223372036854775807"
@@ -132,22 +116,6 @@
             startingLineNumber = "23"
             endingLineNumber = "23"
             landmarkName = "-reloadCurrentNoteContentsWith:finish:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GraduationProject/Tools/DBTool.m"
-            timestampString = "610620453.191752"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
-            landmarkName = "-saveNoteContentWith:complate:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -174,7 +142,7 @@
                   moduleName = "GraduationProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cym/Desktop/GraduationProject/GraduationProject/Note/M/GPNoteViewModel.m"
-                  timestampString = "610617528.205793"
+                  timestampString = "610639352.261593"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -189,7 +157,7 @@
                   moduleName = "GraduationProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cym/Desktop/GraduationProject/GraduationProject/Note/M/GPNoteViewModel.m"
-                  timestampString = "610617528.2081"
+                  timestampString = "610639352.264352"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -204,7 +172,7 @@
                   moduleName = "GraduationProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cym/Desktop/GraduationProject/GraduationProject/Note/M/GPNoteViewModel.m"
-                  timestampString = "610617528.210373"
+                  timestampString = "610639352.267064"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"

@@ -10,7 +10,7 @@
 #import "GPAddPlanViewController.h"
 #import "GPMemorandumTableViewCell.h"
 #import "GPMemorandumViewModel.h"
-
+#import "GPMemorandumModel.h"
 static NSString *GPMemorandumViewControllerCellID = @"GPMemorandumViewController";
 
 @interface GPMemorandumViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -60,8 +60,41 @@ static NSString *GPMemorandumViewControllerCellID = @"GPMemorandumViewController
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld",(long)indexPath.row);
-    // 弹出选择
+    __block GPMemorandumModel *model = self.viewModel.modelsArray[indexPath.row];
+    __block NSArray *items = @[@"查看",@"删除"];
+    [UIAlertController setSheetTitle:@"操作选择" msg:@"" ctr:self items:items handler:^(UIAlertAction * _Nullable action) {
+        if ([items containsObject:action.title]) {
+            NSInteger index = [items indexOfObject:action.title];
+            if (index == 0) { // 查看
+                NSArray *startArr  = [model.startTime componentsSeparatedByString:@" "];
+                NSArray *endArr    = [model.endTime componentsSeparatedByString:@" "];
+                NSString *dateStr = @"";
+                if ([startArr.firstObject isEqualToString:endArr.firstObject]) {
+                    dateStr = [NSString stringWithFormat:@"%@ ~ %@",model.startTime,endArr.lastObject];
+                } else {
+                    dateStr = [NSString stringWithFormat:@"%@ ~ %@",model.startTime,model.endTime];
+                }
+                NSString *msg = [NSString stringWithFormat:@"时间:%@ \n内容:%@",dateStr,model.content];
+                [UIAlertController setTipsTitle:@"计划详情" msg:msg ctr:self handler:^(UIAlertAction * _Nullable action) {
+                    // 无操作
+                }];
+            } else { // 删除
+                [UIAlertController setTitle:@"操作提示" msg:@"确定要删除这个计划吗？" ctr:self sureHandler:^(UIAlertAction * _Nonnull action) {
+                    [self.viewModel deleteMemorandum:model complate:^(BOOL success) {
+                        if (success) {
+                            [self.tableView reloadData];
+                        } else {
+                            [UIAlertController setTipsTitle:@"失败提示" msg:@"删除这个计划时发生了错误，请重试！" ctr:self handler:^(UIAlertAction * _Nullable action) {
+                                // 无操作
+                            }];
+                        }
+                    }];
+                } cancelHandler:^(UIAlertAction * _Nonnull action) {
+                    // 无操作
+                }];
+            }
+        }
+    }];
 }
 
 - (void)clickRightButton:(UIButton *)sender {

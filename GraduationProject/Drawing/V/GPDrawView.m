@@ -129,6 +129,7 @@
 // 撤销
 - (void)undo {
     [self.paths removeLastObject];
+    [self.pathColors removeLastObject];
     [self setNeedsDisplay];
 }
 

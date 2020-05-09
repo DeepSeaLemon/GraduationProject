@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)saveMemorandums:(void (^)(BOOL success))finish;
 
+- (void)deleteMemorandum:(GPMemorandumModel *)model complate:(void(^)(BOOL success))complate;
+
 - (instancetype)initWithData;
 
 @end

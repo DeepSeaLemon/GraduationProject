@@ -36,6 +36,7 @@
 // 备忘录
 - (void)saveMemorandumWith:(GPMemorandumModel *)model complate:(void(^)(BOOL success))complate;
 - (void)getMemorandum:(void(^)(NSArray *memorandums))memorandum;
+- (void)deleteMemorandumWith:(NSString *)numberStr complate:(void(^)(BOOL success))complate;
 
 // 笔记本
 - (void)saveNoteWith:(GPNoteModel *)model complate:(void(^)(BOOL success))complate;

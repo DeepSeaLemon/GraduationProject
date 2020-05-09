@@ -11,6 +11,15 @@
 
 @implementation GPMemorandumViewModel
 
+- (void)deleteMemorandum:(GPMemorandumModel *)model complate:(void(^)(BOOL success))complate {
+    [[DBTool shareInstance] deleteMemorandumWith:model.numberStr complate:^(BOOL success) {
+        if (success && [self.modelsArray containsObject:model]) {
+            [self.modelsArray removeObject:model];
+        }
+        !complate?:complate(success);
+    }];
+}
+
 - (instancetype)initWithData {
     if (self = [super init]) {
         [self getMemorandums:^(BOOL success) {

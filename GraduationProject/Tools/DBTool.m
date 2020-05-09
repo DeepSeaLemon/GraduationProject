@@ -44,6 +44,20 @@ static DBTool *_singleInstance = nil;
 
 @implementation DBTool
 
+#pragma mark - delete
+
+- (void)deleteMemorandumWith:(NSString *)numberStr complate:(void(^)(BOOL success))complate {
+    FMDatabase *memorandumDB = [self getDatabaseWith:self.memorandum];
+    if ([memorandumDB open]) {
+        NSString *delete = [NSString stringWithFormat:@"delete from %@ where numberStr = ?",self.memorandumList];
+        BOOL success = [memorandumDB executeUpdate:delete, numberStr];
+        !complate?:complate(success);
+    } else {
+       !complate?:complate(NO);
+    }
+    [memorandumDB close];
+}
+
 #pragma mark - get
 
 - (void)getNoteContentWith:(GPNoteModel *)noteModel noteContents:(void (^)(NSArray *noteContents))noteContent {

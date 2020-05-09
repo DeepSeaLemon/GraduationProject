@@ -7,8 +7,19 @@
 //
 
 #import "GPNoteViewModel.h"
+#import "GPNoteContentModel.h"
 
 @implementation GPNoteViewModel
+
+- (void)loadNoteContentImageWith:(GPNoteModel *)model  images:(void(^)(NSArray *images))images {
+    [[DBTool shareInstance] getNoteContentWith:model noteContents:^(NSArray *noteContents) {
+        NSMutableArray *arr = [NSMutableArray array];
+        for (GPNoteContentModel *contentModel in noteContents) {
+            [arr addObject:contentModel.image];
+        }
+        !images?:images(arr);
+    }];
+}
 
 - (void)deleteNoteContentWith:(GPNoteContentModel *)model complate:(void(^)(BOOL success))complate {
     [[DBTool shareInstance] deleteNoteContentWith:model complate:^(BOOL success) {

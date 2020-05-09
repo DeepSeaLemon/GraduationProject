@@ -68,6 +68,8 @@
 		31BD4A65244C796000549C2E /* GPDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD4A64244C796000549C2E /* GPDrawView.m */; };
 		31C299AC245D622D00D0A68C /* GPDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C299AB245D622D00D0A68C /* GPDrawModel.m */; };
 		31CB76172461274400DF3DEF /* GPCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CB76162461274400DF3DEF /* GPCustomTextField.m */; };
+		31D28AEF24668AC900304949 /* GPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D28AEE24668AC900304949 /* GPFileManager.m */; };
+		31D28AF22466941F00304949 /* GPFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D28AF12466941F00304949 /* GPFileViewController.m */; };
 		31D9806F245C5BA4008C258F /* UIAlertController+GP.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D9806E245C5BA4008C258F /* UIAlertController+GP.m */; };
 		31D9E1E4245E949000F0F1F3 /* GPAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D9E1E3245E949000F0F1F3 /* GPAccountModel.m */; };
 		31D9E1E7245E9BC600F0F1F3 /* GPAccountViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D9E1E6245E9BC600F0F1F3 /* GPAccountViewModel.m */; };
@@ -222,10 +224,15 @@
 		31BD4A19244C1C7C00549C2E /* UIColor+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GP.m"; sourceTree = "<group>"; };
 		31BD4A63244C796000549C2E /* GPDrawView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawView.h; sourceTree = "<group>"; };
 		31BD4A64244C796000549C2E /* GPDrawView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawView.m; sourceTree = "<group>"; };
+		31BDE6832466FA5E00B55FD2 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		31C299AA245D622D00D0A68C /* GPDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPDrawModel.h; sourceTree = "<group>"; };
 		31C299AB245D622D00D0A68C /* GPDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPDrawModel.m; sourceTree = "<group>"; };
 		31CB76152461274400DF3DEF /* GPCustomTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPCustomTextField.h; sourceTree = "<group>"; };
 		31CB76162461274400DF3DEF /* GPCustomTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPCustomTextField.m; sourceTree = "<group>"; };
+		31D28AED24668AC900304949 /* GPFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPFileManager.h; sourceTree = "<group>"; };
+		31D28AEE24668AC900304949 /* GPFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPFileManager.m; sourceTree = "<group>"; };
+		31D28AF02466941F00304949 /* GPFileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPFileViewController.h; sourceTree = "<group>"; };
+		31D28AF12466941F00304949 /* GPFileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPFileViewController.m; sourceTree = "<group>"; };
 		31D9806D245C5BA4008C258F /* UIAlertController+GP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+GP.h"; sourceTree = "<group>"; };
 		31D9806E245C5BA4008C258F /* UIAlertController+GP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+GP.m"; sourceTree = "<group>"; };
 		31D9E1E2245E949000F0F1F3 /* GPAccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAccountModel.h; sourceTree = "<group>"; };
@@ -284,6 +291,7 @@
 		1F315431EEBC31112AE3B8D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				31BDE6832466FA5E00B55FD2 /* QuickLook.framework */,
 				F4DD2760C5E79EE97584068D /* Pods_GraduationProject.framework */,
 				D0D96A73A73047BFC1FFD984 /* Pods_GraduationProject_GraduationProjectUITests.framework */,
 				A3AA6153A2D33DCC186B70C9 /* Pods_GraduationProjectTests.framework */,
@@ -381,6 +389,8 @@
 		315B8BB524600E35008DCC97 /* C */ = {
 			isa = PBXGroup;
 			children = (
+				31D28AF02466941F00304949 /* GPFileViewController.h */,
+				31D28AF12466941F00304949 /* GPFileViewController.m */,
 				313B5166244AEF20002B1061 /* GPNoteViewController.h */,
 				313B5167244AEF20002B1061 /* GPNoteViewController.m */,
 				31235676245452F400EECFFB /* GPAddNoteViewController.h */,
@@ -577,10 +587,12 @@
 		31BD4A1B244C1D7500549C2E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				31BD4A18244C1C7C00549C2E /* UIColor+GP.h */,
-				31BD4A19244C1C7C00549C2E /* UIColor+GP.m */,
+				31D28AED24668AC900304949 /* GPFileManager.h */,
+				31D28AEE24668AC900304949 /* GPFileManager.m */,
 				31648F122458015C002ED198 /* DBTool.h */,
 				31648F132458015C002ED198 /* DBTool.m */,
+				31BD4A18244C1C7C00549C2E /* UIColor+GP.h */,
+				31BD4A19244C1C7C00549C2E /* UIColor+GP.m */,
 				31FE07E3245AF2290059E6F0 /* NSDate+GP.h */,
 				31A790912465908C009E5BF8 /* UIBezierPath+GP.h */,
 				31A790922465908C009E5BF8 /* UIBezierPath+GP.m */,
@@ -967,6 +979,7 @@
 				3126DC1B24556CF700084E5E /* GPTimeTableDoubleInputViewController.m in Sources */,
 				3119F1372455AD8A00616F27 /* GPNoteContentCell.m in Sources */,
 				315AD83F245EF51800A09BEB /* UITextField+GP.m in Sources */,
+				31D28AEF24668AC900304949 /* GPFileManager.m in Sources */,
 				313B5162244AE690002B1061 /* GPTabBarViewController.m in Sources */,
 				31A301D8245C0A84006B28ED /* GPDrawControlView.m in Sources */,
 				316809E3244AC9180013CF15 /* main.m in Sources */,
@@ -976,6 +989,7 @@
 				310C09492463D20C0045C30A /* GPNoteContentModel.m in Sources */,
 				313B516E244AEFA7002B1061 /* GPDrawingViewController.m in Sources */,
 				316809D5244AC9170013CF15 /* AppDelegate.m in Sources */,
+				31D28AF22466941F00304949 /* GPFileViewController.m in Sources */,
 				315C9B102452BCE800F38964 /* GPStatisticsTableHeaderView.m in Sources */,
 				319BE189246143FC00E5CBF7 /* NSDate+CXCategory.m in Sources */,
 				31A790932465908C009E5BF8 /* UIBezierPath+GP.m in Sources */,

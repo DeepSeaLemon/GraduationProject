@@ -544,11 +544,9 @@ static DBTool *_singleInstance = nil;
     return folderPath;
 }
 
-
 #pragma mark - shareInstance
 
-+ (instancetype)shareInstance
-{
++ (instancetype)shareInstance {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if (_singleInstance == nil) {
@@ -579,8 +577,7 @@ static DBTool *_singleInstance = nil;
     return _singleInstance;
 }
 
-+ (instancetype)allocWithZone:(struct _NSZone *)zone
-{
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _singleInstance = [super allocWithZone:zone];
@@ -588,8 +585,7 @@ static DBTool *_singleInstance = nil;
     return _singleInstance;
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
+- (id)copyWithZone:(NSZone *)zone {
     return _singleInstance;
 }
 

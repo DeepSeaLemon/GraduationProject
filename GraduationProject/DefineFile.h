@@ -11,6 +11,7 @@
 
 // Tools
 #import "Tools/DBTool.h"
+#import "Tools/GPFileManager.h"
 #import "Tools/UIColor+GP.h"
 #import "Tools/NSDate+GP.h"
 #import "Tools/UIImage+GP.h"

@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSMutableArray <GPNoteModel *>*notes;
 @property (nonatomic, strong)NSMutableArray <GPNoteContentModel *> *currentNoteContents;
 
+- (void)loadNoteContentImageWith:(GPNoteModel *)model  images:(void(^)(NSArray *images))images;
+
 - (void)reloadCurrentNoteContentsWith:(GPNoteModel *)model finish:(void(^)(BOOL finish))finish;
 - (void)reloadNotes:(void(^)(BOOL finish))finish;
 - (instancetype)initWithData;

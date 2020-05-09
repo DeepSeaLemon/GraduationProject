@@ -11,6 +11,8 @@
 #import "GPAddNoteViewController.h"
 #import "GPNoteViewModel.h"
 #import "GPNoteContentViewController.h"
+#import "GPFileViewController.h"
+#import "GPNoteModel.h"
 
 static NSString *GPNoteViewControllerCellID = @"GPNoteViewController";
 
@@ -24,6 +26,11 @@ static NSString *GPNoteViewControllerCellID = @"GPNoteViewController";
 
 @implementation GPNoteViewController
 
+- (void)clickRightButton:(UIButton *)sender {
+    GPFileViewController *vc = [[GPFileViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,7 +88,8 @@ static NSString *GPNoteViewControllerCellID = @"GPNoteViewController";
         };
         [self.navigationController pushViewController:vc animated:YES];
     } else {
-        __block NSArray *items = @[@"编辑",@"删除"];
+        __block NSArray *items = @[@"编辑",@"转PDF文件",@"删除"];
+        __block GPNoteModel *model = self.viewModel.notes[indexPath.row - 1];
         [UIAlertController setSheetTitle:@"操作选择" msg:@"" ctr:self items:items handler:^(UIAlertAction * _Nullable action) {
             if ([items containsObject:action.title]) {
                 NSInteger index = [items indexOfObject:action.title];
@@ -89,8 +97,27 @@ static NSString *GPNoteViewControllerCellID = @"GPNoteViewController";
                     GPNoteContentViewController *vc = [[GPNoteContentViewController alloc] init];
                     vc.hidesBottomBarWhenPushed = YES;
                     vc.viewModel = self.viewModel;
-                    vc.noteModel = self.viewModel.notes[indexPath.row - 1];
+                    vc.noteModel = model;
                     [self.navigationController pushViewController:vc animated:YES];
+                } else if (index == 1) { // 转PDF
+                    [self.viewModel loadNoteContentImageWith:self.viewModel.notes[indexPath.row - 1] images:^(NSArray * _Nonnull images) {
+                        if (images.count > 0) {
+                            if ([[GPFileManager shareInstance] convertPDFWithImages:images fileName:model.name]) {
+                                [UIAlertController setTipsTitle:@"成功提示" msg:@"文件转化成功，请到文件夹页面查看！" ctr:self handler:^(UIAlertAction * _Nullable action) {
+                                    // 无操作
+                                }];
+                            } else {
+                                [UIAlertController setTipsTitle:@"失败提示" msg:@"文件转化时发生错误，请重试！" ctr:self handler:^(UIAlertAction * _Nullable action) {
+                                    // 无操作
+                                }];
+                            }
+                        } else {
+                            [UIAlertController setTipsTitle:@"错误提示" msg:@"该笔记本下无内容，请添加后再执行操作！" ctr:self handler:^(UIAlertAction * _Nullable action) {
+                                // 无操作
+                            }];
+                        }
+                        
+                    }];
                 } else { // 删除
                     [UIAlertController setTitle:@"操作提示" msg:@"确定要删除这个笔记本吗？" ctr:self sureHandler:^(UIAlertAction * _Nonnull action) {
                         [self.viewModel deleteNoteWith:self.viewModel.notes[indexPath.row - 1] complate:^(BOOL success) {

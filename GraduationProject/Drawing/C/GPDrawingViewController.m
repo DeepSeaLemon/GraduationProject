@@ -98,18 +98,53 @@ static NSString *GPDrawingViewControllerCellID = @"GPDrawingViewController";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    GPDrawViewController *vc = [[GPDrawViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
     if (indexPath.row > 0) {
-        vc.drawModel = self.modelArray[indexPath.row - 1];
-    }
-    vc.refreshBlock = ^{
-        [[DBTool shareInstance] getDrawing:^(NSArray *drawings) {
-            [self.modelArray removeAllObjects];
-            self.modelArray = [drawings mutableCopy];
-            [self.collectionView reloadData];
+        __block GPDrawModel *model = self.modelArray[indexPath.row - 1];
+        __block NSArray *items = @[@"编辑",@"删除"];
+        [UIAlertController setSheetTitle:@"操作选择" msg:@"" ctr:self items:items handler:^(UIAlertAction * _Nullable action) {
+            if ([items containsObject:action.title]) {
+                NSInteger index = [items indexOfObject:action.title];
+                if (index == 0) { // 编辑
+                    GPDrawViewController *vc = [[GPDrawViewController alloc] init];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    vc.drawModel = model;
+                    vc.refreshBlock = ^{
+                        [[DBTool shareInstance] getDrawing:^(NSArray *drawings) {
+                            [self.modelArray removeAllObjects];
+                            self.modelArray = [drawings mutableCopy];
+                            [self.collectionView reloadData];
+                        }];
+                    };
+                    [self.navigationController pushViewController:vc animated:YES];
+                } else { // 删除
+                    [UIAlertController setTitle:@"操作提示" msg:@"确定要删除这个画板吗？" ctr:self sureHandler:^(UIAlertAction * _Nonnull action) {
+                        [[DBTool shareInstance] deleteDrawingWith:model complate:^(BOOL success) {
+                            if (success && [self.modelArray containsObject:model]) {
+                                [self.modelArray removeObject:model];
+                                [self.collectionView reloadData];
+                            } else {
+                                [UIAlertController setTipsTitle:@"失败提示" msg:@"删除这个画板时发生了错误，请重试！" ctr:self handler:^(UIAlertAction * _Nullable action) {
+                                    // 无操作
+                                }];
+                            }
+                        }];
+                    } cancelHandler:^(UIAlertAction * _Nonnull action) {
+                        // 无操作
+                    }];
+                }
+            }
         }];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        GPDrawViewController *vc = [[GPDrawViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.refreshBlock = ^{
+            [[DBTool shareInstance] getDrawing:^(NSArray *drawings) {
+                [self.modelArray removeAllObjects];
+                self.modelArray = [drawings mutableCopy];
+                [self.collectionView reloadData];
+            }];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 @end

@@ -46,6 +46,45 @@ static DBTool *_singleInstance = nil;
 
 #pragma mark - delete
 
+- (void)deleteNoteContentWith:(GPNoteContentModel *)model complate:(void(^)(BOOL success))complate {
+    FMDatabase *noteDB = [self getDatabaseWith:self.note];
+    if ([noteDB open]) {
+        NSString *delete = [NSString stringWithFormat:@"delete from %@ where contentNumberStr = ?",self.noteContentList];
+        BOOL success = [noteDB executeUpdate:delete, model.contentNumberStr];
+        !complate?:complate(success);
+    } else {
+        !complate?:complate(NO);
+    }
+    [noteDB close];
+}
+
+- (void)deleteNoteWith:(GPNoteModel *)model complate:(void(^)(BOOL success))complate {
+    FMDatabase *noteDB = [self getDatabaseWith:self.note];
+    if ([noteDB open]) {
+        NSString *delete1 = [NSString stringWithFormat:@"delete from %@ where numberStr = ?",self.noteList];
+        BOOL success1 = [noteDB executeUpdate:delete1, model.numberStr];
+        NSString *delete2 = [NSString stringWithFormat:@"delete from %@ where numberStr = ?",self.noteContentList];
+        BOOL success2 = [noteDB executeUpdate:delete2, model.numberStr];
+        BOOL success = (success1 && success2)?YES:NO;
+        !complate?:complate(success);
+    } else {
+        !complate?:complate(NO);
+    }
+    [noteDB close];
+}
+
+- (void)deleteDrawingWith:(GPDrawModel *)model complate:(void(^)(BOOL success))complate {
+    FMDatabase *drawDB = [self getDatabaseWith:self.drawing];
+    if ([drawDB open]) {
+        NSString *delete = [NSString stringWithFormat:@"delete from %@ where numberStr = ?",self.drawingList];
+        BOOL success = [drawDB executeUpdate:delete, model.numberStr];
+        !complate?:complate(success);
+    } else {
+        !complate?:complate(NO);
+    }
+    [drawDB close];
+}
+
 - (void)deleteMemorandumWith:(NSString *)numberStr complate:(void(^)(BOOL success))complate {
     FMDatabase *memorandumDB = [self getDatabaseWith:self.memorandum];
     if ([memorandumDB open]) {

@@ -81,11 +81,33 @@ static NSString *GPNoteViewControllerCellID = @"GPNoteViewController";
         };
         [self.navigationController pushViewController:vc animated:YES];
     } else {
-        GPNoteContentViewController *vc = [[GPNoteContentViewController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        vc.viewModel = self.viewModel;
-        vc.noteModel = self.viewModel.notes[indexPath.row - 1];
-        [self.navigationController pushViewController:vc animated:YES];
+        __block NSArray *items = @[@"编辑",@"删除"];
+        [UIAlertController setSheetTitle:@"操作选择" msg:@"" ctr:self items:items handler:^(UIAlertAction * _Nullable action) {
+            if ([items containsObject:action.title]) {
+                NSInteger index = [items indexOfObject:action.title];
+                if (index == 0) { // 编辑
+                    GPNoteContentViewController *vc = [[GPNoteContentViewController alloc] init];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    vc.viewModel = self.viewModel;
+                    vc.noteModel = self.viewModel.notes[indexPath.row - 1];
+                    [self.navigationController pushViewController:vc animated:YES];
+                } else { // 删除
+                    [UIAlertController setTitle:@"操作提示" msg:@"确定要删除这个笔记本吗？" ctr:self sureHandler:^(UIAlertAction * _Nonnull action) {
+                        [self.viewModel deleteNoteWith:self.viewModel.notes[indexPath.row - 1] complate:^(BOOL success) {
+                            if (success) {
+                                [self.collectionView reloadData];
+                            } else {
+                                [UIAlertController setTipsTitle:@"失败提示" msg:@"删除这个笔记本时发生了错误，请重试！" ctr:self handler:^(UIAlertAction * _Nullable action) {
+                                    // 无操作
+                                }];
+                            }
+                        }];
+                    } cancelHandler:^(UIAlertAction * _Nonnull action) {
+                        // 无操作
+                    }];
+                }
+            }
+        }];
     }
 }
 

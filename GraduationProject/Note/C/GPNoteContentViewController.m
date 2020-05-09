@@ -88,21 +88,43 @@ static NSString *GPNoteContentViewControllerCellID = @"GPNoteContentViewControll
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    GPAddNoteContentViewController *vc = [[GPAddNoteContentViewController alloc] init];
-    vc.numberStr = self.noteModel.numberStr;
-    vc.contentModel = self.viewModel.currentNoteContents[indexPath.row];
-    vc.returnBlock = ^(GPNoteContentModel * _Nonnull model) {
-        // 保存返回来的model
-        [[DBTool shareInstance] saveNoteContentWith:model complate:^(BOOL success) {
-            if (success) {
-                // viewModel 刷新数据
-                [self.viewModel reloadCurrentNoteContentsWith:self.noteModel finish:^(BOOL finish) {
-                    [self.tableView reloadData];
+    __block NSArray *items = @[@"编辑",@"删除"];
+    [UIAlertController setSheetTitle:@"操作选择" msg:@"" ctr:self items:items handler:^(UIAlertAction * _Nullable action) {
+        if ([items containsObject:action.title]) {
+            NSInteger index = [items indexOfObject:action.title];
+            if (index == 0) { // 编辑
+                GPAddNoteContentViewController *vc = [[GPAddNoteContentViewController alloc] init];
+                vc.numberStr = self.noteModel.numberStr;
+                vc.contentModel = self.viewModel.currentNoteContents[indexPath.row];
+                vc.returnBlock = ^(GPNoteContentModel * _Nonnull model) {
+                    // 保存返回来的model
+                    [[DBTool shareInstance] saveNoteContentWith:model complate:^(BOOL success) {
+                        if (success) {
+                            // viewModel 刷新数据
+                            [self.viewModel reloadCurrentNoteContentsWith:self.noteModel finish:^(BOOL finish) {
+                                [self.tableView reloadData];
+                            }];
+                        }
+                    }];
+                };
+                [self.navigationController pushViewController:vc animated:YES];
+            } else { // 删除
+                [UIAlertController setTitle:@"操作提示" msg:@"确定要删除这个笔记吗？" ctr:self sureHandler:^(UIAlertAction * _Nonnull action) {
+                    [self.viewModel deleteNoteContentWith:self.viewModel.currentNoteContents[indexPath.row] complate:^(BOOL success) {
+                        if (success) {
+                            [self.tableView reloadData];
+                        } else {
+                            [UIAlertController setTipsTitle:@"失败提示" msg:@"删除这个笔记时发生了错误，请重试！" ctr:self handler:^(UIAlertAction * _Nullable action) {
+                                // 无操作
+                            }];
+                        }
+                    }];
+                } cancelHandler:^(UIAlertAction * _Nonnull action) {
+                    // 无操作
                 }];
             }
-        }];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
 }
 
 #pragma mark - lazy

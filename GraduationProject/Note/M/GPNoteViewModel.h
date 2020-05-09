@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)reloadCurrentNoteContentsWith:(GPNoteModel *)model finish:(void(^)(BOOL finish))finish;
 - (void)reloadNotes:(void(^)(BOOL finish))finish;
 - (instancetype)initWithData;
-
+- (void)deleteNoteWith:(GPNoteModel *)model complate:(void(^)(BOOL success))complate;
+- (void)deleteNoteContentWith:(GPNoteContentModel *)model complate:(void(^)(BOOL success))complate;
 @end
 
 NS_ASSUME_NONNULL_END

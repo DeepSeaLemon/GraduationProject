@@ -23,11 +23,11 @@
 @implementation GPDrawControlView
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 64 - 22.5 , 45, 395 + 22.5)]) {
+    if (self = [super initWithFrame:CGRectMake(SCREEN_WIDTH - 50, Height_NavBar - 22.5 , 45, 395 + 22.5)]) {
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = 22.5;
-        self.reachtRect = CGRectMake(SCREEN_WIDTH - 50, 64 - 22.5, 45, 395 + 22.5);
-        self.retractRect = CGRectMake(SCREEN_WIDTH - 50, 64 - 22.5, 45, 0);
+        self.reachtRect = CGRectMake(SCREEN_WIDTH - 50, Height_NavBar - 22.5, 45, 395 + 22.5);
+        self.retractRect = CGRectMake(SCREEN_WIDTH - 50, Height_NavBar - 22.5, 45, 0);
         self.backgroundColor = [UIColor whiteColor];
         self.isRetract = NO;
         [self initUI];

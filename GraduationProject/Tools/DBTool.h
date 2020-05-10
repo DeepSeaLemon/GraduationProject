@@ -22,6 +22,7 @@
 - (void)createAppAllDBs;
 
 // 课程表
+- (void)deleteCurriculumWith:(GPCurriculumModel *)model complate:(void(^)(BOOL success))complate;
 - (void)saveCurriculumWith:(GPCurriculumModel *)model complate:(void(^)(BOOL success))complate;
 - (void)getCurriculums:(void(^)(NSArray *singleArray))singleDate double:(void(^)(NSArray *doubleArray))doubleDate;
 

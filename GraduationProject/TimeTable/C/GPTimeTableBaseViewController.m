@@ -25,7 +25,7 @@
     [self.view addSubview:self.listHeaderView];
     [self.listHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(65);
+        make.top.mas_equalTo(Height_NavBar+1);
     }];
 }
 
@@ -46,7 +46,7 @@
         _collectionLayout.sectionInset = UIEdgeInsetsMake(1, margin, 0, margin);
         _collectionLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _collectionLayout.minimumLineSpacing = 1;
-        _collectionLayout.minimumInteritemSpacing = 1;
+        _collectionLayout.minimumInteritemSpacing = 0.5;
     }
     return _collectionLayout;
 }

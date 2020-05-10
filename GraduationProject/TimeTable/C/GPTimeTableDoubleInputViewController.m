@@ -43,14 +43,14 @@ static NSString *GPTimeTableDoubleInputViewControllerCellID = @"GPTimeTableDoubl
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(65+50);
+        make.top.mas_equalTo(Height_NavBar+1+50);
         make.left.mas_equalTo((SCREEN_WIDTH - 7)/8);
         make.height.mas_equalTo(404);
     }];
     
     [self.view addSubview:self.isDoubleSwitchItem];
     [self.isDoubleSwitchItem mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(65+450+5);
+        make.top.mas_equalTo(Height_NavBar+1+450+5);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(50);
     }];

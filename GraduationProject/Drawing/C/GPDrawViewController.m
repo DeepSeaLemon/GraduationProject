@@ -52,7 +52,7 @@
     [self.view addSubview:self.drawView];
     [self.drawView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(65);
+        make.top.mas_equalTo(Height_NavBar+1);
     }];
     
     [self.view addSubview:self.controlView];

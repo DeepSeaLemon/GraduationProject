@@ -51,6 +51,19 @@
 }
 
 #pragma mark - db
+- (void)deleteCurriculumWith:(GPCurriculumModel *)model complate:(void(^)(BOOL success))complate {
+    [[DBTool shareInstance] deleteCurriculumWith:model complate:^(BOOL success) {
+        if (success && [self.singleCurriculumModels containsObject:model]) {
+            [self.singleCurriculumModels replaceObjectAtIndex:[self.singleCurriculumModels indexOfObject:model] withObject:[[GPCurriculumModel alloc] init]];
+            !complate?:complate(YES);
+        }
+        if (success && [self.doubleCurriculumModels containsObject:model]) {
+            [self.doubleCurriculumModels replaceObjectAtIndex:[self.doubleCurriculumModels indexOfObject:model] withObject:[[GPCurriculumModel alloc] init]];
+            !complate?:complate(YES);
+        }
+        !complate?:complate(success);
+    }];
+}
 
 - (void)getCurriculums:(void(^)(void))finish {
     __weak typeof(self) weakself = self;

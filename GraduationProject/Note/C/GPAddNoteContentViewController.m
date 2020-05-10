@@ -140,7 +140,7 @@
     [self.view addSubview:self.backImageView];
     [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(65);
+        make.top.mas_equalTo(Height_NavBar+1);
     }];
     
     [self.backImageView addSubview:self.timeLabel];

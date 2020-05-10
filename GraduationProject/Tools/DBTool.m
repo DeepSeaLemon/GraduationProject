@@ -46,6 +46,18 @@ static DBTool *_singleInstance = nil;
 
 #pragma mark - delete
 
+- (void)deleteCurriculumWith:(GPCurriculumModel *)model complate:(void(^)(BOOL success))complate {
+    FMDatabase *timeTableDB = [self getDatabaseWith:self.timeTable];
+    if ([timeTableDB open]) {
+        NSString *delete = [NSString stringWithFormat:@"delete from %@ where numberStr = ?",self.timeTableList];
+        BOOL success = [timeTableDB executeUpdate:delete, model.numberStr];
+        !complate?:complate(success);
+    } else {
+        !complate?:complate(NO);
+    }
+    [timeTableDB close];
+}
+
 - (void)deleteNoteContentWith:(GPNoteContentModel *)model complate:(void(^)(BOOL success))complate {
     FMDatabase *noteDB = [self getDatabaseWith:self.note];
     if ([noteDB open]) {

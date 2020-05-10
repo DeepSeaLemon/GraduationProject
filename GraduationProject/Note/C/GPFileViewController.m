@@ -32,7 +32,7 @@ static NSString *GPFileViewControllerCellID = @"GPFileViewController";
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.mas_equalTo(0);
-        make.top.mas_equalTo(64+1);
+        make.top.mas_equalTo(Height_NavBar+1);
     }];
 }
 
@@ -56,6 +56,7 @@ static NSString *GPFileViewControllerCellID = @"GPFileViewController";
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:GPFileViewControllerCellID];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self.files.count > 0) {
         cell.textLabel.text = self.files[indexPath.row];
     }

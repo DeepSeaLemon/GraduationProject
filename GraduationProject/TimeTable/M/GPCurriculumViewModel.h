@@ -21,5 +21,6 @@
 - (void)setTheDataToBeDisplayedThisWeek;
 - (void)saveSingleCurriculums;
 - (void)saveDoubleCurriculums;
+- (void)deleteCurriculumWith:(GPCurriculumModel *)model complate:(void(^)(BOOL success))complate;
 - (instancetype)initWithData;
 @end

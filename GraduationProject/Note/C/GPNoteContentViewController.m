@@ -58,7 +58,7 @@ static NSString *GPNoteContentViewControllerCellID = @"GPNoteContentViewControll
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(65);
+        make.top.mas_equalTo(Height_NavBar+1);
     }];
 }
 
@@ -84,7 +84,7 @@ static NSString *GPNoteContentViewControllerCellID = @"GPNoteContentViewControll
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return SCREEN_HEIGHT - 64 - 1;
+    return SCREEN_HEIGHT - Height_NavBar - 1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

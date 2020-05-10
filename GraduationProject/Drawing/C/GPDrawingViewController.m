@@ -32,7 +32,7 @@ static NSString *GPDrawingViewControllerCellID = @"GPDrawingViewController";
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(74);
+        make.top.mas_equalTo(Height_NavBar + 10);
     }];
 }
 

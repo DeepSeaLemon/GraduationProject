@@ -209,7 +209,7 @@
     [self.contentTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(100);
-        make.top.mas_equalTo(65);
+        make.top.mas_equalTo(Height_NavBar+1);
     }];
     
     [self.view addSubview:self.timeSelecteView];

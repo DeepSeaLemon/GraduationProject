@@ -73,7 +73,7 @@ static NSString *GPCourseInputViewControllerCellID = @"GPCourseInputViewControll
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(65);
+        make.top.mas_equalTo(Height_NavBar+1);
     }];
 }
 

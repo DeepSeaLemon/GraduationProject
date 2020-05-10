@@ -39,7 +39,7 @@
 - (void)initUI {
     [self.view addSubview:self.colorPickerView];
     [self.colorPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(64+10);
+        make.top.mas_equalTo(Height_NavBar+10);
         make.left.right.bottom.mas_equalTo(0);
     }];
     
@@ -77,7 +77,7 @@
 
 - (LSLHSBColorPickerView *)colorPickerView {
     if (!_colorPickerView) {
-        _colorPickerView = [[LSLHSBColorPickerView alloc] initWithFrame:CGRectMake(0, 74, SCREEN_WIDTH, SCREEN_HEIGHT-74)];
+        _colorPickerView = [[LSLHSBColorPickerView alloc] initWithFrame:CGRectMake(0, Height_NavBar + 10, SCREEN_WIDTH, SCREEN_HEIGHT - (Height_NavBar + 10))];
         _currentSelectedColor = _colorPickerView.preColor;
     }
     return _colorPickerView;

@@ -180,16 +180,26 @@
     NSInteger unitFlags = NSCalendarUnitYear;
     comps = [calendar components:unitFlags fromDate:datenow];
     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSDate * date = [formatter dateFromString:[NSString stringWithFormat:@"%ld-%@",(long)[comps year],model.remindTime]];
-    NSNumber *repeat = [model.isEveryday boolValue]?@(ZBLocalNotificationRepeatEveryDay):@(ZBLocalNotificationRepeatNone);
-    [ZBLocalNotification createLocalNotificationWithAttribute:@{ZBNotificationUserInfoName:model.numberStr,
-                                                                ZBNotificationSoundName:ZBNotificationSoundAlarm,
-                                                                ZBNotificationAlertBody:model.content,
-                                                                ZBNotificationAlertTitle:@"学习助手提醒闹钟",
-                                                                ZBNotificationFireDate:date,
-                                                                ZBNotificationPriority:@(0),
-                                                                ZBNotificationRepeat:repeat}];
+    if ([model.isEveryday boolValue]) {
+        [ZBLocalNotification createLocalNotificationWithAttribute:@{ZBNotificationUserInfoName:model.numberStr,
+                                                                    ZBNotificationSoundName:ZBNotificationSoundAlarm,
+                                                                    ZBNotificationAlertBody:model.content,
+                                                                    ZBNotificationAlertTitle:@"学习助手提醒闹钟",
+                                                                    ZBNotificationFireDate:date,
+                                                                    ZBNotificationPriority:@(0),
+                                                                    ZBNotificationRepeat:@(ZBLocalNotificationRepeatEveryDay)}];
+    } else {
+        [ZBLocalNotification createLocalNotificationWithAttribute:@{ZBNotificationUserInfoName:model.numberStr,
+                                                                    ZBNotificationSoundName:ZBNotificationSoundAlarm,
+                                                                    ZBNotificationAlertBody:model.content,
+                                                                    ZBNotificationAlertTitle:@"学习助手提醒闹钟",
+                                                                    ZBNotificationFireDate:date,
+                                                                    ZBNotificationPriority:@(0),
+                                                                    ZBNotificationRepeat:@(ZBLocalNotificationRepeatNone)}];
+    }
+    
 }
 
 #pragma mark - UI

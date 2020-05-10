@@ -10,6 +10,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import "GPTabBarViewController.h"
 #import "ZBLocalNotification.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
@@ -72,7 +73,7 @@
     }];
     
     //自定义展示推送内容
-    //    [self showAlarmAlertWithUserInfo:self.userInfos.firstObject];
+    [self showAlarmAlertWithUserInfo:self.userInfos.firstObject];
     NSLog(@"%@",self.userInfos.firstObject);
     //重置userInfo容器
     [self.userInfos removeAllObjects];
@@ -150,6 +151,23 @@
     }
 }
 
+- (void)showAlarmAlertWithUserInfo:(NSDictionary *)userinfo {
+    NSString * path = [[NSBundle mainBundle]pathForResource:@"9026.mp3" ofType:nil];
+    NSURL * url = [NSURL fileURLWithPath:path];
+    NSError * error;
+    __block AVAudioPlayer *player=[[AVAudioPlayer alloc]initWithContentsOfURL:url error:&error];
+    player.numberOfLoops = 0;
+    player.volume = 2;
+    [player prepareToPlay];
+    [player play];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:userinfo[@"ZBNotificationAlertTitle"] message:userinfo[@"ZBNotificationAlertBody"] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [player stop];
+    }];
+    [alert addAction:sure];
+    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - app
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -166,11 +184,13 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+     [application setApplicationIconBadgeNumber:0];
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+     [application setApplicationIconBadgeNumber:0];
 }
 
 

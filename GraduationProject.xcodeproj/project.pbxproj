@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		267C469E91DE67A2E178ED7E /* Pods_GraduationProject_GraduationProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D96A73A73047BFC1FFD984 /* Pods_GraduationProject_GraduationProjectUITests.framework */; };
+		31064EC224679CAD00190A96 /* 9026.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 31064EC124679CAD00190A96 /* 9026.mp3 */; };
 		310C09462463D1F90045C30A /* GPNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 310C09452463D1F90045C30A /* GPNoteModel.m */; };
 		310C09492463D20C0045C30A /* GPNoteContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 310C09482463D20C0045C30A /* GPNoteContentModel.m */; };
 		3119F1342455AD6E00616F27 /* GPNoteContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3119F1332455AD6E00616F27 /* GPNoteContentViewController.m */; };
@@ -102,6 +103,7 @@
 
 /* Begin PBXFileReference section */
 		0EAF666EB0793B9BDD02221F /* Pods-GraduationProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraduationProject.debug.xcconfig"; path = "Target Support Files/Pods-GraduationProject/Pods-GraduationProject.debug.xcconfig"; sourceTree = "<group>"; };
+		31064EC124679CAD00190A96 /* 9026.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 9026.mp3; sourceTree = "<group>"; };
 		310C09442463D1F90045C30A /* GPNoteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPNoteModel.h; sourceTree = "<group>"; };
 		310C09452463D1F90045C30A /* GPNoteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPNoteModel.m; sourceTree = "<group>"; };
 		310C09472463D20C0045C30A /* GPNoteContentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPNoteContentModel.h; sourceTree = "<group>"; };
@@ -540,6 +542,7 @@
 				316809E1244AC9180013CF15 /* Info.plist */,
 				316809E2244AC9180013CF15 /* main.m */,
 				313F3F1F245FEE5600A820BA /* GraduationProject-Bridging-Header.h */,
+				31064EC124679CAD00190A96 /* 9026.mp3 */,
 				313B5177244AF03A002B1061 /* Base */,
 				31BD4A1B244C1D7500549C2E /* Tools */,
 				313B5172244AEFC6002B1061 /* TimeTable */,
@@ -811,6 +814,7 @@
 				316809E0244AC9180013CF15 /* LaunchScreen.storyboard in Resources */,
 				316809DD244AC9180013CF15 /* Assets.xcassets in Resources */,
 				316809DB244AC9170013CF15 /* Main.storyboard in Resources */,
+				31064EC224679CAD00190A96 /* 9026.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

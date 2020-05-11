@@ -597,9 +597,9 @@
 				31BD4A18244C1C7C00549C2E /* UIColor+GP.h */,
 				31BD4A19244C1C7C00549C2E /* UIColor+GP.m */,
 				31FE07E3245AF2290059E6F0 /* NSDate+GP.h */,
+				31FE07E4245AF2290059E6F0 /* NSDate+GP.m */,
 				31A790912465908C009E5BF8 /* UIBezierPath+GP.h */,
 				31A790922465908C009E5BF8 /* UIBezierPath+GP.m */,
-				31FE07E4245AF2290059E6F0 /* NSDate+GP.m */,
 				31A301DC245C5646006B28ED /* UIImage+GP.h */,
 				31A301DD245C5646006B28ED /* UIImage+GP.m */,
 				315AD83D245EF51800A09BEB /* UITextField+GP.h */,
@@ -1195,7 +1195,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "GraduationProject/GraduationProject-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1219,7 +1219,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GraduationProject/GraduationProject-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

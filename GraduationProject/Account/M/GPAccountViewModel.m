@@ -29,6 +29,8 @@
 }
 
 - (void)calculateDataOfThisYear {
+    self.statisticsIncomeMoney = 0;
+    self.statisticsPayMoney = 0;
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth;

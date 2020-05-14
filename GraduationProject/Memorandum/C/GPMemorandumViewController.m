@@ -5,7 +5,7 @@
 //  Created by CYM on 2020/4/18.
 //  Copyright © 2020年 CYM. All rights reserved.
 //
-
+#import <UserNotifications/UserNotifications.h>
 #import "GPMemorandumViewController.h"
 #import "GPAddPlanViewController.h"
 #import "GPMemorandumTableViewCell.h"
@@ -82,6 +82,9 @@ static NSString *GPMemorandumViewControllerCellID = @"GPMemorandumViewController
                 [UIAlertController setTitle:@"操作提示" msg:@"确定要删除这个计划吗？" ctr:self sureHandler:^(UIAlertAction * _Nonnull action) {
                     [self.viewModel deleteMemorandum:model complate:^(BOOL success) {
                         if (success) {
+                            if (model.isRemind) {
+                                [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[model.numberStr]];
+                            }
                             [self.tableView reloadData];
                         } else {
                             [UIAlertController setTipsTitle:@"失败提示" msg:@"删除这个计划时发生了错误，请重试！" ctr:self handler:^(UIAlertAction * _Nullable action) {
